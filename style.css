@@ -1,0 +1,429 @@
+/* =========================================
+   1. VARIABLES & RESET
+   ========================================= */
+:root {
+    --bg-cream: #f9f7f2;
+    --text-dark: #2c2c2c;
+    --gold-accent: #c5a059;
+    --gold-hover: #a38243;
+    --white: #ffffff;
+    --gray-light: #f4f4f4;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--text-dark); }
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+ul { list-style: none; }
+
+/* =========================================
+   2. HEADER & NAVEGACIÓN (3 COLUMNAS)
+   ========================================= */
+header {
+    display: flex;
+    justify-content: space-between; /* Texto a la Izq | Menú a la Der */
+    align-items: center;
+    padding: 0 5%;
+    background-color: var(--bg-cream);
+    height: 70px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* 1. TEXTO IZQUIERDA */
+.brand-left {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--text-dark);
+    text-transform: uppercase;
+    text-decoration: none;
+    z-index: 2; /* Encima de todo para que sea clickeable */
+}
+
+/* 2. LOGO CENTRO (FLOTANTE) */
+.logo-center {
+    position: absolute; /* Clave para el centrado perfecto */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    z-index: 1;
+}
+
+.logo-img {
+    height: 40px; /* Tamaño del bolso */
+    width: auto;
+    object-fit: contain;
+}
+
+/* 3. MENÚ DERECHA */
+.nav-menu { 
+    display: flex; 
+    gap: 25px; 
+    align-items: center; 
+    z-index: 2;
+}
+
+.nav-link { 
+    font-size: 0.85rem;
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+    font-weight: 600; 
+    color: var(--text-dark); 
+    transition: 0.3s; 
+}
+.nav-link:hover, .nav-link.active { color: var(--gold-accent); }
+
+/* Hamburguesa (Móvil) */
+.hamburger { display: none; cursor: pointer; z-index: 1002; }
+.bar { 
+    display: block; width: 25px; height: 3px; margin: 5px auto; 
+    transition: 0.3s; background-color: var(--text-dark); 
+}
+
+/* AJUSTES RESPONSIVOS DEL HEADER */
+@media (max-width: 768px) {
+    /* En celular, ocultamos el texto izquierdo para que quepa el bolso y menú */
+    /* O lo hacemos más pequeño si prefieres que se vea */
+    .brand-left {
+        font-size: 0.9rem; 
+    }
+
+    .nav-menu { 
+        position: fixed; left: -100%; top: 0; flex-direction: column; 
+        background-color: var(--bg-cream); width: 100%; height: 100vh; 
+        justify-content: center; transition: 0.3s; z-index: 1001; 
+    }
+    .nav-menu.active { left: 0; }
+    .nav-link { font-size: 1.5rem; }
+    
+    .hamburger { display: block; }
+}
+
+/* =========================================
+   3. HERO & CAROUSEL
+   ========================================= */
+.hero {
+    position: relative;
+    height: 500px; /* Altura tipo banner */
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    overflow: hidden;
+}
+
+.carousel { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+
+.slide { 
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+    opacity: 0; transition: opacity 1.0s ease-in-out; 
+    background-size: cover; background-position: center; 
+}
+.slide.active { opacity: 1; }
+
+.overlay { 
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+    background: rgba(0,0,0,0.4); z-index: 1; 
+}
+
+/* Controles del Carrusel */
+.carousel-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.2); color: var(--white);
+    border: 2px solid rgba(255,255,255,0.5);
+    cursor: pointer; padding: 0; z-index: 10; 
+    font-size: 1.5rem; transition: all 0.3s ease;
+    border-radius: 50%; width: 50px; height: 50px;
+    display: flex; align-items: center; justify-content: center; user-select: none;
+}
+.carousel-btn:hover { background-color: var(--gold-accent); border-color: var(--gold-accent); }
+.prev { left: 20px; }
+.next { right: 20px; }
+
+.hero-content {
+    z-index: 5; text-align: center; color: var(--white);
+    animation: fadeInUp 1.2s forwards; padding: 0 20px;
+}
+.hero-content h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 15px; }
+.hero-content p { font-size: 1.2rem; margin-bottom: 30px; font-weight: 300; }
+.hero-btn {
+    background-color: var(--gold-accent); color: var(--white); padding: 15px 35px;
+    font-size: 1rem; letter-spacing: 2px; border: none; cursor: pointer; text-transform: uppercase;
+}
+
+/* =========================================
+   4. ESTILOS DE TIENDA (SHOP)
+   ========================================= */
+.shop-header {
+    text-align: center; padding: 60px 20px; background-color: var(--white);
+    border-bottom: 1px solid #eee;
+}
+.shop-header h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 10px; }
+.shop-header p { color: #777; letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem; }
+
+.shop-container { padding: 50px 5%; max-width: 1400px; margin: 0 auto; }
+
+.filter-menu { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap; }
+.filter-btn {
+    padding: 10px 25px; border: none; background: #eee; color: #555;
+    cursor: pointer; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;
+    transition: 0.3s; border-radius: 30px;
+}
+.filter-btn.active, .filter-btn:hover { background: var(--text-dark); color: var(--white); }
+
+/* =========================================
+   5. PRODUCTOS (GRID Y TARJETAS)
+   ========================================= */
+.products-grid { 
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 40px; 
+}
+
+.product-card {
+    background: var(--white); border: 1px solid #eee; position: relative;
+    transition: transform 0.3s, box-shadow 0.3s; overflow: hidden;
+    animation: fadeIn 0.5s ease;
+}
+.product-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+
+.product-image { position: relative; height: 350px; overflow: hidden; background: #f4f4f4; }
+.product-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; cursor: pointer; }
+.product-card:hover .product-image img { transform: scale(1.1); }
+
+.badge {
+    position: absolute; top: 15px; left: 15px; background: var(--gold-accent);
+    color: white; padding: 5px 12px; font-size: 0.7rem; font-weight: bold;
+    text-transform: uppercase; z-index: 2;
+}
+
+.quick-view {
+    position: absolute; bottom: -50px; left: 50%; transform: translateX(-50%);
+    background: var(--white); padding: 10px 20px; border: none; cursor: pointer;
+    font-weight: 600; text-transform: uppercase; font-size: 0.8rem;
+    transition: 0.4s; width: 80%; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.product-card:hover .quick-view { bottom: 20px; }
+.quick-view:hover { background: var(--text-dark); color: var(--white); }
+
+.product-info { padding: 20px; text-align: center; }
+.product-cat { font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 5px;}
+.category { font-size: 0.7rem; color: #999; text-transform: uppercase; letter-spacing: 1px; } 
+
+.product-info h3, .product-info h4 { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin: 5px 0 10px; }
+
+.price-row { margin-bottom: 15px; }
+.price { color: var(--gold-accent); font-weight: 600; font-size: 1.1rem; display: inline-block; }
+.price-old { text-decoration: line-through; color: #aaa; margin-right: 10px; font-size: 0.9rem; }
+
+.add-btn, .add-cart-btn {
+    width: 100%; padding: 12px; background: transparent; border: 1px solid var(--text-dark);
+    text-transform: uppercase; font-weight: 600; cursor: pointer; transition: 0.3s;
+    font-size: 0.8rem; letter-spacing: 1px; margin-top: 10px;
+}
+.add-btn:hover, .add-cart-btn:hover { background: var(--text-dark); color: var(--white); }
+
+/* =========================================
+   6. SECCIONES (ABOUT / LOCATION / MARQUEE)
+   ========================================= */
+.section-padding { padding: 80px 10%; }
+.section-title { text-align: center; font-size: 2.5rem; margin-bottom: 10px; }
+
+.about-container { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+.about-image img { width: 100%; border-radius: 4px; box-shadow: 15px 15px 0px var(--gold-accent); }
+
+.location-section { background-color: var(--bg-cream); padding: 80px 5%; text-align: center; }
+.map-container { width: 100%; max-width: 1000px; height: 400px; margin: 30px auto 0; border: 2px solid var(--gold-accent); }
+.map-container iframe { width: 100%; height: 100%; border: 0; }
+
+.marquee-container {
+    background-color: var(--text-dark); color: var(--white); padding: 10px 0;
+    overflow: hidden; white-space: nowrap; position: relative;
+    font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px;
+}
+.marquee-content { display: inline-block; animation: marquee 20s linear infinite; padding-left: 100%; }
+@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* =========================================
+   7. FOOTER & MODAL
+   ========================================= */
+footer { background-color: #1a1a1a; color: #fff; padding: 50px 5%; text-align: center; }
+.social-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 20px; }
+.social-link { color: var(--gold-accent); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; position: relative; }
+.social-link::after { content: ''; display: block; width: 0; height: 1px; background: var(--gold-accent); transition: width 0.3s; }
+.social-link:hover::after { width: 100%; }
+
+/* Botón Messenger */
+.messenger-btn {
+    position: fixed; bottom: 30px; right: 30px; background-color: #0084FF;
+    width: 60px; height: 60px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 2000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.messenger-btn:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(0, 132, 255, 0.4); }
+
+/* Modal Imagen */
+.image-modal {
+    display: none; position: fixed; z-index: 9999; padding-top: 50px;
+    left: 0; top: 0; width: 100%; height: 100%; overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9); opacity: 0; transition: opacity 0.3s ease;
+}
+.image-modal.show { opacity: 1; }
+.modal-content {
+    margin: auto; display: block; width: 80%; max-width: 700px; max-height: 80vh;
+    object-fit: contain; border-radius: 5px; animation: zoomIn 0.3s;
+}
+.close-modal {
+    position: absolute; top: 20px; right: 35px; color: #f1f1f1;
+    font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer;
+}
+.close-modal:hover { color: var(--gold-accent); }
+@keyframes zoomIn { from {transform:scale(0)} to {transform:scale(1)} }
+
+/* ANIMACIONES */
+@keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+.reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s ease; }
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+/* MÓVIL GENERAL */
+@media (max-width: 768px) {
+    .hero-content h1 { font-size: 2.5rem; }
+    .shop-header h1 { font-size: 2rem; }
+    .about-container { grid-template-columns: 1fr; }
+    .section-padding { padding: 60px 5%; }
+    .map-container { height: 300px; }
+    .hero { height: 50vh; min-height: 350px; }
+}
+/* =========================================
+   EFECTO DE NIEVE (CHRISTMAS VIBE)
+   ========================================= */
+.snowflake {
+    position: fixed;
+    top: -10px;
+    z-index: 9999; /* Encima de todo */
+    background-color: #fff; /* Color blanco */
+    border-radius: 50%; /* Forma redonda */
+    opacity: 0.8;
+    pointer-events: none; /* IMPORTANTE: Para que no bloquee los clics en botones */
+    animation: fall linear forwards;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1); /* Sombra sutil para que se vea en el fondo crema */
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(105vh) translateX(20px); /* Cae hasta el final */
+        opacity: 0.3;
+    }
+}
+/* =========================================
+   OPCIÓN 3: CLÁSICO FORMAL (GOLD CHECK)
+   ========================================= */
+.shop-container-layout {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 50px 5%;
+    gap: 60px;
+}
+
+.sidebar-filter {
+    flex: 0 0 240px;
+    background-color: #fff;
+    padding: 30px;
+    border: 1px solid #eee; /* Marco suave alrededor de los filtros */
+    height: fit-content;
+}
+
+.sidebar-filter h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    margin-bottom: 25px;
+    color: var(--text-dark);
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+.brand-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.brand-list label {
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: 0.3s;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Espacio entre el puntito y el texto */
+}
+
+/* Personalización del Radio Button */
+.brand-list input[type="radio"] {
+    appearance: none; /* Quita el estilo por defecto del navegador */
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ccc;
+    border-radius: 50%; /* 50% para círculo, 0% para cuadrado */
+    display: grid;
+    place-content: center;
+    transition: 0.3s;
+}
+
+/* El puntito del centro cuando se selecciona */
+.brand-list input[type="radio"]::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 0.2s transform ease-in-out;
+    box-shadow: inset 1em 1em var(--white); /* Color del punto interior */
+}
+
+/* ESTADO SELECCIONADO */
+.brand-list input[type="radio"]:checked {
+    background-color: var(--gold-accent);
+    border-color: var(--gold-accent);
+}
+
+.brand-list input[type="radio"]:checked::before {
+    transform: scale(1);
+}
+
+.brand-list label:hover {
+    color: var(--text-dark);
+}
+
+/* Texto en negrita al seleccionar */
+.brand-list label:has(input:checked) {
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.main-content { flex: 1; }
+
+@media (max-width: 768px) {
+    .shop-container-layout { flex-direction: column; }
+    .sidebar-filter { width: 100%; border: none; padding: 0; }
+}
