@@ -51,22 +51,38 @@
         <p>Aromas, Cuidado Personal y Estilo Urbano.</p>
     </section>
 
-    <section class="shop-container">
-        <div class="filter-menu">
-            <button class="filter-btn active" data-filter="all">Todos</button>
-            <button class="filter-btn" data-filter="cremas">Cremas</button>
-            <button class="filter-btn" data-filter="mist">Mist</button>
-            <button class="filter-btn" data-filter="velas">Velas</button>
-            <button class="filter-btn" data-filter="tenis">Tenis</button>
-            <button class="filter-btn" data-filter="bolsos">Bolsos</button>
-            <button class="filter-btn" data-filter="geles">Geles</button>
-        </div>
+    <section class="shop-container-layout">
+        
+        <aside class="sidebar-filter">
+            <h3>Filtrar por Marca</h3>
+            <div class="brand-list">
+                <label><input type="radio" name="brand" value="all" checked> Todas las Marcas</label>
+                <label><input type="radio" name="brand" value="victoria-secret"> Victoria's Secret</label>
+                <label><input type="radio" name="brand" value="pink"> PINK</label>
+                <label><input type="radio" name="brand" value="bbw"> Bath & Body Works</label>
+                <label><input type="radio" name="brand" value="nike"> Nike (Tenis)</label>
+                <label><input type="radio" name="brand" value="eos"> Eos Body Wash</label>
+    
+            </div>
+        </aside>
+
+        <div class="main-content">
+            
+            <div class="filter-menu">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="cremas">Cremas</button>
+                <button class="filter-btn" data-filter="mist">Mist</button>
+                <button class="filter-btn" data-filter="velas">Velas</button>
+                <button class="filter-btn" data-filter="tenis">Tenis</button>
+                <button class="filter-btn" data-filter="bolsos">Bolsos</button>
+                <button class="filter-btn" data-filter="geles">Geles</button>
+            </div>
 
         <div class="products-grid">
             <!------------------------------------------ EXCLUSIVO SOLO PARA CREMAS ------------------------------------------>
             <!------------------------------------------ EXCLUSIVO SOLO PARA CREMAS ------------------------------------------>
             <!------------------------------------------ EXCLUSIVO SOLO PARA CREMAS ------------------------------------------>
-            <div class="product-card" data-category="cremas">
+            <div class="product-card" data-category="cremas" data-brand="pink">
                 <div class="badge">NUEVO</div>
                 <div class="product-image">
                     <img src="Cremas/img1.jpg" alt="Crema" class="clickable-image">
