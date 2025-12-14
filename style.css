@@ -332,3 +332,98 @@ footer { background-color: #1a1a1a; color: #fff; padding: 50px 5%; text-align: c
         opacity: 0.3;
     }
 }
+/* =========================================
+   OPCIÓN 3: CLÁSICO FORMAL (GOLD CHECK)
+   ========================================= */
+.shop-container-layout {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 50px 5%;
+    gap: 60px;
+}
+
+.sidebar-filter {
+    flex: 0 0 240px;
+    background-color: #fff;
+    padding: 30px;
+    border: 1px solid #eee; /* Marco suave alrededor de los filtros */
+    height: fit-content;
+}
+
+.sidebar-filter h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    margin-bottom: 25px;
+    color: var(--text-dark);
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+.brand-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.brand-list label {
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: 0.3s;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Espacio entre el puntito y el texto */
+}
+
+/* Personalización del Radio Button */
+.brand-list input[type="radio"] {
+    appearance: none; /* Quita el estilo por defecto del navegador */
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ccc;
+    border-radius: 50%; /* 50% para círculo, 0% para cuadrado */
+    display: grid;
+    place-content: center;
+    transition: 0.3s;
+}
+
+/* El puntito del centro cuando se selecciona */
+.brand-list input[type="radio"]::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 0.2s transform ease-in-out;
+    box-shadow: inset 1em 1em var(--white); /* Color del punto interior */
+}
+
+/* ESTADO SELECCIONADO */
+.brand-list input[type="radio"]:checked {
+    background-color: var(--gold-accent);
+    border-color: var(--gold-accent);
+}
+
+.brand-list input[type="radio"]:checked::before {
+    transform: scale(1);
+}
+
+.brand-list label:hover {
+    color: var(--text-dark);
+}
+
+/* Texto en negrita al seleccionar */
+.brand-list label:has(input:checked) {
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.main-content { flex: 1; }
+
+@media (max-width: 768px) {
+    .shop-container-layout { flex-direction: column; }
+    .sidebar-filter { width: 100%; border: none; padding: 0; }
+}
