@@ -272,3 +272,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Crear un copo cada 200ms
     setInterval(createSnowflake, 200);
+    /* =========================================
+       4. LÓGICA DE FILTROS DOBLE (CATEGORÍA + MARCA)
+       ========================================= */
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const brandRadios = document.querySelectorAll('input[name="brand"]');
+    const productCards = document.querySelectorAll('.product-card');
+
+    let currentCategory = 'all';
+    let currentBrand = 'all';
+
+    function filterProducts() {
+        productCards.forEach(card => {
+            const cardCategory = card.getAttribute('data-category');
+            const cardBrand = card.getAttribute('data-brand');
+
+            // Lógica: Debe coincidir la categoría Y la marca (o ser 'all')
+            const categoryMatch = (currentCategory === 'all' || cardCategory === currentCategory);
+            const brandMatch = (currentBrand === 'all' || cardBrand === currentBrand);
+
+            if (categoryMatch && brandMatch) {
+                card.style.display = 'block';
+                card.style.animation = 'none';
+                card.offsetHeight; /* trigger reflow */
+                card.style.animation = 'fadeIn 0.5s ease';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    // Eventos para Botones de Categoría
+    if (filterButtons.length > 0) {
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                currentCategory = button.getAttribute('data-filter');
+                filterProducts();
+            });
+        });
+    }
+
+    // Eventos para Radio Buttons de Marca
+    if (brandRadios.length > 0) {
+        brandRadios.forEach(radio => {
+            radio.addEventListener('change', () => {
+                currentBrand = radio.value;
+                filterProducts();
+            });
+        });
+    }
