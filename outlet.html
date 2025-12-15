@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outlet | NC West Coast</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="NC.ico">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <a href="https://m.me/1601742957926368" class="messenger-btn" target="_blank" title="Chatea con nosotros">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 0C5.373 0 0 4.983 0 11.133c0 3.5 1.758 6.614 4.605 8.654V24l4.105-2.256c1.05.29 2.164.45 3.29.45 6.627 0 12-4.983 12-11.133C24 4.983 18.627 0 12 0zm1.096 15.02L10.28 12.13 4.805 15.02l6.007-6.38 2.816 2.89 5.474-2.89-6.006 6.38z"/>
+        </svg>
+    </a>
+
+    <header>
+        <a href="index.html" class="brand-left">NC WEST COAST</a>
+        <a href="index.html" class="logo-center">
+            <img src="bolso.png" alt="NC Logo" class="logo-img">
+        </a>
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link" onclick="closeMenu()">Inicio</a></li>
+            <li><a href="shop.html" class="nav-link" onclick="closeMenu()">Tienda</a></li>
+            <li><a href="outlet.html" class="nav-link active" onclick="closeMenu()">Outlet</a></li>
+            <li><a href="index.html#about" class="nav-link" onclick="closeMenu()">Nosotros</a></li>
+        </ul>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </header>
+
+    <div class="marquee-container">
+        <div class="marquee-content">
+            LIQUIDACIÓN DE TEMPORADA • ENCARGOS PERSONALIZADOS • ENVÍOS A TODO MÉXICO • PRECIOS ESPECIALES •
+            LIQUIDACIÓN DE TEMPORADA • ENCARGOS PERSONALIZADOS • ENVÍOS A TODO MÉXICO • PRECIOS ESPECIALES •
+        </div>
+    </div>
+
+    <section class="shop-header">
+        <h1>Outlet & Encargos</h1>
+        <p>Oportunidades únicas y servicio de Personal Shopper.</p>
+    </section>
+
+    <section class="shop-container">
+    
+    <div class="filter-menu"> 
+        <button class="filter-btn active" data-filter="tenis">Tenis</button>
+        <button class="filter-btn" data-filter="bag">Travel Bag</button>
+        <button class="filter-btn" data-filter="reloj">Relojes</button>
+        </div>
+
+    <div class="brand-toggles">
+        <div class="brand-options">
+            <label class="brand-pill">
+                <input type="radio" name="brand" value="jordan" checked>
+                <span>Jordan</span>
+            </label>
+            <label class="brand-pill">
+                <input type="radio" name="brand" value="Nike">
+                <span>Nike</span>
+            </label>
+            <label class="brand-pill">
+                <input type="radio" name="brand" value="under">
+                <span>Under Armor</span>
+            </label>
+            <label class="brand-pill">
+                <input type="radio" name="brand" value="adidas">
+                <span>Adidas</span>
+            </label>
+            <label class="brand-pill">
+                <input type="radio" name="brand" value="coach">
+                <span>Coach</span>
+            </label>
+            <label class="brand-pill">
+                <input type="radio" name="brand" value="Polo">
+                <span>Lacoste</span>
+            </label>
+            <label class="brand-pill">
+                <input type="radio" name="brand" value="lacoste">
+                <span>Lacoste</span>
+            </label>
+            <label class="brand-pill">
+                <input type="radio" name="brand" value="tommy">
+                <span>Tommy Hilfiger</span>
+            </label>
+        </div>
+    </div>
+
+    <div class="products-grid">
+        
+                
+                <div class="product-card" data-category="tenis" data-brand="nike">
+                    <div class="badge" style="background-color: #d9534f;">LIQUIDACIÓN</div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=1000" alt="Tenis" class="clickable-image">
+                        <button class="quick-view">Vista Rápida</button>
+                    </div>
+                    <div class="product-info">
+                        <span class="category">Tenis • Nike</span>
+                        <h3>Air Jordan 1 Retro</h3>
+                        <div class="price-row">
+                            <span class="price-old">$3,500</span>
+                            <span class="price">$2,800 MXN</span>
+                        </div>
+                        <button class="add-cart-btn buy-btn">Comprar</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="relojes" data-brand="casio">
+                    <div class="badge">BAJO PEDIDO</div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?q=80&w=1000" alt="Reloj" class="clickable-image">
+                        <button class="quick-view">Vista Rápida</button>
+                    </div>
+                    <div class="product-info">
+                        <span class="category">Relojes • Casio</span>
+                        <h3>Casio Vintage Gold</h3>
+                        <div class="price-row">
+                            <span class="price">$1,100 MXN</span>
+                        </div>
+                        <button class="add-cart-btn buy-btn">Cotizar</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="bolsos" data-brand="coach">
+                    <div class="badge">ÚLTIMA PIEZA</div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=1000" alt="Bolso" class="clickable-image">
+                        <button class="quick-view">Vista Rápida</button>
+                    </div>
+                    <div class="product-info">
+                        <span class="category">Bolsos • Coach</span>
+                        <h3>Coach Tote Bag</h3>
+                        <div class="price-row">
+                            <span class="price">$4,500 MXN</span>
+                        </div>
+                        <button class="add-cart-btn buy-btn">Comprar</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+     <section class="custom-order-banner">
+        <div class="custom-order-content">
+            <h2>¿No encuentras lo que buscas?</h2>
+            <p>Si necesitas un modelo específico de tenis, un reloj exclusivo o un bolso que no ves aquí, <strong>¡Nosotros te lo conseguimos!</strong></p>
+            <p class="sub-text">Trabajamos bajo pedido con marcas originales. Mándanos la foto y te damos precio.</p>
+            <a href="https://m.me/1601742957926368" target="_blank">
+                <button class="hero-btn order-btn">Cotizar Ahora</button>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 NC West Coast. Todos los derechos reservados.</p>
+    </footer>
+
+    <div id="imageModal" class="image-modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+
+</body>
+</html>

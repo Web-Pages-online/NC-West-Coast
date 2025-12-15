@@ -28,7 +28,8 @@
 
         <ul class="nav-menu">
             <li><a href="index.html" class="nav-link" onclick="closeMenu()">Inicio</a></li>
-            <li><a href="shop.html" class="nav-link active" onclick="closeMenu()">Tienda</a></li>
+            <li><a href="shop.html" class="nav-link active" onclick="closeMenu()">Cosmeticos</a></li>
+            <li><a href="outlet.html" class="nav-link" onclick="closeMenu()">Outlet</a></li>
             <li><a href="index.html#about" class="nav-link" onclick="closeMenu()">Nosotros</a></li>
         </ul>
         
@@ -51,31 +52,43 @@
         <p>Aromas, Cuidado Personal y Estilo Urbano.</p>
     </section>
 
-    <section class="shop-container-layout">
-        
-        <aside class="sidebar-filter">
-            <h3>Filtrar por Marca</h3>
-            <div class="brand-list">
-                <label><input type="radio" name="brand" value="victoria-secret"> Victoria's Secret</label>
-                <label><input type="radio" name="brand" value="pink"> PINK</label>
-                <label><input type="radio" name="brand" value="bbw"> Bath & Body Works</label>
-                <label><input type="radio" name="brand" value="nike"> Nike (Tenis)</label>
-                <label><input type="radio" name="brand" value="eos"> Eos Body Wash</label>
+    <section class="shop-container">
     
-            </div>
-        </aside>
+    <div class="filter-menu">
+        <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="cremas">Cremas</button>
+        <button class="filter-btn" data-filter="mist">Mist</button>
+        </div>
 
-        <div class="main-content">
-            
-            <div class="filter-menu">
-                <button class="filter-btn active" data-filter="all">Todos</button>
-                <button class="filter-btn" data-filter="cremas">Cremas</button>
-                <button class="filter-btn" data-filter="mist">Mist</button>
-                <button class="filter-btn" data-filter="velas">Velas</button>
-                <button class="filter-btn" data-filter="tenis">Tenis</button>
-                <button class="filter-btn" data-filter="bolsos">Bolsos</button>
-                <button class="filter-btn" data-filter="geles">Geles</button>
-            </div>
+    <div class="brand-toggles">
+        <span class="brand-label">Filtrar por Marca:</span>
+        <div class="brand-options">
+            <label class="brand-pill">
+                <input type="radio" name="brand" value="all" checked>
+                <span>Todas</span>
+            </label>
+            <label class="brand-pill">
+                <input type="radio" name="brand" value="victoria-secret">
+                <span>Victoria's Secret</span>
+            </label>
+            <label class="brand-pill">
+                <input type="radio" name="brand" value="pink">
+                <span>PINK</span>
+            </label>
+            <label class="brand-pill">
+                <input type="radio" name="brand" value="bbw">
+                <span>B&BW</span>
+            </label>
+             <label class="brand-pill">
+                <input type="radio" name="brand" value="eos">
+                <span>Eos</span>
+            </label>
+        </div>
+    </div>
+
+    <div class="products-grid">
+        </div>
+    </section>
 
         <div class="products-grid">
             <!------------------------------------------ EXCLUSIVO SOLO PARA CREMAS ------------------------------------------>

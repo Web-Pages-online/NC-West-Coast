@@ -323,3 +323,60 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+    document.addEventListener('DOMContentLoaded', () => {
+    
+    const categoryBtns = document.querySelectorAll('.filter-btn');
+    const brandRadios = document.querySelectorAll('input[name="brand"]');
+    const products = document.querySelectorAll('.product-card');
+
+    let currentCategory = 'all';
+    let currentBrand = 'all';
+
+    // Función principal de filtrado
+    function filterProducts() {
+        products.forEach(product => {
+            const productCategory = product.getAttribute('data-category');
+            const productBrand = product.getAttribute('data-brand');
+
+            // Lógica: ¿Coincide la categoría? Y ¿Coincide la marca?
+            const categoryMatch = (currentCategory === 'all' || productCategory === currentCategory);
+            
+            // Si la marca seleccionada es 'all', siempre es true. Si no, debe coincidir.
+            // Nota: Algunos productos (como tenis) quizás no tengan data-brand, asumimos que se muestran si la marca es 'all'
+            const brandMatch = (currentBrand === 'all' || (productBrand && productBrand === currentBrand));
+
+            if (categoryMatch && brandMatch) {
+                product.style.display = 'block';
+                // Animación de entrada suave
+                product.animate([
+                    { opacity: 0, transform: 'scale(0.95)' },
+                    { opacity: 1, transform: 'scale(1)' }
+                ], { duration: 300, fill: 'forwards' });
+            } else {
+                product.style.display = 'none';
+            }
+        });
+    }
+
+    // Eventos para Categorías
+    categoryBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Quitar clase active de todos
+            categoryBtns.forEach(b => b.classList.remove('active'));
+            // Poner clase active al clickeado
+            btn.classList.add('active');
+            
+            currentCategory = btn.getAttribute('data-filter');
+            filterProducts();
+        });
+    });
+
+    // Eventos para Marcas
+    brandRadios.forEach(radio => {
+        radio.addEventListener('change', () => {
+            currentBrand = radio.value;
+            filterProducts();
+        });
+    });
+
+});

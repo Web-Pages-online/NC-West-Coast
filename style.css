@@ -8,6 +8,7 @@
     --gold-hover: #a38243;
     --white: #ffffff;
     --gray-light: #f4f4f4;
+    --out-gold: #C19A5B; /* Dorado para botón cotizar */
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -29,7 +30,7 @@ ul { list-style: none; }
    ========================================= */
 header {
     display: flex;
-    justify-content: space-between; /* Texto a la Izq | Menú a la Der */
+    justify-content: space-between;
     align-items: center;
     padding: 0 5%;
     background-color: var(--bg-cream);
@@ -40,7 +41,6 @@ header {
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
-/* 1. TEXTO IZQUIERDA */
 .brand-left {
     font-family: 'Playfair Display', serif;
     font-size: 1.2rem;
@@ -49,12 +49,11 @@ header {
     color: var(--text-dark);
     text-transform: uppercase;
     text-decoration: none;
-    z-index: 2; /* Encima de todo para que sea clickeable */
+    z-index: 2;
 }
 
-/* 2. LOGO CENTRO (FLOTANTE) */
 .logo-center {
-    position: absolute; /* Clave para el centrado perfecto */
+    position: absolute;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -64,133 +63,105 @@ header {
     z-index: 1;
 }
 
-.logo-img {
-    height: 40px; /* Tamaño del bolso */
-    width: auto;
-    object-fit: contain;
-}
+.logo-img { height: 40px; width: auto; object-fit: contain; }
 
-/* 3. MENÚ DERECHA */
-.nav-menu { 
-    display: flex; 
-    gap: 25px; 
-    align-items: center; 
-    z-index: 2;
-}
-
-.nav-link { 
-    font-size: 0.85rem;
-    text-transform: uppercase; 
-    letter-spacing: 1px; 
-    font-weight: 600; 
-    color: var(--text-dark); 
-    transition: 0.3s; 
-}
+.nav-menu { display: flex; gap: 25px; align-items: center; z-index: 2; }
+.nav-link { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; color: var(--text-dark); transition: 0.3s; }
 .nav-link:hover, .nav-link.active { color: var(--gold-accent); }
 
-/* Hamburguesa (Móvil) */
 .hamburger { display: none; cursor: pointer; z-index: 1002; }
-.bar { 
-    display: block; width: 25px; height: 3px; margin: 5px auto; 
-    transition: 0.3s; background-color: var(--text-dark); 
-}
+.bar { display: block; width: 25px; height: 3px; margin: 5px auto; transition: 0.3s; background-color: var(--text-dark); }
 
-/* AJUSTES RESPONSIVOS DEL HEADER */
 @media (max-width: 768px) {
-    /* En celular, ocultamos el texto izquierdo para que quepa el bolso y menú */
-    /* O lo hacemos más pequeño si prefieres que se vea */
-    .brand-left {
-        font-size: 0.9rem; 
-    }
-
-    .nav-menu { 
-        position: fixed; left: -100%; top: 0; flex-direction: column; 
-        background-color: var(--bg-cream); width: 100%; height: 100vh; 
-        justify-content: center; transition: 0.3s; z-index: 1001; 
-    }
+    .brand-left { font-size: 0.9rem; }
+    .nav-menu { position: fixed; left: -100%; top: 0; flex-direction: column; background-color: var(--bg-cream); width: 100%; height: 100vh; justify-content: center; transition: 0.3s; z-index: 1001; }
     .nav-menu.active { left: 0; }
     .nav-link { font-size: 1.5rem; }
-    
     .hamburger { display: block; }
 }
 
 /* =========================================
    3. HERO & CAROUSEL
    ========================================= */
-.hero {
-    position: relative;
-    height: 500px; /* Altura tipo banner */
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    overflow: hidden;
-}
-
+.hero { position: relative; height: 500px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .carousel { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
-
-.slide { 
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-    opacity: 0; transition: opacity 1.0s ease-in-out; 
-    background-size: cover; background-position: center; 
-}
+.slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 1.0s ease-in-out; background-size: cover; background-position: center; }
 .slide.active { opacity: 1; }
+.overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 1; }
 
-.overlay { 
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-    background: rgba(0,0,0,0.4); z-index: 1; 
-}
-
-/* Controles del Carrusel */
 .carousel-btn {
     position: absolute; top: 50%; transform: translateY(-50%);
     background-color: rgba(0, 0, 0, 0.2); color: var(--white);
-    border: 2px solid rgba(255,255,255,0.5);
-    cursor: pointer; padding: 0; z-index: 10; 
-    font-size: 1.5rem; transition: all 0.3s ease;
-    border-radius: 50%; width: 50px; height: 50px;
+    border: 2px solid rgba(255,255,255,0.5); cursor: pointer; padding: 0; z-index: 10; 
+    font-size: 1.5rem; transition: all 0.3s ease; border-radius: 50%; width: 50px; height: 50px;
     display: flex; align-items: center; justify-content: center; user-select: none;
 }
 .carousel-btn:hover { background-color: var(--gold-accent); border-color: var(--gold-accent); }
 .prev { left: 20px; }
 .next { right: 20px; }
 
-.hero-content {
-    z-index: 5; text-align: center; color: var(--white);
-    animation: fadeInUp 1.2s forwards; padding: 0 20px;
-}
+.hero-content { z-index: 5; text-align: center; color: var(--white); animation: fadeInUp 1.2s forwards; padding: 0 20px; }
 .hero-content h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 15px; }
 .hero-content p { font-size: 1.2rem; margin-bottom: 30px; font-weight: 300; }
-.hero-btn {
-    background-color: var(--gold-accent); color: var(--white); padding: 15px 35px;
-    font-size: 1rem; letter-spacing: 2px; border: none; cursor: pointer; text-transform: uppercase;
-}
+.hero-btn { background-color: var(--gold-accent); color: var(--white); padding: 15px 35px; font-size: 1rem; letter-spacing: 2px; border: none; cursor: pointer; text-transform: uppercase; }
 
 /* =========================================
-   4. ESTILOS DE TIENDA (SHOP)
+   4. FILTROS CENTRADOS (ESTILO NUEVO)
    ========================================= */
 .shop-header {
-    text-align: center; padding: 60px 20px; background-color: var(--white);
-    border-bottom: 1px solid #eee;
+    text-align: center; padding: 60px 20px 40px; background-color: var(--white);
+    border-bottom: 1px solid #f0f0f0;
 }
 .shop-header h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 10px; }
 .shop-header p { color: #777; letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem; }
 
-.shop-container { padding: 50px 5%; max-width: 1400px; margin: 0 auto; }
-
-.filter-menu { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap; }
-.filter-btn {
-    padding: 10px 25px; border: none; background: #eee; color: #555;
-    cursor: pointer; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;
-    transition: 0.3s; border-radius: 30px;
+/* Contenedor Principal de la Tienda */
+.shop-container { 
+    padding: 40px 5%; max-width: 1400px; margin: 0 auto; 
 }
-.filter-btn.active, .filter-btn:hover { background: var(--text-dark); color: var(--white); }
+
+/* 1. Botones de Categoría (Arriba) */
+.filter-menu, .category-scroll {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee; /* Línea sutil separadora */
+}
+
+.filter-btn {
+    background: transparent;
+    border: 1px solid #ddd;
+    color: #888;
+    padding: 12px 30px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 4px; 
+}
+
+.filter-btn:hover {
+    border-color: var(--text-dark);
+    color: var(--text-dark);
+}
+
+.filter-btn.active {
+    background-color: var(--text-dark); /* Fondo Negro */
+    color: var(--white);
+    border-color: var(--text-dark);
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
 
 /* =========================================
-   5. PRODUCTOS (GRID Y TARJETAS)
+   5. PRODUCTOS
    ========================================= */
-.products-grid { 
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 40px; 
-}
+.products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 40px; }
 
 .product-card {
     background: var(--white); border: 1px solid #eee; position: relative;
@@ -205,8 +176,7 @@ header {
 
 .badge {
     position: absolute; top: 15px; left: 15px; background: var(--gold-accent);
-    color: white; padding: 5px 12px; font-size: 0.7rem; font-weight: bold;
-    text-transform: uppercase; z-index: 2;
+    color: white; padding: 5px 12px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase; z-index: 2;
 }
 
 .quick-view {
@@ -219,10 +189,8 @@ header {
 .quick-view:hover { background: var(--text-dark); color: var(--white); }
 
 .product-info { padding: 20px; text-align: center; }
-.product-cat { font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 5px;}
 .category { font-size: 0.7rem; color: #999; text-transform: uppercase; letter-spacing: 1px; } 
-
-.product-info h3, .product-info h4 { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin: 5px 0 10px; }
+.product-info h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin: 5px 0 10px; }
 
 .price-row { margin-bottom: 15px; }
 .price { color: var(--gold-accent); font-weight: 600; font-size: 1.1rem; display: inline-block; }
@@ -236,11 +204,9 @@ header {
 .add-btn:hover, .add-cart-btn:hover { background: var(--text-dark); color: var(--white); }
 
 /* =========================================
-   6. SECCIONES (ABOUT / LOCATION / MARQUEE)
+   6. SECCIONES EXTRA
    ========================================= */
 .section-padding { padding: 80px 10%; }
-.section-title { text-align: center; font-size: 2.5rem; margin-bottom: 10px; }
-
 .about-container { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
 .about-image img { width: 100%; border-radius: 4px; box-shadow: 15px 15px 0px var(--gold-accent); }
 
@@ -256,8 +222,25 @@ header {
 .marquee-content { display: inline-block; animation: marquee 20s linear infinite; padding-left: 100%; }
 @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
+/* Banner Outlet */
+.custom-order-banner {
+    background-color: var(--text-dark); color: var(--white);
+    padding: 60px 5%; text-align: center; margin: 30px auto;
+    max-width: 1400px; border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15); position: relative; overflow: hidden;
+}
+.custom-order-banner h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 15px; color: var(--gold-accent); }
+.custom-order-banner p { font-size: 1.1rem; margin-bottom: 10px; font-weight: 300; }
+.custom-order-banner .sub-text { font-size: 0.9rem; color: #ccc; margin-bottom: 30px; font-style: italic; }
+
+.order-btn {
+    background-color: var(--out-gold); color: var(--white); border: none; padding: 12px 40px;
+    font-size: 1rem; font-weight: bold; letter-spacing: 1px;
+}
+.order-btn:hover { background-color: #a07e45; }
+
 /* =========================================
-   7. FOOTER & MODAL
+   7. FOOTER, MODAL, NIEVE
    ========================================= */
 footer { background-color: #1a1a1a; color: #fff; padding: 50px 5%; text-align: center; }
 .social-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 20px; }
@@ -265,7 +248,6 @@ footer { background-color: #1a1a1a; color: #fff; padding: 50px 5%; text-align: c
 .social-link::after { content: ''; display: block; width: 0; height: 1px; background: var(--gold-accent); transition: width 0.3s; }
 .social-link:hover::after { width: 100%; }
 
-/* Botón Messenger */
 .messenger-btn {
     position: fixed; bottom: 30px; right: 30px; background-color: #0084FF;
     width: 60px; height: 60px; border-radius: 50%;
@@ -275,7 +257,6 @@ footer { background-color: #1a1a1a; color: #fff; padding: 50px 5%; text-align: c
 }
 .messenger-btn:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(0, 132, 255, 0.4); }
 
-/* Modal Imagen */
 .image-modal {
     display: none; position: fixed; z-index: 9999; padding-top: 50px;
     left: 0; top: 0; width: 100%; height: 100%; overflow: auto;
@@ -291,14 +272,23 @@ footer { background-color: #1a1a1a; color: #fff; padding: 50px 5%; text-align: c
     font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer;
 }
 .close-modal:hover { color: var(--gold-accent); }
-@keyframes zoomIn { from {transform:scale(0)} to {transform:scale(1)} }
 
-/* ANIMACIONES */
+@keyframes zoomIn { from {transform:scale(0)} to {transform:scale(1)} }
 @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s ease; }
 .reveal.active { opacity: 1; transform: translateY(0); }
 
-/* MÓVIL GENERAL */
+.snowflake {
+    position: fixed; top: -10px; z-index: 9999; background-color: #fff; border-radius: 50%;
+    opacity: 0.8; pointer-events: none; animation: fall linear forwards;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+@keyframes fall {
+    0% { transform: translateY(0) translateX(0); opacity: 0.8; }
+    100% { transform: translateY(105vh) translateX(20px); opacity: 0.3; }
+}
+
+/* RESPONSIVE */
 @media (max-width: 768px) {
     .hero-content h1 { font-size: 2.5rem; }
     .shop-header h1 { font-size: 2rem; }
@@ -306,124 +296,124 @@ footer { background-color: #1a1a1a; color: #fff; padding: 50px 5%; text-align: c
     .section-padding { padding: 60px 5%; }
     .map-container { height: 300px; }
     .hero { height: 50vh; min-height: 350px; }
+    .custom-order-banner h2 { font-size: 1.8rem; }
+    .custom-order-banner { padding: 40px 5%; }
 }
-/* =========================================
-   EFECTO DE NIEVE (CHRISTMAS VIBE)
-   ========================================= */
-.snowflake {
-    position: fixed;
-    top: -10px;
-    z-index: 9999; /* Encima de todo */
-    background-color: #fff; /* Color blanco */
-    border-radius: 50%; /* Forma redonda */
-    opacity: 0.8;
-    pointer-events: none; /* IMPORTANTE: Para que no bloquee los clics en botones */
-    animation: fall linear forwards;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1); /* Sombra sutil para que se vea en el fondo crema */
-}
-
-@keyframes fall {
-    0% {
-        transform: translateY(0) translateX(0);
-        opacity: 0.8;
-    }
-    100% {
-        transform: translateY(105vh) translateX(20px); /* Cae hasta el final */
-        opacity: 0.3;
-    }
-}
-/* =========================================
-   OPCIÓN 3: CLÁSICO FORMAL (GOLD CHECK)
-   ========================================= */
-.shop-container-layout {
-    display: flex;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 50px 5%;
-    gap: 60px;
-}
-
-.sidebar-filter {
-    flex: 0 0 240px;
-    background-color: #fff;
-    padding: 30px;
-    border: 1px solid #eee; /* Marco suave alrededor de los filtros */
-    height: fit-content;
-}
-
-.sidebar-filter h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    margin-bottom: 25px;
-    color: var(--text-dark);
-    text-align: center;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 15px;
-}
-
-.brand-list {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-}
-
-.brand-list label {
-    font-size: 0.95rem;
+/* OPCIÓN 3: BLOQUE URBANO SÓLIDO */
+.filter-btn {
+    background-color: #f0f0f0; /* Fondo gris claro */
+    border: none;
+    color: #333;
+    padding: 12px 25px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
     cursor: pointer;
-    transition: 0.3s;
-    color: #555;
-    display: flex;
-    align-items: center;
-    gap: 12px; /* Espacio entre el puntito y el texto */
-}
-
-/* Personalización del Radio Button */
-.brand-list input[type="radio"] {
-    appearance: none; /* Quita el estilo por defecto del navegador */
-    -webkit-appearance: none;
-    width: 18px;
-    height: 18px;
-    border: 2px solid #ccc;
-    border-radius: 50%; /* 50% para círculo, 0% para cuadrado */
-    display: grid;
-    place-content: center;
-    transition: 0.3s;
-}
-
-/* El puntito del centro cuando se selecciona */
-.brand-list input[type="radio"]::before {
-    content: "";
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    transform: scale(0);
-    transition: 0.2s transform ease-in-out;
-    box-shadow: inset 1em 1em var(--white); /* Color del punto interior */
-}
-
-/* ESTADO SELECCIONADO */
-.brand-list input[type="radio"]:checked {
-    background-color: var(--gold-accent);
-    border-color: var(--gold-accent);
-}
-
-.brand-list input[type="radio"]:checked::before {
+    transition: all 0.2s ease;
+    border-radius: 4px;
     transform: scale(1);
 }
 
-.brand-list label:hover {
+.filter-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.filter-btn.active {
+    background-color: var(--text-dark); /* Negro intenso */
+    color: var(--gold-accent); /* Texto dorado */
+    transform: scale(1.05); /* Crece ligeramente */
+    box-shadow: 4px 4px 0px rgba(197, 160, 89, 0.3); /* Sombra dura estilo gráfico */
+}
+/* OPCIÓN 3: ESTILO "ETIQUETA" CON BORDE */
+
+/* Estilo base de la etiqueta de marca */
+.brand-pill span {
+    display: inline-block;
+    padding: 8px 20px;
+    background-color: transparent;
+    color: var(--text-dark);
+    border-radius: 4px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid #ccc; /* Borde gris visible */
+    font-weight: 500;
+}
+
+/* Efecto hover en la marca */
+.brand-pill:hover span {
+    border-color: var(--text-dark); /* El borde se oscurece */
+    background-color: #f9f9f9;
+}
+
+/* Marca Seleccionada */
+.brand-pill input[type="radio"]:checked + span {
+    background-color: var(--text-dark); /* Fondo oscuro */
+    color: var(--white); /* Texto blanco */
+    border-color: var(--text-dark); /* El borde también se oscurece */
+    font-weight: 700;
+}
+/* =========================================
+   FILTROS DE MARCA (ESTILO ETIQUETA / PILL)
+   ========================================= */
+
+.brand-toggles {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.brand-label {
+    display: block;
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; /* Un poco más grande y elegante */
+    margin-bottom: 15px;
     color: var(--text-dark);
 }
 
-/* Texto en negrita al seleccionar */
-.brand-list label:has(input:checked) {
-    color: var(--text-dark);
+.brand-options {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* 1. OCULTAR EL RADIO BUTTON NATIVO (El círculo feo) */
+/* Esto es lo que faltaba o estaba fallando */
+.brand-pill input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    margin: 0; /* Aseguramos que no ocupe espacio */
+}
+
+/* 2. ESTILO DEL BOTÓN (SPAN) */
+.brand-pill span {
+    display: inline-block;
+    padding: 10px 24px; /* Más espacioso */
+    background-color: #f4f4f4; /* Gris claro por defecto */
+    color: #666; /* Texto gris */
+    border-radius: 4px; /* Bordes suaves (como la imagen) */
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    border: 1px solid transparent; /* Para evitar saltos al seleccionar */
+}
+
+/* Hover (Al pasar el mouse) */
+.brand-pill:hover span {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+/* 3. ESTILO SELECCIONADO (Cuando se activa) */
+/* El selector '+' busca el span que está DESPUÉS del input */
+.brand-pill input[type="radio"]:checked + span {
+    background-color: #666; /* Gris Oscuro / Negro suave */
+    color: white; /* Texto Blanco */
     font-weight: 600;
-}
-
-.main-content { flex: 1; }
-
-@media (max-width: 768px) {
-    .shop-container-layout { flex-direction: column; }
-    .sidebar-filter { width: 100%; border: none; padding: 0; }
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Sombra suave para resaltar */
 }
