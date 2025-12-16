@@ -417,3 +417,26 @@ footer { background-color: #1a1a1a; color: #fff; padding: 50px 5%; text-align: c
     font-weight: 600;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Sombra suave para resaltar */
 }
+.slide { 
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+    opacity: 0; transition: opacity 1.0s ease-in-out; 
+    
+    /* --- AJUSTE DE IMAGEN --- */
+    background-size: contain;    /* Imagen completa */
+    background-position: center; /* Centrada */
+    background-repeat: no-repeat;
+    
+    /* 1. FONDO BLANCO */
+    background-color: #ffffff; 
+
+    /* 2. MÁS COLOR (Truco visual) */
+    /* saturate: aumenta la intensidad del color */
+    /* contrast: hace que los negros sean más negros y blancos más blancos */
+    filter: saturate(1.3) contrast(1.1); 
+}
+/* Hacer invisible la capa oscura para que los colores brillen */
+.hero .overlay {
+    background: transparent; 
+    /* Opcional: si quieres una sombra muy suave solo abajo para que se lea el texto blanco, usa esto: */
+    /* background: linear-gradient(to top, rgba(0,0,0,0.5), transparent); */
+}
