@@ -601,3 +601,133 @@ footer { background-color: #1a1a1a; color: #fff; padding: 50px 5%; text-align: c
     .encargos-content h1 { font-size: 2.2rem; }
     .gold-cta-btn { width: 100%; }
 }
+/* =========================================
+   ESTILOS DE LA SECCIÓN GIVEAWAY
+   ========================================= */
+.giveaway-container {
+    background-color: var(--white); /* Fondo blanco para limpiar la vista */
+    padding: 100px 10%; /* Mucho margen arriba y abajo para que no se vea amontonado */
+    margin: 40px 0;
+}
+
+.giveaway-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
+    gap: 80px; /* Espacio generoso entre el texto y la imagen */
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Estilos de Texto */
+.giveaway-badge {
+    color: var(--gold-accent);
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+}
+
+.giveaway-text h2 {
+    font-size: 3.5rem;
+    line-height: 1;
+    margin: 15px 0;
+    font-family: 'Playfair Display', serif;
+}
+
+.giveaway-text h2 span {
+    color: #d9534f; /* Rojo llamativo para destacar "EN CURSO" */
+}
+
+.giveaway-text p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+.giveaway-list {
+    margin-bottom: 35px;
+}
+
+.giveaway-list li {
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: var(--text-dark);
+    list-style: none;
+}
+
+/* Botón y Notas */
+.giveaway-btn {
+    background-color: var(--text-dark);
+    color: white;
+    padding: 18px 40px;
+    display: inline-block;
+    border-radius: 0; /* Estilo cuadrado formal */
+    transition: 0.3s;
+}
+
+.giveaway-btn:hover {
+    background-color: var(--gold-accent);
+}
+
+.giveaway-note {
+    font-size: 0.75rem;
+    color: #999;
+    margin-top: 15px;
+}
+
+/* Ajuste específico para el video del Giveaway */
+.giveaway-video {
+    width: 100%;
+    display: block;
+    object-fit: cover; /* Asegura que el video llene el marco elegante */
+    aspect-ratio: 4 / 5; /* Opcional: ajusta la proporción si tu video es vertical */
+    filter: saturate(1.2) contrast(1.05); /* Le da un poco más de viveza al video */
+    transition: transform 0.5s;
+}
+
+.giveaway-card:hover .giveaway-video {
+    transform: scale(1.03); /* Efecto de zoom suave al pasar el mouse */
+}
+
+/* Mantenemos el marco y la sombra del diseño anterior */
+.giveaway-card {
+    position: relative;
+    border: 15px solid var(--bg-cream); /* Marco color crema */
+    box-shadow: 20px 20px 0px var(--gold-accent); /* Sombra dorada sólida */
+    overflow: hidden;
+    background-color: #000; /* Fondo negro mientras carga el video */
+}
+
+/* Overlay opcional sobre el video */
+.card-overlay {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    padding: 5px 15px;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+/* Responsive (Celulares) */
+@media (max-width: 900px) {
+    .giveaway-content {
+        grid-template-columns: 1fr; /* Una sola columna en móvil */
+        gap: 40px;
+        text-align: center;
+    }
+
+    .giveaway-text h2 {
+        font-size: 2.5rem;
+    }
+
+    .giveaway-container {
+        padding: 60px 5%;
+    }
+
+    .giveaway-card {
+        box-shadow: 10px 10px 0px var(--gold-accent);
+    }
+}
