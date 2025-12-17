@@ -675,59 +675,87 @@ footer { background-color: #1a1a1a; color: #fff; padding: 50px 5%; text-align: c
     margin-top: 15px;
 }
 
-/* Ajuste específico para el video del Giveaway */
-.giveaway-video {
-    width: 100%;
-    display: block;
-    object-fit: cover; /* Asegura que el video llene el marco elegante */
-    aspect-ratio: 4 / 5; /* Opcional: ajusta la proporción si tu video es vertical */
-    filter: saturate(1.2) contrast(1.05); /* Le da un poco más de viveza al video */
-    transition: transform 0.5s;
+@media (max-width: 768px) {
+    /* Header Móvil */
+    header { padding: 0 15px; }
+    .brand-left { font-size: 0.9rem; }
+    .nav-menu { 
+        position: fixed; left: -100%; top: 0; flex-direction: column; 
+        background-color: var(--bg-cream); width: 80%; height: 100vh; 
+        box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+    }
+    .nav-menu.active { left: 0; }
+    .nav-link { font-size: 1.2rem; padding: 15px 0; }
+    .hamburger { display: block; }
+
+    /* Hero Móvil */
+    .hero { height: 400px; }
+    .hero-content h1 { font-size: 2rem; }
+
+    /* Shop & Filtros Móvil */
+    .shop-container { padding: 20px 15px; }
+    .filter-menu { gap: 8px; overflow-x: auto; justify-content: flex-start; padding-bottom: 10px; -webkit-overflow-scrolling: touch; }
+    .filter-btn { padding: 10px 15px; white-space: nowrap; font-size: 0.75rem; }
+    
+    .brand-options { gap: 5px; }
+    .brand-pill span { padding: 8px 12px; font-size: 0.75rem; }
+
+    /* Giveaway Móvil (Aquí estaba el error de iOS) */
+    .giveaway-container { padding: 40px 20px; }
+    .giveaway-content { 
+        grid-template-columns: 1fr; /* Una sola columna */
+        gap: 30px; 
+        text-align: center; 
+    }
+    .giveaway-text h2 { font-size: 2.2rem; }
+    .giveaway-card { 
+        max-width: 90%; 
+        margin: 0 auto; 
+        box-shadow: 10px 10px 0px var(--gold-accent); /* Sombra más pequeña en móvil */
+    }
+    .giveaway-video {
+        aspect-ratio: auto; /* Dejar que el video mande en móvil */
+        max-height: 450px;
+    }
+
+    /* Productos Móvil */
+    .products-grid { grid-template-columns: 1fr 1fr; gap: 15px; } /* 2 productos por fila */
+    .product-info h3 { font-size: 0.9rem; }
+    .product-image { height: 220px; }
+    .add-cart-btn { padding: 8px; font-size: 0.7rem; }
 }
 
-.giveaway-card:hover .giveaway-video {
-    transform: scale(1.03); /* Efecto de zoom suave al pasar el mouse */
+/* Solución específica para "achocamiento" en iPhone (Pantallas muy pequeñas) */
+@media (max-width: 480px) {
+    .giveaway-text h2 { font-size: 1.8rem; }
+    .products-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+}
+.giveaway-container { background-color: var(--white); padding: 80px 10%; margin: 20px 0; }
+.giveaway-content { 
+    display: grid; grid-template-columns: 1fr 1fr; gap: 50px; 
+    align-items: center; max-width: 1200px; margin: 0 auto; 
 }
 
-/* Mantenemos el marco y la sombra del diseño anterior */
+.giveaway-text h2 { font-size: 3rem; line-height: 1.1; margin: 15px 0; }
+.giveaway-text h2 span { color: #d9534f; }
+
 .giveaway-card {
     position: relative;
-    border: 15px solid var(--bg-cream); /* Marco color crema */
-    box-shadow: 20px 20px 0px var(--gold-accent); /* Sombra dorada sólida */
+    border: 10px solid var(--bg-cream);
+    box-shadow: 15px 15px 0px var(--gold-accent);
     overflow: hidden;
-    background-color: #000; /* Fondo negro mientras carga el video */
+    background-color: #000;
+    /* Solución iOS: Forzar hardware acceleration */
+    transform: translateZ(0); 
+    -webkit-transform: translateZ(0);
 }
 
-/* Overlay opcional sobre el video */
-.card-overlay {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    background: rgba(0,0,0,0.5);
-    color: white;
-    padding: 5px 15px;
-    font-size: 0.7rem;
-    letter-spacing: 2px;
-    font-weight: 600;
-}
-
-/* Responsive (Celulares) */
-@media (max-width: 900px) {
-    .giveaway-content {
-        grid-template-columns: 1fr; /* Una sola columna en móvil */
-        gap: 40px;
-        text-align: center;
-    }
-
-    .giveaway-text h2 {
-        font-size: 2.5rem;
-    }
-
-    .giveaway-container {
-        padding: 60px 5%;
-    }
-
-    .giveaway-card {
-        box-shadow: 10px 10px 0px var(--gold-accent);
-    }
+.giveaway-video {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    /* iOS a veces ignora aspect-ratio en video si no se define altura */
+    aspect-ratio: 4 / 5; 
+    filter: saturate(1.2) contrast(1.05);
 }
