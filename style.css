@@ -725,20 +725,6 @@ footer { background-color: #1a1a1a; color: #fff; padding: 50px 5%; text-align: c
     .add-cart-btn { padding: 8px; font-size: 0.7rem; }
 }
 
-/* Solución específica para "achocamiento" en iPhone (Pantallas muy pequeñas) */
-@media (max-width: 480px) {
-    .giveaway-text h2 { font-size: 1.8rem; }
-    .products-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-}
-.giveaway-container { background-color: var(--white); padding: 80px 10%; margin: 20px 0; }
-.giveaway-content { 
-    display: grid; grid-template-columns: 1fr 1fr; gap: 50px; 
-    align-items: center; max-width: 1200px; margin: 0 auto; 
-}
-
-.giveaway-text h2 { font-size: 3rem; line-height: 1.1; margin: 15px 0; }
-.giveaway-text h2 span { color: #d9534f; }
-
 .giveaway-card {
     position: relative;
     border: 10px solid var(--bg-cream);
@@ -748,14 +734,4 @@ footer { background-color: #1a1a1a; color: #fff; padding: 50px 5%; text-align: c
     /* Solución iOS: Forzar hardware acceleration */
     transform: translateZ(0); 
     -webkit-transform: translateZ(0);
-}
-
-.giveaway-video {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover;
-    /* iOS a veces ignora aspect-ratio en video si no se define altura */
-    aspect-ratio: 4 / 5; 
-    filter: saturate(1.2) contrast(1.05);
 }
