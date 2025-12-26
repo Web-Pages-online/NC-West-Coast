@@ -486,24 +486,23 @@
         <p>© 2025 NC West Coast. Todos los derechos reservados.</p>
     </footer>
 
-    <div id="imageModal" class="image-modal">
-        <span class="close-modal">&times;</span>
-        <img class="modal-content" id="img01">
-    </div>
-<div id="modalConfirmacion" class="copy-modal-overlay">
+   <div id="modalConfirmacion" class="copy-modal-overlay">
     <div class="copy-modal-box">
         <span class="close-copy-modal" onclick="cerrarModal()">&times;</span>
-        <h3>¡Casi listo!</h3>
-        <p>Hemos preparado los detalles de tu producto.</p>
-        <p style="font-size: 0.85rem; background: #f9f9f9; padding: 10px; border-radius: 4px; border: 1px dashed #ccc;">
-            Da clic en el botón para <strong>Copiar</strong> los datos y abrir, luego solo pega el mensaje en el chat de <strong>Messenger</strong>.
-        </p>
+        <h3>Confirmar Pedido</h3>
+        <p>Para agilizar tu compra, copiaremos los datos del producto automáticamente.</p>
+        
+        <div style="margin: 20px 0; background: #f4f4f4; padding: 15px; border-radius: 6px; font-size: 0.9rem; color: #555;">
+            1. Da clic en el botón de abajo.<br>
+            2. Se abrirá <strong>Messenger</strong>.<br>
+            3. Pega el mensaje y envíalo.
+        </div>
         
         <button id="btnIrMessenger" class="confirm-copy-btn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 4.983 0 11.133c0 3.5 1.758 6.614 4.605 8.654V24l4.105-2.256c1.05.29 2.164.45 3.29.45 6.627 0 12-4.983 12-11.133C24 4.983 18.627 0 12 0z"/></svg>
-            COPIAR Y CHATEAR
+            <span id="textoBoton">COPIAR Y CHATEAR</span>
         </button>
     </div>
+</div>
 </div>
 </body>
 </html>
