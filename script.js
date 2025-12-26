@@ -380,52 +380,68 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+    // VARIABLES GLOBALES PARA GUARDAR DATOS TEMPORALMENTE
+    let mensajePendiente = "";
+    let linkPendiente = "";
+    const modal = document.getElementById('modalConfirmacion');
+
+    // FUNCIÓN PARA CERRAR EL MODAL
+    function cerrarModal() {
+        modal.style.display = 'none';
+    }
+
+    // 1. DETECTAR CLIC EN BOTONES DE COMPRA
     document.addEventListener('DOMContentLoaded', () => {
-        
         const botonesCompra = document.querySelectorAll('.add-cart-btn, .order-btn');
 
         botonesCompra.forEach(boton => {
             boton.addEventListener('click', function(e) {
-                // 1. Prevenir comportamiento default
-                if (this.tagName === 'A') {
-                    e.preventDefault();
-                }
+                // Prevenimos que el enlace se abra solo
+                if (this.tagName === 'A') { e.preventDefault(); }
 
-                let mensaje = "";
-                // Usamos una variable para el link
-                let urlDestino = this.getAttribute('href') || "https://m.me/859771300559984";
+                // -- A) RECOPILAR DATOS --
+                linkPendiente = this.getAttribute('href') || "https://m.me/859771300559984";
                 
-                // 2. Detectar si es un producto o el botón de cotizar
                 const tarjeta = this.closest('.product-card');
 
                 if(tarjeta) {
                     const tipo = tarjeta.querySelector('.category') ? tarjeta.querySelector('.category').innerText.trim() : 'Producto';
                     const nombre = tarjeta.querySelector('h3') ? tarjeta.querySelector('h3').innerText.trim() : 'Sin nombre';
                     const precio = tarjeta.querySelector('.price') ? tarjeta.querySelector('.price').innerText.trim() : 'A cotizar';
-                    
-                    // Link de la imagen
                     const imagenUrl = tarjeta.querySelector('img') ? tarjeta.querySelector('img').src : 'Sin foto';
 
-                    mensaje = `Hola NC West Coast, me interesa: \n\n✨ Tipo: ${tipo} \n📦 Modelo: ${nombre} \n💲 Precio: ${precio} \n📸 Ref: ${imagenUrl} \n\n¿Está disponible?`;
+                    mensajePendiente = `Hola NC West Coast, me interesa: \n\n✨ Tipo: ${tipo} \n📦 Modelo: ${nombre} \n💲 Precio: ${precio} \n📸 Ref: ${imagenUrl} \n\n¿Está disponible?`;
                 } else {
-                    mensaje = "Hola NC West Coast, busco un artículo especial que no veo en la página. ¿Me pueden cotizar si les mando foto?";
+                    mensajePendiente = "Hola NC West Coast, busco un artículo especial que no veo en la página. ¿Me pueden cotizar si les mando foto?";
                 }
 
-                // 3. INTENTO DE COPIAR Y ABRIR (Lógica optimizada para Móvil)
-                navigator.clipboard.writeText(mensaje).then(() => {
-                    // ÉXITO AL COPIAR
-                    alert("✅ DATOS COPIADOS:\n\nEl detalle del producto se copió a tu portapapeles.\n\n👉 Al abrir Messenger, mantén presionado el chat y selecciona 'PEGAR'.");
-                    
-                    // TRUCO PARA MÓVIL: Usar location.href en lugar de window.open
-                    // Esto fuerza al celular a abrir la App de Messenger directamente
-                    window.location.href = urlDestino;
-
-                }).catch(err => {
-                    // ERROR AL COPIAR (O página sin HTTPS)
-                    // Si falla, no importa, abrimos el chat igual para no perder la venta
-                    console.error('Error al copiar:', err);
-                    window.location.href = urlDestino;
-                });
+                // -- B) ABRIR LA ALERTA (MODAL) --
+                modal.style.display = 'flex';
             });
         });
+
+        // 2. ACCIÓN DEL BOTÓN DENTRO DEL MODAL (ESTO ES LO QUE PERMITE EL CELULAR)
+        document.getElementById('btnIrMessenger').addEventListener('click', function() {
+            
+            // Copiamos al portapapeles
+            navigator.clipboard.writeText(mensajePendiente).then(() => {
+                // Éxito: Vamos a Messenger
+                window.location.href = linkPendiente;
+                
+                // Cerramos modal despues de un segundo para que se vea limpio al volver
+                setTimeout(cerrarModal, 1000);
+
+            }).catch(err => {
+                console.error('Error copy:', err);
+                // Si falla copiar (por no tener HTTPS), igual abrimos Messenger
+                window.location.href = linkPendiente;
+            });
+        });
+
+        // Cierra el modal si dan clic fuera de la cajita
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                cerrarModal();
+            }
+        }
     });
