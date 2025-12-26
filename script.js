@@ -221,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
     buyButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             // ID de Facebook que me proporcionaste
-            const pageID = "1601742957926368"; 
+            const pageID = "859771300559984"; 
             
             // Intentamos obtener el nombre del producto para personalizar (opcional)
             const card = btn.closest('.product-card');
