@@ -378,5 +378,42 @@ document.addEventListener('DOMContentLoaded', () => {
             filterProducts();
         });
     });
-
 });
+// 1. Buscamos todos los botones de comprar que agregaste
+    const botonesCompra = document.querySelectorAll('.add-cart-btn.buy-btn');
+
+    botonesCompra.forEach(boton => {
+        boton.addEventListener('click', function(e) {
+            // Evitamos que abra el link inmediatamente para poder copiar el texto primero
+            e.preventDefault();
+
+            // 2. Buscamos la información del producto donde se hizo clic
+            // Subimos al contenedor padre (.product-info) y luego al abuelo (.product-card)
+            const tarjeta = this.closest('.product-card'); 
+            
+            if(tarjeta) {
+                // Obtenemos el nombre y el precio
+                const nombreProducto = tarjeta.querySelector('h3').innerText;
+                const precioProducto = tarjeta.querySelector('.price').innerText;
+
+                // 3. Creamos el mensaje
+                const mensaje = `Hola NC West Coast, me interesa comprar este producto: ${nombreProducto} - Precio: ${precioProducto}. ¿Está disponible?`;
+
+                // 4. Copiamos el mensaje al portapapeles del celular/compu del cliente
+                navigator.clipboard.writeText(mensaje).then(() => {
+                    // Si se copia bien, avisamos sutilmente (opcional) y abrimos Messenger
+                    // Abrimos el chat
+                    window.open(this.getAttribute('href'), '_blank');
+                    
+                    // Pequeña alerta para que sepan que deben pegar (opcional)
+                    alert("✅ ¡Copiado! Pega el mensaje en el chat de Messenger para cotizar.");
+                }).catch(err => {
+                    // Si falla el copiado, solo abrimos el chat normal
+                    window.open(this.getAttribute('href'), '_blank');
+                });
+            } else {
+                // Si no encuentra la tarjeta, abre el chat normal
+                window.open(this.getAttribute('href'), '_blank');
+            }
+        });
+    });
