@@ -380,10 +380,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-    // VARIABLES GLOBALES
+
+    // --- VARIABLES DE CONTROL ---
     let mensajePendiente = "";
     let linkPendiente = "";
-    let yaCopiado = false; // Esta es la clave para el control manual
+    let pasoActual = 1; // 1 = Copiar, 2 = Ir a Messenger
 
     const modal = document.getElementById('modalConfirmacion');
     const btnAccion = document.getElementById('btnIrMessenger');
@@ -391,27 +392,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const tituloModal = document.getElementById('tituloModal');
     const instrucciones = document.getElementById('instruccionesModal');
 
-    // FUNCIÓN PARA CERRAR Y RESETEAR TODO AL ESTADO INICIAL
+    // --- FUNCIÓN DE RESETEO (Dejar todo listo para el siguiente producto) ---
     function cerrarModal() {
         modal.style.display = 'none';
         
-        // Reseteamos el botón para la próxima vez
-        yaCopiado = false;
-        btnAccion.style.backgroundColor = "#2c2c2c"; // Negro
+        // Volvemos al estado 1
+        pasoActual = 1;
+        btnAccion.style.backgroundColor = "#2c2c2c"; // Negro Original
         textoBtn.innerText = "COPIAR DATOS";
-        tituloModal.innerText = "Confirmar Pedido";
-        instrucciones.innerHTML = "Da clic abajo para copiar los detalles de tu producto.";
+        tituloModal.innerText = "Paso 1: Copiar Pedido";
+        instrucciones.innerHTML = "Primero copia los detalles del producto, luego te llevaremos al chat.";
     }
 
     document.addEventListener('DOMContentLoaded', () => {
         const botonesCompra = document.querySelectorAll('.add-cart-btn, .order-btn');
 
-        // 1. ABRIR EL MODAL (PREPARAR DATOS)
+        // --- PARTE A: EL "BLOQUEO" DEL BOTÓN PRINCIPAL ---
         botonesCompra.forEach(boton => {
             boton.addEventListener('click', function(e) {
+                // AQUÍ ESTÁ LA CLAVE: e.preventDefault()
+                // Esto le dice al navegador: "NO abras el link de Messenger todavía".
                 if (this.tagName === 'A') { e.preventDefault(); }
 
+                // 1. Guardamos el link para usarlo después
                 linkPendiente = this.getAttribute('href') || "https://m.me/859771300559984";
+                
+                // 2. Preparamos el mensaje
                 const tarjeta = this.closest('.product-card');
 
                 if(tarjeta) {
@@ -425,49 +431,46 @@ document.addEventListener('DOMContentLoaded', () => {
                     mensajePendiente = "Hola NC West Coast, busco un artículo especial que no veo en la página. ¿Me pueden cotizar si les mando foto?";
                 }
 
-                // Aseguramos que el modal empiece limpio
-                yaCopiado = false;
-                btnAccion.style.backgroundColor = "#2c2c2c";
-                textoBtn.innerText = "COPIAR DATOS";
-                
+                // 3. Abrimos la ventana (sin ir a Messenger aún)
+                cerrarModal(); // Reseteamos por seguridad
                 modal.style.display = 'flex';
             });
         });
 
-        // 2. LÓGICA DEL BOTÓN (2 PASOS)
+        // --- PARTE B: EL BOTÓN DE LA VENTANITA (2 PASOS) ---
         btnAccion.addEventListener('click', function() {
             
-            if (!yaCopiado) {
-                // --- PASO 1: COPIAR ---
+            if (pasoActual === 1) {
+                // >>> ACCIÓN 1: COPIAR
                 navigator.clipboard.writeText(mensajePendiente).then(() => {
                     
-                    // CAMBIO VISUAL PARA CONFIRMAR QUE YA SE COPIÓ
-                    yaCopiado = true; // Cambiamos la bandera
+                    // TRANSICIÓN AL PASO 2 (Visual)
+                    pasoActual = 2;
                     
+                    // Cambios estéticos para indicar éxito
                     btnAccion.style.backgroundColor = "#27ae60"; // Verde
-                    textoBtn.innerText = "🚀 IR A MESSENGER"; // Nuevo texto
+                    textoBtn.innerText = "🚀 IR A MESSENGER"; 
                     
-                    tituloModal.innerText = "✅ ¡Datos Copiados!";
-                    instrucciones.innerHTML = "Todo listo. Da clic nuevamente para <strong>abrir el chat</strong> y pega el mensaje.";
+                    tituloModal.innerText = "✅ ¡Copiado con Éxito!";
+                    instrucciones.innerHTML = "Tu pedido está en el portapapeles.<br><strong>Da clic otra vez</strong> para abrir la App.";
 
                 }).catch(err => {
-                    console.error('Error copy:', err);
-                    // Si falla copiar, saltamos directo al paso 2
-                    yaCopiado = true;
+                    console.error('Error al copiar:', err);
+                    // Si falla (celular viejo o sin HTTPS), forzamos el paso 2
+                    pasoActual = 2;
                     textoBtn.innerText = "IR A MESSENGER";
                 });
 
             } else {
-                // --- PASO 2: ABRIR MESSENGER ---
-                // Solo ocurre si el usuario da el SEGUNDO clic
+                // >>> ACCIÓN 2: ABRIR LA APP
                 window.location.href = linkPendiente;
                 
-                // Cerramos el modal un poco después
+                // Cerramos la ventanita después de un momento
                 setTimeout(cerrarModal, 2000);
             }
         });
 
-        // Cierra el modal si dan clic fuera
+        // Cerrar si dan clic afuera
         window.onclick = function(event) {
             if (event.target == modal) { cerrarModal(); }
         }
