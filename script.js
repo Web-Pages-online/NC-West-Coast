@@ -380,28 +380,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-    // VARIABLES GLOBALES PARA GUARDAR DATOS TEMPORALMENTE
+    // VARIABLES GLOBALES
     let mensajePendiente = "";
     let linkPendiente = "";
     const modal = document.getElementById('modalConfirmacion');
+    const btnAccion = document.getElementById('btnIrMessenger');
+    const textoBtn = document.getElementById('textoBoton');
 
-    // FUNCIÓN PARA CERRAR EL MODAL
+    // FUNCIÓN PARA CERRAR Y RESETEAR EL MODAL
     function cerrarModal() {
         modal.style.display = 'none';
+        // Reset visual completo
+        btnAccion.style.backgroundColor = "#2c2c2c";
+        textoBtn.innerText = "COPIAR Y CHATEAR";
+        btnAccion.disabled = false;
+        btnAccion.style.opacity = "1";
     }
 
-    // 1. DETECTAR CLIC EN BOTONES DE COMPRA
     document.addEventListener('DOMContentLoaded', () => {
         const botonesCompra = document.querySelectorAll('.add-cart-btn, .order-btn');
 
+        // 1. ABRIR EL MODAL (EL BLOQUEO)
         botonesCompra.forEach(boton => {
             boton.addEventListener('click', function(e) {
-                // Prevenimos que el enlace se abra solo
                 if (this.tagName === 'A') { e.preventDefault(); }
 
-                // -- A) RECOPILAR DATOS --
+                // Obtenemos link y datos
                 linkPendiente = this.getAttribute('href') || "https://m.me/859771300559984";
-                
                 const tarjeta = this.closest('.product-card');
 
                 if(tarjeta) {
@@ -415,33 +420,50 @@ document.addEventListener('DOMContentLoaded', () => {
                     mensajePendiente = "Hola NC West Coast, busco un artículo especial que no veo en la página. ¿Me pueden cotizar si les mando foto?";
                 }
 
-                // -- B) ABRIR LA ALERTA (MODAL) --
+                // Abrimos el modal
                 modal.style.display = 'flex';
             });
         });
 
-        // 2. ACCIÓN DEL BOTÓN DENTRO DEL MODAL (ESTO ES LO QUE PERMITE EL CELULAR)
-        document.getElementById('btnIrMessenger').addEventListener('click', function() {
+        // 2. LÓGICA DE COPIADO CON PAUSA VISUAL OBLIGATORIA
+        btnAccion.addEventListener('click', function() {
             
-            // Copiamos al portapapeles
+            // Paso A: Avisar que estamos procesando
+            textoBtn.innerText = "⏳ COPIANDO...";
+            btnAccion.disabled = true; // Evitar doble clic
+
+            // Paso B: Copiar al portapapeles
             navigator.clipboard.writeText(mensajePendiente).then(() => {
-                // Éxito: Vamos a Messenger
-                window.location.href = linkPendiente;
                 
-                // Cerramos modal despues de un segundo para que se vea limpio al volver
-                setTimeout(cerrarModal, 1000);
+                // Paso C: ÉXITO VISUAL (El botón se pone verde)
+                btnAccion.style.backgroundColor = "#27ae60"; 
+                textoBtn.innerText = "✅ ¡LISTO! COPIADO";
+
+                // Paso D: LA PAUSA OBLIGATORIA (2 Segundos)
+                // Aquí obligamos al usuario a ver que sí se copió antes de irse
+                setTimeout(() => {
+                    textoBtn.innerText = "🚀 ABRIENDO APP...";
+                    
+                    // Pequeña pausa extra para leer "Abriendo App"
+                    setTimeout(() => {
+                        window.location.href = linkPendiente; // ¡VÁMONOS!
+                        
+                        // Cerramos el modal mucho después por si el usuario regresa al navegador
+                        setTimeout(cerrarModal, 2000);
+                    }, 500); 
+
+                }, 1500); // 1.5 segundos viendo el mensaje verde
 
             }).catch(err => {
+                // Si falla el copiado (ej. sin HTTPS), abrimos directo
                 console.error('Error copy:', err);
-                // Si falla copiar (por no tener HTTPS), igual abrimos Messenger
+                textoBtn.innerText = "⚠️ ABRIENDO CHAT...";
                 window.location.href = linkPendiente;
             });
         });
 
-        // Cierra el modal si dan clic fuera de la cajita
+        // Cierra el modal si dan clic fuera
         window.onclick = function(event) {
-            if (event.target == modal) {
-                cerrarModal();
-            }
+            if (event.target == modal) { cerrarModal(); }
         }
     });
