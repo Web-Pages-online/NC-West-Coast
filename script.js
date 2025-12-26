@@ -379,41 +379,58 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
-// 1. Buscamos todos los botones de comprar que agregaste
-    const botonesCompra = document.querySelectorAll('.add-cart-btn.buy-btn');
 
-    botonesCompra.forEach(boton => {
-        boton.addEventListener('click', function(e) {
-            // Evitamos que abra el link inmediatamente para poder copiar el texto primero
-            e.preventDefault();
+    // SCRIPT MEJORADO PARA DETALLES Y LINK DE FOTO
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        const botonesCompra = document.querySelectorAll('.add-cart-btn, .order-btn');
 
-            // 2. Buscamos la información del producto donde se hizo clic
-            // Subimos al contenedor padre (.product-info) y luego al abuelo (.product-card)
-            const tarjeta = this.closest('.product-card'); 
-            
-            if(tarjeta) {
-                // Obtenemos el nombre y el precio
-                const nombreProducto = tarjeta.querySelector('h3').innerText;
-                const precioProducto = tarjeta.querySelector('.price').innerText;
+        botonesCompra.forEach(boton => {
+            boton.addEventListener('click', function(e) {
+                
+                // Si es un enlace <a>, evitamos que abra de golpe para copiar primero
+                if (this.tagName === 'A') {
+                    e.preventDefault();
+                }
 
-                // 3. Creamos el mensaje
-                const mensaje = `Hola NC West Coast, me interesa comprar este producto: ${nombreProducto} - Precio: ${precioProducto}. ¿Está disponible?`;
+                let mensaje = "";
+                let urlDestino = this.getAttribute('href') || "https://m.me/859771300559984";
+                
+                // Buscamos la tarjeta del producto
+                const tarjeta = this.closest('.product-card');
 
-                // 4. Copiamos el mensaje al portapapeles del celular/compu del cliente
-                navigator.clipboard.writeText(mensaje).then(() => {
-                    // Si se copia bien, avisamos sutilmente (opcional) y abrimos Messenger
-                    // Abrimos el chat
-                    window.open(this.getAttribute('href'), '_blank');
+                if(tarjeta) {
+                    // 1. OBTENEMOS LOS DATOS
+                    // Usamos 'trim()' para limpiar espacios vacíos extraños
+                    const tipo = tarjeta.querySelector('.category') ? tarjeta.querySelector('.category').innerText.trim() : 'Producto';
+                    const nombre = tarjeta.querySelector('h3') ? tarjeta.querySelector('h3').innerText.trim() : 'Sin nombre';
+                    const precio = tarjeta.querySelector('.price') ? tarjeta.querySelector('.price').innerText.trim() : 'A cotizar';
                     
-                    // Pequeña alerta para que sepan que deben pegar (opcional)
-                    alert("✅ ¡Copiado! Pega el mensaje en el chat de Messenger para cotizar.");
+                    // 2. OBTENEMOS EL LINK DE LA FOTO (Truco para buscar rápido)
+                    // .src nos da la dirección completa (http://...) de la imagen
+                    const imagenUrl = tarjeta.querySelector('img') ? tarjeta.querySelector('img').src : 'Sin foto';
+
+                    // 3. ARMAMOS EL MENSAJE BIEN ESTRUCTURADO CON SALTOS DE LÍNEA (\n)
+                    mensaje = `Hola NC West Coast, me interesa: \n\n✨ Tipo: ${tipo} \n📦 Modelo: ${nombre} \n💲 Precio: ${precio} \n📸 Ref: ${imagenUrl} \n\n¿Está disponible?`;
+
+                } else {
+                    // Si es el botón de cotizar general (el de hasta abajo)
+                    mensaje = "Hola NC West Coast, busco un artículo especial que no veo en la página. ¿Me pueden cotizar si les mando foto?";
+                }
+
+                // 4. COPIAR Y ABRIR
+                navigator.clipboard.writeText(mensaje).then(() => {
+                    // Abrimos Messenger en una pestaña nueva
+                    window.open(urlDestino, '_blank');
+                    
+                    // Pequeña alerta para confirmar
+                    alert("✅ DATOS COPIADOS:\n\n" + mensaje + "\n\n👉 Se abrirá Messenger. Solo dale PEGAR en el chat.");
+                    
                 }).catch(err => {
-                    // Si falla el copiado, solo abrimos el chat normal
-                    window.open(this.getAttribute('href'), '_blank');
+                    console.error('Error al copiar', err);
+                    // Si falla, abrimos el link igual
+                    window.open(urlDestino, '_blank');
                 });
-            } else {
-                // Si no encuentra la tarjeta, abre el chat normal
-                window.open(this.getAttribute('href'), '_blank');
-            }
+            });
         });
     });
