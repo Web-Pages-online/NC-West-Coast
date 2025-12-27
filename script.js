@@ -310,3 +310,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+/* =========================================
+       10. PRELOADER (PANTALLA DE CARGA)
+       ========================================= */
+    const preloader = document.getElementById('preloader');
+    
+    // Ocultar preloader cuando la página haya cargado todo (imágenes incl.)
+    window.addEventListener('load', () => {
+        if (preloader) {
+            preloader.classList.add('loaded');
+            // Lo eliminamos del DOM después de la animación para que no estorbe
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 500);
+        }
+    });
