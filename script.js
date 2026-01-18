@@ -41,12 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const cardCat = (card.getAttribute('data-category') || "").toLowerCase().trim();
                 const cardMarca = (card.getAttribute('data-brand') || "all").toLowerCase().trim();
                 
-                // Mapeo flexible para categorías
                 const esBag = filtroCat === 'bag' && (cardCat.includes('bolso') || cardCat.includes('sobaquera') || cardCat.includes('bag'));
                 const esReloj = filtroCat === 'relojes' && cardCat.includes('reloj');
                 const matchCat = (filtroCat === 'all' || cardCat === filtroCat || esBag || esReloj);
                 
-                // Mapeo flexible para marcas (Victoria's Secret)
                 const esVS = (filtroMarca === 'victoria-secret' || filtroMarca.includes('victoria')) && (cardMarca.includes('victoria') || cardMarca === 'vs');
                 const matchMarca = (filtroMarca === 'all' || cardMarca === filtroMarca || esVS);
 
@@ -60,7 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         };
 
-        // Click en categorías
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.onclick = () => {
                 document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -70,7 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
             };
         });
 
-        // Cambio de marcas (Radio Buttons)
         document.querySelectorAll('input[name="brand"]').forEach(radio => {
             radio.onchange = () => {
                 filtroMarca = radio.value.toLowerCase();
@@ -79,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 4. LÓGICA DE COMPRA (SOLO PARA PRODUCT CARDS)
+    // 4. LÓGICA DE COMPRA (MENSAJE DETALLADO ESTILO IMAGEN)
     safeExecute(() => {
         const modal = document.getElementById('modalConfirmacion');
         const btnAccion = document.getElementById('btnIrMessenger');
@@ -95,18 +91,25 @@ document.addEventListener('DOMContentLoaded', () => {
             datosCopiados = false;
             if(btnAccion) btnAccion.style.backgroundColor = "#2c2c2c";
             if(textoB) textoB.innerText = "COPIAR DATOS";
+            if(tituloM) tituloM.innerText = "Paso 1: Copiar Pedido";
+            if(instruM) instruM.innerHTML = "Primero copia los detalles del producto, luego te llevaremos al chat.";
         };
 
-        // Escuchador dinámico para botones de compra (Delegación de eventos)
         document.addEventListener('click', (e) => {
             const btn = e.target.closest('.add-cart-btn, .buy-btn');
             if (btn) {
                 e.preventDefault();
                 const card = btn.closest('.product-card');
                 if (card && modal) {
+                    // Captura de datos detallada
+                    const categoria = card.querySelector('.category')?.innerText || "General";
                     const nombre = card.querySelector('h3')?.innerText || "Producto";
                     const precio = card.querySelector('.price')?.innerText || "A cotizar";
-                    mensajeParaCopiar = `Hola NC West Coast, me interesa:\n📦 ${nombre}\n💲 ${precio}\n\n¿Está disponible?`;
+                    const imagenLink = card.querySelector('img')?.src;
+
+                    // Construcción del mensaje idéntica a tu imagen
+                    mensajeParaCopiar = `Hola NC West Coast, me interesa:\n\n✨ Tipo: ${categoria.toUpperCase()}\n📦 Modelo: ${nombre}\n💰 Precio: ${precio}\n📸 Ref: ${imagenLink}\n\n¿Está disponible?`;
+                    
                     modal.style.display = 'flex';
                 }
             }
@@ -130,12 +133,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 5. VISTA RÁPIDA (REPARADA PARA CERRAR CORRECTAMENTE - SIN NIEVE)
+    // 5. VISTA RÁPIDA (REPARADA PARA ABRIR Y CERRAR)
     safeExecute(() => {
         const imgModal = document.getElementById("imageModal");
         const modalImg = document.getElementById("img01");
 
-        // Carrusel (si existe)
+        // Carrusel
         const slides = document.querySelectorAll('.slide');
         if (slides.length > 0) {
             let current = 0;
@@ -146,13 +149,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 5000);
         }
 
-        // Delegación de eventos para Abrir y CERRAR
+        // Delegación de eventos para Abrir y Cerrar Imagen
         document.addEventListener('click', (e) => {
-            // --- LÓGICA PARA ABRIR ---
-            const isBtn = e.target.classList.contains('quick-view');
-            const isImg = e.target.classList.contains('clickable-image');
-
-            if (isBtn || isImg) {
+            // ABRIR
+            if (e.target.classList.contains('quick-view') || e.target.classList.contains('clickable-image')) {
                 const card = e.target.closest('.product-card');
                 if (card && imgModal && modalImg) {
                     modalImg.src = card.querySelector('img').src;
@@ -161,17 +161,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // --- LÓGICA PARA CERRAR ---
-            // Detecta si diste clic en la "X" (clase close-modal) o en el fondo oscuro del modal
-            const isCloseBtn = e.target.classList.contains('close-modal');
-            const isOutside = e.target === imgModal;
-
-            if (isCloseBtn || isOutside) {
+            // CERRAR (Clic en X o clic en fondo negro)
+            if (e.target.classList.contains('close-modal') || e.target === imgModal) {
                 if (imgModal) {
                     imgModal.classList.remove('show');
-                    setTimeout(() => { 
-                        imgModal.style.display = "none"; 
-                    }, 300);
+                    setTimeout(() => { imgModal.style.display = "none"; }, 300);
                 }
             }
         });
