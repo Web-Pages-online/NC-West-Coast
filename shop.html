@@ -14,11 +14,11 @@
 <body>
 
     <div id="preloader">
-    <div class="loader-content">
-        <img src="NC.jpg" alt="Cargando..." class="loader-logo">
-        <div class="loader-line"></div>
+        <div class="loader-content">
+            <img src="NC.jpg" alt="Cargando..." class="loader-logo">
+            <div class="loader-line"></div>
+        </div>
     </div>
-</div>
 
     <a href="https://m.me/859771300559984" class="messenger-btn" target="_blank" title="Chatea con nosotros">
         <svg width="32" height="32" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
@@ -28,18 +28,15 @@
 
     <header>
         <a href="index.html" class="brand-left">NC WEST COAST</a>
-
         <a href="index.html" class="logo-center">
             <img src="bolso.png" alt="NC Logo" class="logo-img">
         </a>
-
         <ul class="nav-menu">
             <li><a href="index.html" class="nav-link" onclick="closeMenu()">Inicio</a></li>
             <li><a href="outlet.html" class="nav-link" onclick="closeMenu()">Outlet</a></li>
             <li><a href="shop.html" class="nav-link active" onclick="closeMenu()">Cosmeticos</a></li>
             <li><a href="encargos.html" class="nav-link" onclick="closeMenu()">Encarga</a></li>
         </ul>
-        
         <div class="hamburger">
             <span class="bar"></span>
             <span class="bar"></span>
@@ -60,55 +57,43 @@
     </section>
 
     <section class="shop-container">
-    
-    <div class="filter-menu">
-        <button class="filter-btn active" data-filter="all">Todos</button>
-        <button class="filter-btn" data-filter="cremas">Cremas</button>
-        <button class="filter-btn" data-filter="mist">Mist</button>
-        <button class="filter-btn" data-filter="velas">Velas</button>
-        <button class="filter-btn" data-filter="geles">Geles</button>
-        <button class="filter-btn" data-filter="duos">Duos</button>
-        <button class="filter-btn" data-filter="gloss">Gloss</button>
-        <button class="filter-btn" data-filter="jabon">Jabones</button>
+        <div class="filter-menu">
+            <button class="filter-btn active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="cremas">Cremas</button>
+            <button class="filter-btn" data-filter="mist">Mist</button>
+            <button class="filter-btn" data-filter="velas">Velas</button>
+            <button class="filter-btn" data-filter="geles">Geles</button>
+            <button class="filter-btn" data-filter="duos">Duos</button>
+            <button class="filter-btn" data-filter="gloss">Gloss</button>
+            <button class="filter-btn" data-filter="jabon">Jabones</button>
         </div>
 
-    <div class="brand-toggles">
-        
-        <div class="brand-options">
-            <label class="brand-pill">
-                <input type="radio" name="brand" value="all" checked>
-                <span>Todas</span>
-            </label>
-            <label class="brand-pill">
-                <input type="radio" name="brand" value="victoria-secret">
-                <span>Victoria's Secret</span>
-            </label>
-            <label class="brand-pill">
-                <input type="radio" name="brand" value="pink">
-                <span>PINK</span>
-            </label>
-            <label class="brand-pill">
-                <input type="radio" name="brand" value="bbw">
-                <span>B&BW</span>
-            </label>
-             <label class="brand-pill">
-                <input type="radio" name="brand" value="eos">
-                <span>Eos</span>
-            </label>
+        <div class="brand-toggles">
+            <div class="brand-options">
+                <label class="brand-pill">
+                    <input type="radio" name="brand" value="all" checked>
+                    <span>Todas</span>
+                </label>
+                <label class="brand-pill">
+                    <input type="radio" name="brand" value="victoria-secret">
+                    <span>Victoria's Secret</span>
+                </label>
+                <label class="brand-pill">
+                    <input type="radio" name="brand" value="pink">
+                    <span>PINK</span>
+                </label>
+                <label class="brand-pill">
+                    <input type="radio" name="brand" value="bbw">
+                    <span>B&BW</span>
+                </label>
+                <label class="brand-pill">
+                    <input type="radio" name="brand" value="eos">
+                    <span>Eos</span>
+                </label>
+            </div>
         </div>
-    </div>
-
-    <div class="products-grid">
-        </div>
-    </section>
-
-
 
         <div class="products-grid">
-            <!------------------------------------------ EXCLUSIVO SOLO PARA CREMAS ------------------------------------------>
-            <!------------------------------------------ EXCLUSIVO SOLO PARA CREMAS ------------------------------------------>
-            <!------------------------------------------ EXCLUSIVO SOLO PARA CREMAS ------------------------------------------>
-
             <div class="product-card" data-category="gloss" data-brand="victoria-secret">
                 <div class="product-image">
                     <img src="Duos/p1.jpg" alt="Crema" class="clickable-image">
@@ -120,7 +105,7 @@
                     <div class="price-row">
                         <span class="price">$1300 MXN</span>
                     </div>
-                    <span class="price">$130 MXN c/u</span>
+                    <span class="price-sub">$130 MXN c/u</span>
                     <button class="add-cart-btn buy-btn">Comprar</button>
                 </div>
             </div>
@@ -1399,9 +1384,6 @@
                     <button class="add-cart-btn buy-btn">Comprar</button>
                 </div>
             </div>
-            <!------------------------------------------ EXCLUSIVO SOLO PARA MIST ------------------------------------------>
-            <!------------------------------------------ EXCLUSIVO SOLO PARA MIST ------------------------------------------>
-            <!------------------------------------------ EXCLUSIVO SOLO PARA MIST ------------------------------------------>
 
             <div class="product-card" data-category="duos" data-brand="victoria-secret">
                 <div class="product-image">
@@ -1669,7 +1651,7 @@
                     <button class="add-cart-btn buy-btn">Comprar</button>
                 </div>
             </div>
-            
+
             <div class="product-card" data-category="mist" data-brand="pink">
                 <div class="product-image">
                     <img src="Mist/img2.jpg" alt="Mist" class="clickable-image">
@@ -3068,7 +3050,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="mist" data-brand="victoria-secret">
+            <div class="product-card" data-category="mist" data-brand="victoria-secret">
                 <div class="badge">NUEVO</div>
                 <div class="product-image">
                     <img src="Mist/vs34.jpg" alt="Mist" class="clickable-image">
@@ -3084,7 +3066,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="mist" data-brand="victoria-secret">
+            <div class="product-card" data-category="mist" data-brand="victoria-secret">
                 <div class="badge">NUEVO</div>
                 <div class="product-image">
                     <img src="Mist/vs35.jpg" alt="Mist" class="clickable-image">
@@ -3100,7 +3082,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="mist" data-brand="victoria-secret">
+            <div class="product-card" data-category="mist" data-brand="victoria-secret">
                 <div class="badge">NUEVO</div>
                 <div class="product-image">
                     <img src="Mist/vs36.jpg" alt="Mist" class="clickable-image">
@@ -3116,7 +3098,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="mist" data-brand="victoria-secret">
+            <div class="product-card" data-category="mist" data-brand="victoria-secret">
                 <div class="badge">NUEVO</div>
                 <div class="product-image">
                     <img src="Mist/vs37.jpg" alt="Mist" class="clickable-image">
@@ -3132,7 +3114,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="mist" data-brand="victoria-secret">
+            <div class="product-card" data-category="mist" data-brand="victoria-secret">
                 <div class="badge">NUEVO</div>
                 <div class="product-image">
                     <img src="Mist/vs38.jpg" alt="Mist" class="clickable-image">
@@ -3148,7 +3130,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="mist" data-brand="victoria-secret">
+            <div class="product-card" data-category="mist" data-brand="victoria-secret">
                 <div class="badge">NUEVO</div>
                 <div class="product-image">
                     <img src="Mist/vs39.jpg" alt="Mist" class="clickable-image">
@@ -3164,7 +3146,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="mist" data-brand="victoria-secret">
+            <div class="product-card" data-category="mist" data-brand="victoria-secret">
                 <div class="badge">NUEVO</div>
                 <div class="product-image">
                     <img src="Mist/vs40.jpg" alt="Mist" class="clickable-image">
@@ -3179,10 +3161,8 @@
                     <button class="add-cart-btn buy-btn">Comprar</button>
                 </div>
             </div>
-            <!------------------------------------------ EXCLUSIVO SOLO PARA VELAS ------------------------------------------>
-            <!------------------------------------------ EXCLUSIVO SOLO PARA VELAS ------------------------------------------>
-            <!------------------------------------------ EXCLUSIVO SOLO PARA VELAS ------------------------------------------>
-            <div class="product-card" data-category="velas">
+
+            <div class="product-card" data-category="velas" data-brand="victoria-secret">
                 <div class="product-image">
                     <img src="Velas/img1.jpg" alt="Vela" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -3242,7 +3222,7 @@
                 </div>
             </div>
 
-            <div class="product-card" data-category="velas">
+            <div class="product-card" data-category="velas" data-brand="victoria-secret">
                 <div class="product-image">
                     <img src="Velas/img5.jpg" alt="Vela" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -3272,7 +3252,7 @@
                 </div>
             </div>
 
-            <div class="product-card" data-category="velas">
+            <div class="product-card" data-category="velas" data-brand="victoria-secret">
                 <div class="product-image">
                     <img src="Velas/img7.jpg" alt="Vela" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -3287,7 +3267,7 @@
                 </div>
             </div>
 
-            <div class="product-card" data-category="velas">
+            <div class="product-card" data-category="velas" data-brand="victoria-secret">
                 <div class="product-image">
                     <img src="Velas/img8.jpg" alt="Vela" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -3347,7 +3327,7 @@
                 </div>
             </div>
 
-            <div class="product-card" data-category="velas">
+            <div class="product-card" data-category="velas" data-brand="victoria-secret">
                 <div class="product-image">
                     <img src="Velas/img12.jpg" alt="Vela" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -3362,7 +3342,7 @@
                 </div>
             </div>
 
-            <div class="product-card" data-category="velas">
+            <div class="product-card" data-category="velas" data-brand="victoria-secret">
                 <div class="product-image">
                     <img src="Velas/img13.jpg" alt="Vela" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -3392,7 +3372,7 @@
                 </div>
             </div>
 
-            <div class="product-card" data-category="velas">
+            <div class="product-card" data-category="velas" data-brand="bbw">
                 <div class="product-image">
                     <img src="Velas/img15.jpg" alt="Vela" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -3407,7 +3387,7 @@
                 </div>
             </div>
 
-            <div class="product-card" data-category="velas">
+            <div class="product-card" data-category="velas" data-brand="bbw">
                 <div class="product-image">
                     <img src="Velas/img16.jpg" alt="Vela" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -3422,7 +3402,7 @@
                 </div>
             </div>
 
-            <div class="product-card" data-category="velas">
+            <div class="product-card" data-category="velas" data-brand="victoria-secret">
                 <div class="product-image">
                     <img src="Velas/img17.jpg" alt="Vela" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -3452,7 +3432,7 @@
                 </div>
             </div>
 
-            <div class="product-card" data-category="velas">
+            <div class="product-card" data-category="velas" data-brand="victoria-secret">
                 <div class="product-image">
                     <img src="Velas/img19.jpg" alt="Vela" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -3497,7 +3477,7 @@
                 </div>
             </div>
 
-            <div class="product-card" data-category="velas">
+            <div class="product-card" data-category="velas" data-brand="victoria-secret">
                 <div class="product-image">
                     <img src="Velas/img22.jpg" alt="Vela" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -3512,7 +3492,7 @@
                 </div>
             </div>
 
-            <div class="product-card" data-category="velas">
+            <div class="product-card" data-category="velas" data-brand="victoria-secret">
                 <div class="product-image">
                     <img src="Velas/img23.jpg" alt="Vela" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -3602,7 +3582,7 @@
                 </div>
             </div>
 
-            <div class="product-card" data-category="velas">
+            <div class="product-card" data-category="velas" data-brand="victoria-secret">
                 <div class="product-image">
                     <img src="Velas/img29.jpg" alt="Vela" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -3617,7 +3597,7 @@
                 </div>
             </div>
 
-            <div class="product-card" data-category="velas">
+            <div class="product-card" data-category="velas" data-brand="victoria-secret">
                 <div class="product-image">
                     <img src="Velas/img30.jpg" alt="Vela" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -3662,7 +3642,7 @@
                 </div>
             </div>
 
-            <div class="product-card" data-category="velas">
+            <div class="product-card" data-category="velas" data-brand="victoria-secret">
                 <div class="product-image">
                     <img src="Velas/img33.jpg" alt="Vela" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -3677,7 +3657,7 @@
                 </div>
             </div>
 
-            <div class="product-card" data-category="velas">
+            <div class="product-card" data-category="velas" data-brand="victoria-secret">
                 <div class="product-image">
                     <img src="Velas/img34.jpg" alt="Vela" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -3707,7 +3687,7 @@
                 </div>
             </div>
 
-            <div class="product-card" data-category="velas">
+            <div class="product-card" data-category="velas" data-brand="victoria-secret">
                 <div class="product-image">
                     <img src="Velas/img36.jpg" alt="Vela" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -3827,7 +3807,7 @@
                 </div>
             </div>
 
-            <div class="product-card" data-category="velas">
+            <div class="product-card" data-category="velas" data-brand="victoria-secret">
                 <div class="product-image">
                     <img src="Velas/img44.jpg" alt="Vela" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -3872,7 +3852,7 @@
                 </div>
             </div>
 
-            <div class="product-card" data-category="velas">
+            <div class="product-card" data-category="velas" data-brand="victoria-secret">
                 <div class="product-image">
                     <img src="Velas/img47.jpg" alt="Vela" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -3887,7 +3867,7 @@
                 </div>
             </div>
 
-            <div class="product-card" data-category="velas">
+            <div class="product-card" data-category="velas" data-brand="victoria-secret">
                 <div class="product-image">
                     <img src="Velas/img48.jpg" alt="Vela" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -4007,7 +3987,7 @@
                 </div>
             </div>
 
-            <div class="product-card" data-category="velas">
+            <div class="product-card" data-category="velas" data-brand="victoria-secret">
                 <div class="product-image">
                     <img src="Velas/img56.jpg" alt="Vela" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -4037,7 +4017,7 @@
                 </div>
             </div>
 
-            <div class="product-card" data-category="velas">
+            <div class="product-card" data-category="velas" data-brand="victoria-secret">
                 <div class="product-image">
                     <img src="Velas/img58.jpg" alt="Vela" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -4217,7 +4197,7 @@
                 </div>
             </div>
 
-            <div class="product-card" data-category="velas">
+            <div class="product-card" data-category="velas" data-brand="victoria-secret">
                 <div class="product-image">
                     <img src="Velas/img70.jpg" alt="Vela" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -4367,7 +4347,7 @@
                 </div>
             </div>
 
-            <div class="product-card" data-category="velas">
+            <div class="product-card" data-category="velas" data-brand="victoria-secret">
                 <div class="product-image">
                     <img src="Velas/img80.jpg" alt="Vela" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -4427,7 +4407,7 @@
                 </div>
             </div>
 
-            <div class="product-card" data-category="velas">
+            <div class="product-card" data-category="velas" data-brand="victoria-secret">
                 <div class="product-image">
                     <img src="Velas/img84.jpg" alt="Vela" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -4547,7 +4527,7 @@
                 </div>
             </div>
 
-            <div class="product-card" data-category="velas">
+            <div class="product-card" data-category="velas" data-brand="victoria-secret">
                 <div class="product-image">
                     <img src="Velas/img92.jpg" alt="Vela" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -4576,9 +4556,7 @@
                     <button class="add-cart-btn buy-btn">Comprar</button>
                 </div>
             </div>
-            <!------------------------------------------ EXCLUSIVO SOLO PARA GELES ------------------------------------------>
-            <!------------------------------------------ EXCLUSIVO SOLO PARA GELES ------------------------------------------>
-            <!------------------------------------------ EXCLUSIVO SOLO PARA GELES ------------------------------------------>
+
             <div class="product-card" data-category="geles" data-brand="bbw">
                 <div class="product-image">
                     <img src="Geles/img1.jpg" alt="Gel" class="clickable-image">
@@ -4594,7 +4572,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="geles" data-brand="bbw">
+            <div class="product-card" data-category="geles" data-brand="bbw">
                 <div class="product-image">
                     <img src="Geles/img2.jpg" alt="Gel" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -4609,7 +4587,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="geles" data-brand="bbw">
+            <div class="product-card" data-category="geles" data-brand="bbw">
                 <div class="product-image">
                     <img src="Geles/img3.jpg" alt="Gel" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -4624,7 +4602,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="geles" data-brand="bbw">
+            <div class="product-card" data-category="geles" data-brand="bbw">
                 <div class="product-image">
                     <img src="Geles/img4.jpg" alt="Gel" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -4639,7 +4617,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="geles" data-brand="bbw">
+            <div class="product-card" data-category="geles" data-brand="bbw">
                 <div class="product-image">
                     <img src="Geles/img5.jpg" alt="Gel" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -4654,7 +4632,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="geles" data-brand="bbw">
+            <div class="product-card" data-category="geles" data-brand="bbw">
                 <div class="product-image">
                     <img src="Geles/img6.jpg" alt="Gel" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -4669,7 +4647,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="geles" data-brand="bbw">
+            <div class="product-card" data-category="geles" data-brand="bbw">
                 <div class="product-image">
                     <img src="Geles/img7.jpg" alt="Gel" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -4684,7 +4662,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="geles" data-brand="bbw">
+            <div class="product-card" data-category="geles" data-brand="bbw">
                 <div class="product-image">
                     <img src="Geles/img8.jpg" alt="Gel" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -4699,7 +4677,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="geles" data-brand="bbw">
+            <div class="product-card" data-category="geles" data-brand="bbw">
                 <div class="product-image">
                     <img src="Geles/img9.jpg" alt="Gel" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -4714,7 +4692,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="geles" data-brand="bbw">
+            <div class="product-card" data-category="geles" data-brand="bbw">
                 <div class="product-image">
                     <img src="Geles/img10.jpg" alt="Gel" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -4729,7 +4707,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="geles" data-brand="bbw">
+            <div class="product-card" data-category="geles" data-brand="bbw">
                 <div class="product-image">
                     <img src="Geles/img11.jpg" alt="Gel" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -4744,7 +4722,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="geles" data-brand="bbw">
+            <div class="product-card" data-category="geles" data-brand="bbw">
                 <div class="product-image">
                     <img src="Geles/img12.jpg" alt="Gel" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -4759,7 +4737,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="geles" data-brand="bbw">
+            <div class="product-card" data-category="geles" data-brand="bbw">
                 <div class="product-image">
                     <img src="Geles/img13.jpg" alt="Gel" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -4774,7 +4752,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="geles" data-brand="bbw">
+            <div class="product-card" data-category="geles" data-brand="bbw">
                 <div class="product-image">
                     <img src="Geles/img14.jpg" alt="Gel" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -4789,7 +4767,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="geles" data-brand="bbw">
+            <div class="product-card" data-category="geles" data-brand="bbw">
                 <div class="product-image">
                     <img src="Geles/img15.jpg" alt="Gel" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -4804,7 +4782,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="geles" data-brand="bbw">
+            <div class="product-card" data-category="geles" data-brand="bbw">
                 <div class="product-image">
                     <img src="Geles/img16.jpg" alt="Gel" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -4819,7 +4797,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="geles" data-brand="bbw">
+            <div class="product-card" data-category="geles" data-brand="bbw">
                 <div class="product-image">
                     <img src="Geles/img17.jpg" alt="Gel" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -4834,7 +4812,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="geles" data-brand="bbw">
+            <div class="product-card" data-category="geles" data-brand="bbw">
                 <div class="product-image">
                     <img src="Geles/img18.jpg" alt="Gel" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -4849,7 +4827,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="geles" data-brand="bbw">
+            <div class="product-card" data-category="geles" data-brand="bbw">
                 <div class="product-image">
                     <img src="Geles/img19.jpg" alt="Gel" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -4864,7 +4842,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="geles" data-brand="bbw">
+            <div class="product-card" data-category="geles" data-brand="bbw">
                 <div class="product-image">
                     <img src="Geles/img20.jpg" alt="Gel" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -4879,7 +4857,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="geles" data-brand="bbw">
+            <div class="product-card" data-category="geles" data-brand="bbw">
                 <div class="product-image">
                     <img src="Geles/img21.jpg" alt="Gel" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -4894,7 +4872,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="geles" data-brand="bbw">
+            <div class="product-card" data-category="geles" data-brand="bbw">
                 <div class="product-image">
                     <img src="Geles/img22.jpg" alt="Gel" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -4909,7 +4887,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="geles" data-brand="bbw">
+            <div class="product-card" data-category="geles" data-brand="bbw">
                 <div class="product-image">
                     <img src="Geles/img23.jpg" alt="Gel" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -4924,7 +4902,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="geles" data-brand="bbw">
+            <div class="product-card" data-category="geles" data-brand="bbw">
                 <div class="product-image">
                     <img src="Geles/img24.jpg" alt="Gel" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -4939,7 +4917,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="geles" data-brand="bbw">
+            <div class="product-card" data-category="geles" data-brand="bbw">
                 <div class="product-image">
                     <img src="Geles/img25.jpg" alt="Gel" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -4954,7 +4932,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="geles" data-brand="bbw">
+            <div class="product-card" data-category="geles" data-brand="bbw">
                 <div class="product-image">
                     <img src="Geles/img26.jpg" alt="Gel" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -4969,7 +4947,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="geles" data-brand="bbw">
+            <div class="product-card" data-category="geles" data-brand="bbw">
                 <div class="product-image">
                     <img src="Geles/img27.jpg" alt="Gel" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -4984,7 +4962,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="geles" data-brand="bbw">
+            <div class="product-card" data-category="geles" data-brand="bbw">
                 <div class="product-image">
                     <img src="Geles/img28.jpg" alt="Gel" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -4999,7 +4977,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="geles" data-brand="bbw">
+            <div class="product-card" data-category="geles" data-brand="bbw">
                 <div class="product-image">
                     <img src="Geles/img29.jpg" alt="Gel" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -5014,7 +4992,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="geles" data-brand="bbw">
+            <div class="product-card" data-category="geles" data-brand="bbw">
                 <div class="product-image">
                     <img src="Geles/img30.jpg" alt="Gel" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -5029,7 +5007,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="geles" data-brand="bbw">
+            <div class="product-card" data-category="geles" data-brand="bbw">
                 <div class="product-image">
                     <img src="Geles/img31.jpg" alt="Gel" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -5044,7 +5022,7 @@
                 </div>
             </div>
 
-             <div class="product-card" data-category="geles" data-brand="bbw">
+            <div class="product-card" data-category="geles" data-brand="bbw">
                 <div class="product-image">
                     <img src="Geles/img32.jpg" alt="Gel" class="clickable-image">
                     <button class="quick-view">Vista Rápida</button>
@@ -5074,9 +5052,6 @@
                 </div>
             </div>
 
-            <!------------------------------------------ EXCLUSIVO SOLO PARA JABONES ------------------------------------------>
-            <!------------------------------------------ EXCLUSIVO SOLO PARA JABONES ------------------------------------------>
-            <!------------------------------------------ EXCLUSIVO SOLO PARA JABONES ------------------------------------------>
             <div class="product-card" data-category="jabon" data-brand="bbw">
                 <div class="product-image">
                     <img src="Jabones/jb1.jpeg" alt="Jabon" class="clickable-image">
@@ -5181,7 +5156,7 @@
                     <button class="add-cart-btn buy-btn">Comprar</button>
                 </div>
             </div>
-            
+
             <div class="product-card" data-category="jabon" data-brand="bbw">
                 <div class="product-image">
                     <img src="Jabones/jb8.jpeg" alt="Jabon" class="clickable-image">
@@ -5514,22 +5489,18 @@
         <p>© 2025 NC West Coast. Todos los derechos reservados.</p>
     </footer>
 
-   <div id="modalConfirmacion" class="copy-modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 10000; align-items: center; justify-content: center;">
-    <div class="copy-modal-box" style="background: #fff; width: 90%; max-width: 400px; padding: 30px; border-radius: 10px; text-align: center; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
-        
-        <span onclick="cerrarModal()" style="position: absolute; top: 10px; right: 15px; font-size: 28px; cursor: pointer; color: #888;">&times;</span>
-        
-        <h3 id="tituloModal" style="margin-bottom: 10px; font-family: 'Playfair Display', serif; color: #333; font-size: 1.5rem;">Paso 1: Copiar Pedido</h3>
-        
-        <p id="instruccionesModal" style="color: #666; margin-bottom: 25px; font-size: 0.95rem; line-height: 1.5;">
-            Primero copia los detalles del producto, luego te llevaremos al chat.
-        </p>
-        
-        <button id="btnIrMessenger" style="background: #2c2c2c; color: white; border: none; padding: 15px; width: 100%; font-weight: bold; cursor: pointer; border-radius: 5px; font-size: 1rem; text-transform: uppercase; transition: background 0.3s;">
-            <span id="textoBoton">COPIAR DATOS</span>
-        </button>
+    <div id="modalConfirmacion" class="copy-modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 10000; align-items: center; justify-content: center;">
+        <div class="copy-modal-box" style="background: #fff; width: 90%; max-width: 400px; padding: 30px; border-radius: 10px; text-align: center; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
+            <span onclick="cerrarModal()" style="position: absolute; top: 10px; right: 15px; font-size: 28px; cursor: pointer; color: #888;">&times;</span>
+            <h3 id="tituloModal" style="margin-bottom: 10px; font-family: 'Playfair Display', serif; color: #333; font-size: 1.5rem;">Paso 1: Copiar Pedido</h3>
+            <p id="instruccionesModal" style="color: #666; margin-bottom: 25px; font-size: 0.95rem; line-height: 1.5;">
+                Primero copia los detalles del producto, luego te llevaremos al chat.
+            </p>
+            <button id="btnIrMessenger" style="background: #2c2c2c; color: white; border: none; padding: 15px; width: 100%; font-weight: bold; cursor: pointer; border-radius: 5px; font-size: 1rem; text-transform: uppercase; transition: background 0.3s;">
+                <span id="textoBoton">COPIAR DATOS</span>
+            </button>
+        </div>
     </div>
-</div>
-</div>
+
 </body>
 </html>

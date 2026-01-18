@@ -10,6 +10,72 @@
     <link rel="icon" type="image/x-icon" href="NC.ico">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+    
+    <style>
+        /* ESTILOS PARA LOS NUEVOS MODALES */
+        .modal-pedido-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 10001;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-pedido-box {
+            background: #fff;
+            width: 90%;
+            max-width: 450px;
+            padding: 30px;
+            border-radius: 15px;
+            position: relative;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .modal-pedido-box h2 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-weight: 600; font-size: 0.8rem; margin-bottom: 5px; color: #333; }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Estilo del Ticket */
+        #ticket-render {
+            background: #fdfdfd;
+            border: 2px dashed #bbb;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .ticket-header-img { text-align: center; margin-bottom: 10px; }
+        .ticket-header-img img { width: 60px; border-radius: 50%; }
+        .ticket-item { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem; border-bottom: 1px solid #eee; }
+        .ticket-item span:last-child { font-weight: 700; }
+
+        .btn-modal {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+        .btn-negro { background: #1a1a1a; color: #fff; }
+        .btn-verde { background: #27ae60; color: #fff; }
+        
+        .cerrar-x { position: absolute; top: 15px; right: 20px; font-size: 25px; cursor: pointer; color: #aaa; }
+    </style>
 </head>
 <body>
 
@@ -77,9 +143,7 @@
         </div>
         
         <div style="text-align: center; margin-top: 40px;">
-            <a href="https://m.me/859771300559984" target="_blank">
-                <button class="order-btn">INICIAR PEDIDO</button>
-            </a>
+            <button class="order-btn" onclick="abrirModalForm()">INICIAR PEDIDO</button>
         </div>
     </section>
 
@@ -101,5 +165,110 @@
         <h2>100% ORIGINAL • GARANTIZADO</h2>
         <p>Olvídate de aduanas y envíos complicados.</p>
     </section>
+
+    <div id="modalFormEncargo" class="modal-pedido-overlay">
+        <div class="modal-pedido-box">
+            <span class="cerrar-x" onclick="cerrarTodosModales()">&times;</span>
+            <h2>Datos del Pedido</h2>
+            <div class="form-encargo">
+                <div class="form-group">
+                    <label>Tu Nombre</label>
+                    <input type="text" id="pNombre" placeholder="Nombre completo">
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <div class="form-group" style="flex: 1;">
+                        <label>Marca</label>
+                        <input type="text" id="pMarca" placeholder="Ej. Nike">
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label>Talla</label>
+                        <input type="text" id="pTalla" placeholder="Ej. 27 MX">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Modelo del Producto</label>
+                    <input type="text" id="pModelo" placeholder="Ej. Jordan 1 Retro High">
+                </div>
+                <div class="form-group">
+                    <label>Link o Notas adicionales</label>
+                    <textarea id="pNotas" rows="2" placeholder="Pega el link o el color..."></textarea>
+                </div>
+                <button class="btn-modal btn-negro" onclick="generarTicketVisual()">SIGUIENTE: GENERAR TICKET</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalTicketFinal" class="modal-pedido-overlay">
+        <div class="modal-pedido-box">
+            <span class="cerrar-x" onclick="cerrarTodosModales()">&times;</span>
+            <h2>Ticket de Solicitud</h2>
+            <div id="ticket-render">
+                <div class="ticket-header-img">
+                    <img src="NC.jpg" alt="Logo">
+                    <div style="font-size: 0.7rem; font-weight: 700; margin-top: 5px;">NC WEST COAST</div>
+                </div>
+                <div id="ticket-data">
+                    </div>
+                <div style="text-align: center; font-size: 0.6rem; color: #999; margin-top: 10px;">
+                    SOLICITUD PROCESADA DESDE PORTAL WEB
+                </div>
+            </div>
+            <button id="btnFinalMessenger" class="btn-modal btn-verde" onclick="abrirMessengerPedido()">COPIAR DATOS E IR AL CHAT</button>
+        </div>
+    </div>
+
+    <script>
+        let textoMessenger = "";
+
+        function abrirModalForm() {
+            document.getElementById('modalFormEncargo').style.display = 'flex';
+        }
+
+        function cerrarTodosModales() {
+            document.getElementById('modalFormEncargo').style.display = 'none';
+            document.getElementById('modalTicketFinal').style.display = 'none';
+        }
+
+        function generarTicketVisual() {
+            const nom = document.getElementById('pNombre').value;
+            const mar = document.getElementById('pMarca').value;
+            const mod = document.getElementById('pModelo').value;
+            const tal = document.getElementById('pTalla').value;
+            const not = document.getElementById('pNotas').value;
+
+            if(!nom || !mar || !mod) {
+                alert("Por favor completa los campos principales");
+                return;
+            }
+
+            // Rellenar ticket visual
+            document.getElementById('ticket-data').innerHTML = `
+                <div class="ticket-item"><span>CLIENTE:</span><span>${nom.toUpperCase()}</span></div>
+                <div class="ticket-item"><span>MARCA:</span><span>${mar}</span></div>
+                <div class="ticket-item"><span>MODELO:</span><span>${mod}</span></div>
+                <div class="ticket-item"><span>TALLA:</span><span>${tal}</span></div>
+            `;
+
+            // Preparar texto para copiar
+            textoMessenger = `🌊 *NC WEST COAST - NUEVO ENCARGO* 🌊\n\n👤 *Cliente:* ${nom}\n🏷️ *Marca:* ${mar}\n📦 *Modelo:* ${mod}\n📏 *Talla:* ${tal}\n📝 *Notas:* ${not}\n\n_¿Me podrían cotizar este artículo?_`;
+
+            document.getElementById('modalFormEncargo').style.display = 'none';
+            document.getElementById('modalTicketFinal').style.display = 'flex';
+        }
+
+        function abrirMessengerPedido() {
+            const pageID = "859771300559984";
+            navigator.clipboard.writeText(textoMessenger).then(() => {
+                document.getElementById('btnFinalMessenger').innerText = "✅ ¡COPIADO!";
+                setTimeout(() => {
+                    window.open(`https://m.me/${pageID}`, '_blank');
+                    cerrarTodosModales();
+                    // Resetear texto del botón
+                    document.getElementById('btnFinalMessenger').innerText = "COPIAR DATOS E IR AL CHAT";
+                }, 1000);
+            });
+        }
+    </script>
+
 </body>
 </html>
