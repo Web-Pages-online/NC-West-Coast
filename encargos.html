@@ -116,9 +116,6 @@
             <p>¿Lo viste en USA? Nosotros te lo traemos.</p>
             <div class="hero-divider"></div>
             <p class="hero-subtext">Tenis exclusivos, bolsos de diseñador, cosmeticos y más.</p>
-            <a href="https://m.me/859771300559984" target="_blank">
-                <button class="gold-cta-btn">COTIZAR AHORA</button>
-            </a>
         </div>
     </section>
 
@@ -131,14 +128,14 @@
                 <p>Encuentra el artículo que deseas en cualquier tienda online (Nike, Sephora, Amazon, etc.) o mándanos una foto.</p>
             </div>
             <div class="step-card">
-                <div class="step-icon">💬</div>
-                <h3>2. Mándanos Mensaje</h3>
-                <p>Envíanos la foto o el enlace por Messenger. Te daremos el precio final con envío a México incluido.</p>
+                <div class="step-icon">🔗</div>
+                <h3>2. Genera tu Link</h3>
+                <p>Crea un ticket digital con tus datos y envíanos el enlace por Messenger.</p>
             </div>
             <div class="step-card">
                 <div class="step-icon">📦</div>
                 <h3>3. Recíbelo en Casa</h3>
-                <p>Pagamos los impuestos y la importación por ti. Solo espera a que llegue a tu puerta.</p>
+                <p>Pagamos los impuestos por ti. Solo espera a que llegue a tu puerta.</p>
             </div>
         </div>
         
@@ -207,18 +204,34 @@
                     <img src="NC.jpg" alt="Logo">
                     <div style="font-size: 0.7rem; font-weight: 700; margin-top: 5px;">NC WEST COAST</div>
                 </div>
-                <div id="ticket-data">
-                    </div>
+                <div id="ticket-data"></div>
                 <div style="text-align: center; font-size: 0.6rem; color: #999; margin-top: 10px;">
                     SOLICITUD PROCESADA DESDE PORTAL WEB
                 </div>
             </div>
-            <button id="btnFinalMessenger" class="btn-modal btn-verde" onclick="abrirMessengerPedido()">COPIAR DATOS E IR AL CHAT</button>
+            <button id="btnFinalMessenger" class="btn-modal btn-verde" onclick="abrirMessengerPedido()">COPIAR LINK E IR AL CHAT</button>
         </div>
     </div>
 
     <script>
-        let textoMessenger = "";
+        let enlaceTicket = "";
+
+        window.onload = () => {
+            const params = new URLSearchParams(window.location.search);
+            if (params.has('folio')) {
+                document.getElementById('ticket-data').innerHTML = `
+                    <div class="ticket-item"><span>FOLIO:</span><span>#${params.get('folio')}</span></div>
+                    <div class="ticket-item"><span>CLIENTE:</span><span>${params.get('nom').toUpperCase()}</span></div>
+                    <div class="ticket-item"><span>MARCA:</span><span>${params.get('mar')}</span></div>
+                    <div class="ticket-item"><span>MODELO:</span><span>${params.get('mod')}</span></div>
+                    <div class="ticket-item"><span>TALLA:</span><span>${params.get('tal')}</span></div>
+                    <div class="ticket-item"><span>FECHA:</span><span>${params.get('fecha')}</span></div>
+                `;
+                document.getElementById('modalTicketFinal').style.display = 'flex';
+                document.getElementById('btnFinalMessenger').innerText = "TICKET OFICIAL NC";
+                document.getElementById('btnFinalMessenger').onclick = null;
+            }
+        };
 
         function abrirModalForm() {
             document.getElementById('modalFormEncargo').style.display = 'flex';
@@ -234,14 +247,15 @@
             const mar = document.getElementById('pMarca').value;
             const mod = document.getElementById('pModelo').value;
             const tal = document.getElementById('pTalla').value;
-            const not = document.getElementById('pNotas').value;
+            const not = document.getElementById('pNotas').value || "Ninguna";
+            const fecha = new Date().toLocaleDateString();
+            const folio = Math.floor(1000 + Math.random() * 9000);
 
             if(!nom || !mar || !mod) {
                 alert("Por favor completa los campos principales");
                 return;
             }
 
-            // Rellenar ticket visual
             document.getElementById('ticket-data').innerHTML = `
                 <div class="ticket-item"><span>CLIENTE:</span><span>${nom.toUpperCase()}</span></div>
                 <div class="ticket-item"><span>MARCA:</span><span>${mar}</span></div>
@@ -249,8 +263,8 @@
                 <div class="ticket-item"><span>TALLA:</span><span>${tal}</span></div>
             `;
 
-            // Preparar texto para copiar
-            textoMessenger = `🌊 *NC WEST COAST - NUEVO ENCARGO* 🌊\n\n👤 *Cliente:* ${nom}\n🏷️ *Marca:* ${mar}\n📦 *Modelo:* ${mod}\n📏 *Talla:* ${tal}\n📝 *Notas:* ${not}\n\n_¿Me podrían cotizar este artículo?_`;
+            const baseURL = window.location.href.split('?')[0];
+            enlaceTicket = `${baseURL}?folio=${folio}&nom=${encodeURIComponent(nom)}&mar=${encodeURIComponent(mar)}&mod=${encodeURIComponent(mod)}&tal=${encodeURIComponent(tal)}&fecha=${encodeURIComponent(fecha)}`;
 
             document.getElementById('modalFormEncargo').style.display = 'none';
             document.getElementById('modalTicketFinal').style.display = 'flex';
@@ -258,17 +272,18 @@
 
         function abrirMessengerPedido() {
             const pageID = "859771300559984";
-            navigator.clipboard.writeText(textoMessenger).then(() => {
-                document.getElementById('btnFinalMessenger').innerText = "✅ ¡COPIADO!";
+            const btn = document.getElementById('btnFinalMessenger');
+            const mensajeFinal = `🌊 *NC WEST COAST - NUEVO ENCARGO*\n\nHe generado mi ticket digital. Puedes revisarlo en este enlace:\n🔗 ${enlaceTicket}\n\n_¿Me podrían cotizar este artículo?_`;
+
+            navigator.clipboard.writeText(mensajeFinal).then(() => {
+                btn.innerText = "✅ LINK COPIADO";
                 setTimeout(() => {
                     window.open(`https://m.me/${pageID}`, '_blank');
                     cerrarTodosModales();
-                    // Resetear texto del botón
-                    document.getElementById('btnFinalMessenger').innerText = "COPIAR DATOS E IR AL CHAT";
-                }, 1000);
+                    btn.innerText = "COPIAR LINK E IR AL CHAT";
+                }, 1200);
             });
         }
     </script>
-
 </body>
 </html>
