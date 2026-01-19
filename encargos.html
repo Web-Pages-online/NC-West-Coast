@@ -75,6 +75,88 @@
         .btn-verde { background: #27ae60; color: #fff; }
         
         .cerrar-x { position: absolute; top: 15px; right: 20px; font-size: 25px; cursor: pointer; color: #aaa; }
+
+        /* Contenedor del Acordeón */
+.brands-accordion {
+    max-width: 800px;
+    margin: 30px auto;
+    text-align: left;
+}
+
+.brand-item {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.brand-toggle {
+    width: 100%;
+    padding: 15px;
+    background: none;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.brand-toggle:hover {
+    color: var(--gold-accent);
+}
+
+/* Contenido oculto por defecto */
+.brand-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, padding 0.3s;
+    background-color: #fcfcfc;
+}
+
+/* Clase que se activa con JS */
+.brand-item.active .brand-content {
+    max-height: 600px; /* Ajusta según el tamaño de tu collage */
+    padding: 20px 0;
+}
+
+.brand-item.active .arrow {
+    transform: rotate(45deg);
+    color: var(--gold-accent);
+}
+
+/* Ajuste para que las fotos del collage no se hagan gigantes */
+.collage-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Se ajustan solas */
+    gap: 15px;
+    padding: 20px;
+    justify-items: center;
+}
+
+.collage-grid img {
+    width: 100%;
+    max-width: 200px;      /* Tamaño máximo de cada foto */
+    height: 200px;         /* Altura fija para que todas sean iguales */
+    object-fit: contain;   /* Muestra el producto completo sin cortarlo */
+    background: #fff;      /* Fondo blanco por si la imagen tiene transparencias */
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    border: 1px solid #eee;
+}
+
+.collage-grid img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Desktop: 4 columnas */
+@media (min-width: 768px) {
+    .collage-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
     </style>
 </head>
 <body>
@@ -144,19 +226,155 @@
         </div>
     </section>
 
-    <section class="brands-section">
-        <h3>Podemos conseguirte marcas como:</h3>
-        <div class="brands-showcase">
-            <span class="brand-tag">NIKE SNKRS</span>
-            <span class="brand-tag">JORDAN</span>
-            <span class="brand-tag">SUPREME</span>
-            <span class="brand-tag">SEPHORA</span>
-            <span class="brand-tag">LULULEMON</span>
-            <span class="brand-tag">COACH</span>
-            <span class="brand-tag">MICHAEL KORS</span>
-            <span class="brand-tag">APPLE</span>
+   <section class="brands-section">
+    <h3>Podemos conseguirte marcas como:</h3>
+    <div class="brands-accordion">
+        <div class="brand-item">
+            <button class="brand-toggle">Coach <span class="arrow">+</span></button>
+            <div class="brand-content">
+                <div class="collage-grid">
+                    <img src="Coach/C1.png" alt="Nike item 1">
+                    <img src="Coach/c2.png" alt="Nike item 2">
+                    <img src="Coach/c3.png" alt="Nike item 3">
+                    <img src="Coach/c4.png" alt="Nike item 4">
+                </div>
+            </div>
         </div>
-    </section>
+
+        <div class="brand-item">
+            <button class="brand-toggle">Guess <span class="arrow">+</span></button>
+            <div class="brand-content">
+                <div class="collage-grid">
+                    <img src="https://guessmx.vteximg.com.br/arquivos/ids/668646-300-auto?v=6385484833719000001&width=300&height=auto&aspect=true" alt="Nike item 1">
+                    <img src="https://cdn5.coppel.com/pr/3016602-1.jpg?iresize=width:400,height:320" alt="Nike item 2">
+                    <img src="https://resources.claroshop.com/medios-plazavip/mkt/62fd5f1682a3f_2png.jpg" alt="Nike item 3">
+                    <img src="https://guessmx.vtexassets.com/arquivos/ids/661470/Guess-Reloj-Hombre-GW0714G2-ORO-ALT1.jpg?v=638507017225270000" alt="Nike item 4">
+                </div>
+            </div>
+        </div>
+
+         <div class="brand-item">
+            <button class="brand-toggle">New Balance <span class="arrow">+</span></button>
+            <div class="brand-content">
+                <div class="collage-grid">
+                    <img src="https://pngimg.com/d/running_shoes_PNG5792.png" alt="Nike item 1">
+                    <img src="https://mrshoesaccessories.com/cdn/shop/files/9E16D9E4-947F-4E18-B108-82527503C49B.png?v=1747543338&width=2048" alt="Nike item 2">
+                    <img src="https://savagetoo.com/cdn/shop/files/A5AE3652-CD69-4985-9E93-AD271BE0F1DE.png?v=1714944629&width=1445" alt="Nike item 3">
+                    <img src="https://mrshoesaccessories.com/cdn/shop/files/6C6C4CF6-81DE-49B5-AC96-45E329A38185.png?v=1747545269&width=3375" alt="Nike item 4">
+                </div>
+            </div>
+        </div>
+
+         <div class="brand-item">
+            <button class="brand-toggle">Crocs <span class="arrow">+</span></button>
+            <div class="brand-content">
+                <div class="collage-grid">
+                    <img src="https://crocs.com.mx/cdn/shop/files/207937_1FT_ALT110.png?v=1761167920&width=780" alt="Nike item 1">
+                    <img src="https://crocs.com.mx/cdn/shop/files/211503_90H_ALT100.png?v=1765242692&width=780" alt="Nike item 2">
+                    <img src="https://crocs.com.mx/cdn/shop/files/212338_90H_ALT120.png?v=1765211996&width=750" alt="Nike item 3">
+                    <img src="https://crocs.com.mx/cdn/shop/files/212260_997_ALT100.png?v=1764971619&width=750" alt="Nike item 4">
+                </div>
+            </div>
+        </div>
+
+         <div class="brand-item">
+            <button class="brand-toggle">Steve Madden <span class="arrow">+</span></button>
+            <div class="brand-content">
+                <div class="collage-grid">
+                    <img src="https://resources.sears.com.mx/medios-plazavip/t1/1720207365ProyectoCambiartamanodeimagen6png" alt="Nike item 1">
+                    <img src="https://i5.walmartimages.com/asr/776abd18-e377-4712-9d95-3b3acfe0c5ff.b90db8cf7bbc3b15119618697c4f34c9.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF" alt="Nike item 2">
+                    <img src="https://stevemadden.com.mx/cdn/shop/files/possession-e-coconut-milk-bronze-tenis-blancos-con-beige.jpg?v=1738102705" alt="Nike item 3">
+                    <img src="https://resources.claroshop.com/medios-plazavip/t1/17214256741png" alt="Nike item 4">
+                </div>
+            </div>
+        </div>
+
+         <div class="brand-item">
+            <button class="brand-toggle">Adidas <span class="arrow">+</span></button>
+            <div class="brand-content">
+                <div class="collage-grid">
+                    <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/ae9587cb634b4113b94a264aa874e125_9366/Tenis_Superstar_Negro_JI0079_00_plp_standard.jpg" alt="Nike item 1">
+                    <img src="https://m.media-amazon.com/images/I/21kjNxhHdTL._AC_SY900_.jpg" alt="Nike item 2">
+                    <img src="https://stylo.mx/cdn/shop/files/R239988-1_1_grd.jpg?v=1729097873" alt="Nike item 3">
+                    <img src="https://s3-us-west-1.amazonaws.com/calzzapato/zoom/09GR0T-1.jpg" alt="Nike item 4">
+                </div>
+            </div>
+        </div>
+
+         <div class="brand-item">
+            <button class="brand-toggle">Guess <span class="arrow">+</span></button>
+            <div class="brand-content">
+                <div class="collage-grid">
+                    <img src="Coach/C1.png" alt="Nike item 1">
+                    <img src="Coach/c2.png" alt="Nike item 2">
+                    <img src="Coach/c3.png" alt="Nike item 3">
+                    <img src="Coach/c4.png" alt="Nike item 4">
+                </div>
+            </div>
+        </div>
+
+         <div class="brand-item">
+            <button class="brand-toggle">Under Armor <span class="arrow">+</span></button>
+            <div class="brand-content">
+                <div class="collage-grid">
+                    <img src="https://ss203.liverpool.com.mx/xl/1157495820.jpg" alt="Nike item 1">
+                    <img src="https://underarmour.scene7.com/is/image/Underarmour/3027593-001_DEFAULT?rp=standard-30pad|pdpMainDesktop&scl=1&fmt=jpg&qlt=85&resMode=sharp2&cache=on,on&bgc=f0f0f0&wid=566&hei=708&size=536,688" alt="Nike item 2">
+                    <img src="https://underarmour.scene7.com/is/image/Underarmour/6006061-002_DEFAULT?rp=standard-30pad|gridTileDesktop&scl=1&fmt=jpg&qlt=50&resMode=sharp2&cache=on,on&bgc=F0F0F0&wid=512&hei=640&size=472,600" alt="Nike item 3">
+                    <img src="https://sportmasters.com.mx/cdn/shop/files/2025430-102-001.jpg?v=1720814857&width=1000" alt="Nike item 4">
+                </div>
+            </div>
+        </div>
+
+         <div class="brand-item">
+            <button class="brand-toggle">Polo <span class="arrow">+</span></button>
+            <div class="brand-content">
+                <div class="collage-grid">
+                    <img src="https://andreamx.vtexassets.com/arquivos/ids/17250971-800-800?v=638623084137430000&width=800&height=800&aspect=true" alt="Nike item 1">
+                    <img src="https://shendyvendy.com/cdn/shop/files/BEIGE_97d6e7bb-262d-47be-b02d-dba6a9bed41e.jpg?v=1740768190&width=1214" alt="Nike item 2">
+                    <img src="https://resources.sanborns.com.mx/imagenes-sanborns-ii/1200/7500413089904.jpg?scale=500&qlty=75" alt="Nike item 3">
+                    <img src="https://ss376.liverpool.com.mx/xl/1159389991.jpg" alt="Nike item 4">
+                </div>
+            </div>
+        </div>
+
+         <div class="brand-item">
+            <button class="brand-toggle">Nautica <span class="arrow">+</span></button>
+            <div class="brand-content">
+                <div class="collage-grid">
+                    <img src="https://nauticamexico.com/cdn/shop/products/NAUTICA_BOYS_JUNIOR_SS23_Q1_20.02NAUTICA_SS23Q1_BOYS_N3JI0705_FLETCHER_POLO_SHIRT_DARK_NAVY_FLATLAY_A_1024x1024_2x_82c7768c-ce0a-41fa-adaf-d356cfcd1493.jpg?v=1755800895" alt="Nike item 1">
+                    <img src="https://b2cimpulsmx.vtexassets.com/arquivos/ids/377822-800-800?v=638716230235430000&width=800&height=800&aspect=true" alt="Nike item 2">
+                    <img src="https://cdn11.bigcommerce.com/s-2vt02okold/images/stencil/1280x1280/products/2875/5238/HNAUB__88917.1731099890.jpg?c=1" alt="Nike item 3">
+                    <img src="https://nauticamexico.com/cdn/shop/products/NAPNSS301_7dff2eb0-fdb8-4ea8-9623-58fadd4d81ff.jpg?v=1755801073" alt="Nike item 4">
+                </div>
+            </div>
+        </div>
+
+         <div class="brand-item">
+            <button class="brand-toggle">Tommy Hilfiger <span class="arrow">+</span></button>
+            <div class="brand-content">
+                <div class="collage-grid">
+                    <img src="https://m.media-amazon.com/images/I/31vhPceHHhL._AC_.jpg" alt="Nike item 1">
+                    <img src="https://urbanna.mx/cdn/shop/files/09H2RV-1.jpg?v=1761156048" alt="Nike item 2">
+                    <img src="https://www.viu.mx/img/1024/1024/resize/T/O/TOMY00006_x1_1.jpg" alt="Nike item 3">
+                    <img src="https://resources.sears.com.mx/medios-plazavip/fotos/productos_sears1/original/4223059.jpg" alt="Nike item 4">
+                </div>
+            </div>
+        </div>
+
+         <div class="brand-item">
+            <button class="brand-toggle">Calvin Klein <span class="arrow">+</span></button>
+            <div class="brand-content">
+                <div class="collage-grid">
+                    <img src="https://m.media-amazon.com/images/I/31dGwR0UBGL._AC_SY1000_.jpg" alt="Nike item 1">
+                    <img src="https://m.media-amazon.com/images/I/617tSYclx0L._AC_SL1500_.jpg" alt="Nike item 2">
+                    <img src="https://perfumate.mx/cdn/shop/products/61ufv9EFQgL._AC_SL1000.jpg?v=1675881202" alt="Nike item 3">
+                    <img src="https://cristaljoyas.com/media/catalog/product/cache/f06412bcaeffb4364662cfc53d14e291/c/k/cklk9h211c1.jpg" alt="Nike item 4">
+                </div>
+            </div>
+        </div>
+
+        </div>  
+</section>
 
     <section class="trust-banner">
         <h2>100% ORIGINAL • GARANTIZADO</h2>
@@ -211,6 +429,11 @@
             </div>
             <button id="btnFinalMessenger" class="btn-modal btn-verde" onclick="abrirMessengerPedido()">COPIAR LINK E IR AL CHAT</button>
         </div>
+    </div>
+
+    <div id="imageModal" class="image-modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="img01">
     </div>
 
     <script>

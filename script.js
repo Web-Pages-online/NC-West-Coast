@@ -101,13 +101,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.preventDefault();
                 const card = btn.closest('.product-card');
                 if (card && modal) {
-                    // Captura de datos detallada
                     const categoria = card.querySelector('.category')?.innerText || "General";
                     const nombre = card.querySelector('h3')?.innerText || "Producto";
                     const precio = card.querySelector('.price')?.innerText || "A cotizar";
                     const imagenLink = card.querySelector('img')?.src;
 
-                    // Construcción del mensaje idéntica a tu imagen
                     mensajeParaCopiar = `Hola NC West Coast, me interesa:\n\n✨ Tipo: ${categoria.toUpperCase()}\n📦 Modelo: ${nombre}\n💰 Precio: ${precio}\n📸 Ref: ${imagenLink}\n\n¿Está disponible?`;
                     
                     modal.style.display = 'flex';
@@ -133,12 +131,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 5. VISTA RÁPIDA (REPARADA PARA ABRIR Y CERRAR)
+    // 5. VISTA RÁPIDA UNIVERSAL (PRODUCTOS Y COLLAGES)
     safeExecute(() => {
         const imgModal = document.getElementById("imageModal");
         const modalImg = document.getElementById("img01");
 
-        // Carrusel
+        // Carrusel automático
         const slides = document.querySelectorAll('.slide');
         if (slides.length > 0) {
             let current = 0;
@@ -151,21 +149,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Delegación de eventos para Abrir y Cerrar Imagen
         document.addEventListener('click', (e) => {
-            // ABRIR
-            if (e.target.classList.contains('quick-view') || e.target.classList.contains('clickable-image')) {
-                const card = e.target.closest('.product-card');
-                if (card && imgModal && modalImg) {
-                    modalImg.src = card.querySelector('img').src;
+            // DETECTAR APERTURA: Botón de vista rápida, clase clickable-image o imágenes en collage-grid
+            const isQuickView = e.target.classList.contains('quick-view');
+            const isClickable = e.target.classList.contains('clickable-image');
+            const isCollageImg = e.target.closest('.collage-grid') && e.target.tagName === 'IMG';
+
+            if (isQuickView || isClickable || isCollageImg) {
+                if (imgModal && modalImg) {
+                    // Si es el botón 'Vista Rápida', buscamos la imagen dentro de la tarjeta del producto
+                    const src = (isQuickView) 
+                        ? e.target.closest('.product-card').querySelector('img').src 
+                        : e.target.src;
+
+                    modalImg.src = src;
                     imgModal.style.display = "flex"; 
                     setTimeout(() => imgModal.classList.add('show'), 20);
                 }
             }
 
-            // CERRAR (Clic en X o clic en fondo negro)
-            if (e.target.classList.contains('close-modal') || e.target === imgModal) {
+            // DETECTAR CIERRE: Clic en la "X" (clase close-modal) o en el fondo oscuro
+            const isCloseBtn = e.target.classList.contains('close-modal');
+            const isOutside = e.target === imgModal;
+
+            if (isCloseBtn || isOutside) {
                 if (imgModal) {
                     imgModal.classList.remove('show');
-                    setTimeout(() => { imgModal.style.display = "none"; }, 300);
+                    setTimeout(() => { 
+                        imgModal.style.display = "none"; 
+                    }, 300);
                 }
             }
         });
@@ -179,4 +190,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     };
+
+    // 7. LÓGICA ACORDEÓN DE MARCAS
+    safeExecute(() => {
+        const brandToggles = document.querySelectorAll('.brand-toggle');
+        brandToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const item = toggle.parentElement;
+                document.querySelectorAll('.brand-item').forEach(i => {
+                    if (i !== item) i.classList.remove('active');
+                });
+                item.classList.toggle('active');
+            });
+        });
+    });
 });
