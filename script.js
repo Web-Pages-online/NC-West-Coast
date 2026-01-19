@@ -131,12 +131,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 5. VISTA RÁPIDA UNIVERSAL (PRODUCTOS Y COLLAGES)
+    // 5. VISTA RÁPIDA UNIVERSAL (REPARADA PARA PRODUCTOS Y COLLAGES)
     safeExecute(() => {
         const imgModal = document.getElementById("imageModal");
         const modalImg = document.getElementById("img01");
 
-        // Carrusel automático
+        // Carrusel
         const slides = document.querySelectorAll('.slide');
         if (slides.length > 0) {
             let current = 0;
@@ -149,14 +149,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Delegación de eventos para Abrir y Cerrar Imagen
         document.addEventListener('click', (e) => {
-            // DETECTAR APERTURA: Botón de vista rápida, clase clickable-image o imágenes en collage-grid
+            // --- DETECCIÓN DE APERTURA ---
             const isQuickView = e.target.classList.contains('quick-view');
             const isClickable = e.target.classList.contains('clickable-image');
             const isCollageImg = e.target.closest('.collage-grid') && e.target.tagName === 'IMG';
 
             if (isQuickView || isClickable || isCollageImg) {
                 if (imgModal && modalImg) {
-                    // Si es el botón 'Vista Rápida', buscamos la imagen dentro de la tarjeta del producto
+                    // Si es el botón de vista rápida, buscamos la imagen dentro de la tarjeta
+                    // Si es clic directo en imagen, usamos su src
                     const src = (isQuickView) 
                         ? e.target.closest('.product-card').querySelector('img').src 
                         : e.target.src;
@@ -167,16 +168,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // DETECTAR CIERRE: Clic en la "X" (clase close-modal) o en el fondo oscuro
-            const isCloseBtn = e.target.classList.contains('close-modal');
-            const isOutside = e.target === imgModal;
-
-            if (isCloseBtn || isOutside) {
+            // --- DETECCIÓN DE CIERRE ---
+            if (e.target.classList.contains('close-modal') || e.target === imgModal) {
                 if (imgModal) {
                     imgModal.classList.remove('show');
-                    setTimeout(() => { 
-                        imgModal.style.display = "none"; 
-                    }, 300);
+                    setTimeout(() => { imgModal.style.display = "none"; }, 300);
                 }
             }
         });
@@ -191,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // 7. LÓGICA ACORDEÓN DE MARCAS
+    // 7. LÓGICA DE ACORDEÓN DE MARCAS
     safeExecute(() => {
         const brandToggles = document.querySelectorAll('.brand-toggle');
         brandToggles.forEach(toggle => {
