@@ -149,15 +149,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Delegación de eventos para Abrir y Cerrar Imagen
         document.addEventListener('click', (e) => {
-            // --- DETECCIÓN DE APERTURA ---
             const isQuickView = e.target.classList.contains('quick-view');
             const isClickable = e.target.classList.contains('clickable-image');
             const isCollageImg = e.target.closest('.collage-grid') && e.target.tagName === 'IMG';
 
             if (isQuickView || isClickable || isCollageImg) {
                 if (imgModal && modalImg) {
-                    // Si es el botón de vista rápida, buscamos la imagen dentro de la tarjeta
-                    // Si es clic directo en imagen, usamos su src
                     const src = (isQuickView) 
                         ? e.target.closest('.product-card').querySelector('img').src 
                         : e.target.src;
@@ -168,7 +165,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // --- DETECCIÓN DE CIERRE ---
             if (e.target.classList.contains('close-modal') || e.target === imgModal) {
                 if (imgModal) {
                     imgModal.classList.remove('show');
@@ -187,16 +183,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // 7. LÓGICA DE ACORDEÓN DE MARCAS
+    // 7. LÓGICA ACORDEÓN DE MARCAS (OPTIMIZADA PARA MÓVILES)
     safeExecute(() => {
         const brandToggles = document.querySelectorAll('.brand-toggle');
+        
         brandToggles.forEach(toggle => {
-            toggle.addEventListener('click', () => {
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
                 const item = toggle.parentElement;
+                
+                // Cerramos los demás para mantener la limpieza en móviles
                 document.querySelectorAll('.brand-item').forEach(i => {
-                    if (i !== item) i.classList.remove('active');
+                    if (i !== item) {
+                        i.classList.remove('active');
+                    }
                 });
+                
+                // Alternar el estado del actual
                 item.classList.toggle('active');
+                
+                // Truco de scroll: si se abre, bajamos la vista para mostrar el contenido
+                if(item.classList.contains('active')) {
+                    setTimeout(() => {
+                        item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }, 300);
+                }
             });
         });
     });

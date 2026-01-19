@@ -110,14 +110,14 @@
 .brand-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.5s ease-out, padding 0.3s;
+    transition: max-height 0.5s ease-in-out; /* Animación más suave */
     background-color: #fcfcfc;
+    width: 100%;
 }
 
-/* Clase que se activa con JS */
 .brand-item.active .brand-content {
-    max-height: 600px; /* Ajusta según el tamaño de tu collage */
-    padding: 20px 0;
+    max-height: 2000px; /* Suficiente para que quepan todas las fotos del collage */
+    padding: 10px 0;
 }
 
 .brand-item.active .arrow {
