@@ -211,4 +211,47 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
+
+    // 8. CONTROL DEL CARRUSEL (AUTOMÁTICO + MANUAL)
+    safeExecute(() => {
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.querySelector('.carousel-btn.prev');
+        const nextBtn = document.querySelector('.carousel-btn.next');
+        
+        if (slides.length === 0) return;
+
+        let current = 0;
+        let timer;
+
+        const showSlide = (index) => {
+            slides.forEach(s => s.classList.remove('active'));
+            slides[index].classList.add('active');
+            current = index;
+            resetTimer(); // Reinicia el tiempo automático al cambiar manualmente
+        };
+
+        const nextSlide = () => {
+            let next = (current + 1) % slides.length;
+            showSlide(next);
+        };
+
+        const prevSlide = () => {
+            let prev = (current - 1 + slides.length) % slides.length;
+            showSlide(prev);
+        };
+
+        const resetTimer = () => {
+            clearInterval(timer);
+            timer = setInterval(nextSlide, 5000);
+        };
+
+        // Eventos para botones
+        // Dentro de tu DOMContentLoaded...
+
+if (nextBtn) nextBtn.onclick = () => nextSlide();
+if (prevBtn) prevBtn.onclick = () => prevSlide();
+
+        // Iniciar ciclo automático
+        resetTimer();
+    });
 });
