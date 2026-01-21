@@ -42,12 +42,14 @@
 
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; font-weight: 600; font-size: 0.8rem; margin-bottom: 5px; color: #333; }
-        .form-group input, .form-group textarea {
+        /* Se agregó select para el dropdown de tallas */
+        .form-group input, .form-group textarea, .form-group select {
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
             font-family: 'Montserrat', sans-serif;
+            background-color: #fff;
         }
 
         /* Estilo del Ticket */
@@ -77,96 +79,96 @@
         .cerrar-x { position: absolute; top: 15px; right: 20px; font-size: 25px; cursor: pointer; color: #aaa; }
 
         /* Contenedor del Acordeón */
-.brands-accordion {
-    max-width: 800px;
-    margin: 30px auto;
-    text-align: left;
-}
+        .brands-accordion {
+            max-width: 800px;
+            margin: 30px auto;
+            text-align: left;
+        }
 
-.brand-item {
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 10px;
-}
+        .brand-item {
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
 
-.brand-toggle {
-    width: 100%;
-    padding: 15px;
-    background: none;
-    border: none;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    text-transform: uppercase;
-    display: flex;
-    justify-content: space-between;
-    cursor: pointer;
-    transition: color 0.3s;
-}
+        .brand-toggle {
+            width: 100%;
+            padding: 15px;
+            background: none;
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            display: flex;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
 
-.brand-toggle:hover {
-    color: var(--gold-accent);
-}
+        .brand-toggle:hover {
+            color: var(--gold-accent);
+        }
 
-/* Contenido oculto por defecto */
-.brand-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s ease-in-out; /* Animación más suave */
-    background-color: #fcfcfc;
-    width: 100%;
-}
+        /* Contenido oculto por defecto */
+        .brand-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out; /* Animación más suave */
+            background-color: #fcfcfc;
+            width: 100%;
+        }
 
-.brand-item.active .brand-content {
-    max-height: 2000px; /* Suficiente para que quepan todas las fotos del collage */
-    padding: 10px 0;
-}
+        .brand-item.active .brand-content {
+            max-height: 2000px; /* Suficiente para que quepan todas las fotos del collage */
+            padding: 10px 0;
+        }
 
-.brand-item.active .arrow {
-    transform: rotate(45deg);
-    color: var(--gold-accent);
-}
+        .brand-item.active .arrow {
+            transform: rotate(45deg);
+            color: var(--gold-accent);
+        }
 
-/* Ajuste para que las fotos del collage no se hagan gigantes */
-.collage-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Se ajustan solas */
-    gap: 15px;
-    padding: 20px;
-    justify-items: center;
-}
+        /* Ajuste para que las fotos del collage no se hagan gigantes */
+        .collage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Se ajustan solas */
+            gap: 15px;
+            padding: 20px;
+            justify-items: center;
+        }
 
-.collage-grid img {
-    width: 100%;
-    max-width: 200px;      /* Tamaño máximo de cada foto */
-    height: 200px;         /* Altura fija para que todas sean iguales */
-    object-fit: contain;   /* Muestra el producto completo sin cortarlo */
-    background: #fff;      /* Fondo blanco por si la imagen tiene transparencias */
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    border: 1px solid #eee;
-}
+        .collage-grid img {
+            width: 100%;
+            max-width: 200px;      /* Tamaño máximo de cada foto */
+            height: 200px;         /* Altura fija para que todas sean iguales */
+            object-fit: contain;   /* Muestra el producto completo sin cortarlo */
+            background: #fff;      /* Fondo blanco por si la imagen tiene transparencias */
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border: 1px solid #eee;
+        }
 
-.collage-grid img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
+        .collage-grid img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
 
-/* Desktop: 4 columnas */
-@media (min-width: 768px) {
-    .collage-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
+        /* Desktop: 4 columnas */
+        @media (min-width: 768px) {
+            .collage-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
     </style>
 </head>
 <body>
 
     <div id="preloader">
-    <div class="loader-content">
-        <img src="NC.jpg" alt="Cargando..." class="loader-logo">
-        <div class="loader-line"></div>
+        <div class="loader-content">
+            <img src="NC.jpg" alt="Cargando..." class="loader-logo">
+            <div class="loader-line"></div>
+        </div>
     </div>
-</div>
 
     <a href="https://m.me/859771300559984" class="messenger-btn" target="_blank" title="Chatea con nosotros">
         <svg width="32" height="32" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
@@ -233,10 +235,10 @@
             <button class="brand-toggle">Nike <span class="arrow">+</span></button>
             <div class="brand-content">
                 <div class="collage-grid">
-                    <img src="https://dpjye2wk9gi5z.cloudfront.net/wcsstore/ExtendedSitesCatalogAssetStore/images/catalog/zoom/1030680-0100V1.jpg" alt="Nike item 1">
-                    <img src="https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/882c8d1f-2ff0-41ca-9d33-04438ab90473/AIR+JORDAN+1+RETRO+LOW+OG.png" alt="Nike item 2">
-                    <img src="https://static.nike.com/a/images/t_web_pdp_535_v2/f_auto,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/151671f3-74e9-409e-86f0-d5a62055996c/AIR+JORDAN+1+MID.png" alt="Nike item 3">
-                    <img src="https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/36abf0fc-f600-4627-a06d-feb191ca3582/AIR+JORDAN+1+MID.png" alt="Nike item 4">
+                    <img src="https://dpjye2wk9gi5z.cloudfront.net/wcsstore/ExtendedSitesCatalogAssetStore/images/catalog/zoom/1030680-0100V1.jpg" onclick="abrirModalForm('Nike')" alt="Nike item 1">
+                    <img src="https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/882c8d1f-2ff0-41ca-9d33-04438ab90473/AIR+JORDAN+1+RETRO+LOW+OG.png" onclick="abrirModalForm('Nike')" alt="Nike item 2">
+                    <img src="https://static.nike.com/a/images/t_web_pdp_535_v2/f_auto,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/151671f3-74e9-409e-86f0-d5a62055996c/AIR+JORDAN+1+MID.png" onclick="abrirModalForm('Nike')" alt="Nike item 3">
+                    <img src="https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/36abf0fc-f600-4627-a06d-feb191ca3582/AIR+JORDAN+1+MID.png" onclick="abrirModalForm('Nike')" alt="Nike item 4">
                 </div>
             </div>
         </div>
@@ -245,10 +247,10 @@
             <button class="brand-toggle">Adidas <span class="arrow">+</span></button>
             <div class="brand-content">
                 <div class="collage-grid">
-                    <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/ae9587cb634b4113b94a264aa874e125_9366/Tenis_Superstar_Negro_JI0079_00_plp_standard.jpg" alt="Nike item 1">
-                    <img src="https://m.media-amazon.com/images/I/21kjNxhHdTL._AC_SY900_.jpg" alt="Nike item 2">
-                    <img src="https://stylo.mx/cdn/shop/files/R239988-1_1_grd.jpg?v=1729097873" alt="Nike item 3">
-                    <img src="https://s3-us-west-1.amazonaws.com/calzzapato/zoom/09GR0T-1.jpg" alt="Nike item 4">
+                    <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/ae9587cb634b4113b94a264aa874e125_9366/Tenis_Superstar_Negro_JI0079_00_plp_standard.jpg" onclick="abrirModalForm('Adidas')" alt="Nike item 1">
+                    <img src="https://m.media-amazon.com/images/I/21kjNxhHdTL._AC_SY900_.jpg" onclick="abrirModalForm('Adidas')" alt="Nike item 2">
+                    <img src="https://stylo.mx/cdn/shop/files/R239988-1_1_grd.jpg?v=1729097873" onclick="abrirModalForm('Adidas')" alt="Nike item 3">
+                    <img src="https://s3-us-west-1.amazonaws.com/calzzapato/zoom/09GR0T-1.jpg" onclick="abrirModalForm('Adidas')" alt="Nike item 4">
                 </div>
             </div>
         </div>
@@ -257,10 +259,10 @@
             <button class="brand-toggle">Under Armor <span class="arrow">+</span></button>
             <div class="brand-content">
                 <div class="collage-grid">
-                    <img src="https://ss203.liverpool.com.mx/xl/1157495820.jpg" alt="Nike item 1">
-                    <img src="https://underarmour.scene7.com/is/image/Underarmour/3027593-001_DEFAULT?rp=standard-30pad|pdpMainDesktop&scl=1&fmt=jpg&qlt=85&resMode=sharp2&cache=on,on&bgc=f0f0f0&wid=566&hei=708&size=536,688" alt="Nike item 2">
-                    <img src="https://underarmour.scene7.com/is/image/Underarmour/6006061-002_DEFAULT?rp=standard-30pad|gridTileDesktop&scl=1&fmt=jpg&qlt=50&resMode=sharp2&cache=on,on&bgc=F0F0F0&wid=512&hei=640&size=472,600" alt="Nike item 3">
-                    <img src="https://sportmasters.com.mx/cdn/shop/files/2025430-102-001.jpg?v=1720814857&width=1000" alt="Nike item 4">
+                    <img src="https://ss203.liverpool.com.mx/xl/1157495820.jpg" onclick="abrirModalForm('Under Armor')" alt="Nike item 1">
+                    <img src="https://underarmour.scene7.com/is/image/Underarmour/3027593-001_DEFAULT?rp=standard-30pad|pdpMainDesktop&scl=1&fmt=jpg&qlt=85&resMode=sharp2&cache=on,on&bgc=f0f0f0&wid=566&hei=708&size=536,688" onclick="abrirModalForm('Under Armor')" alt="Nike item 2">
+                    <img src="https://underarmour.scene7.com/is/image/Underarmour/6006061-002_DEFAULT?rp=standard-30pad|gridTileDesktop&scl=1&fmt=jpg&qlt=50&resMode=sharp2&cache=on,on&bgc=F0F0F0&wid=512&hei=640&size=472,600" onclick="abrirModalForm('Under Armor')" alt="Nike item 3">
+                    <img src="https://sportmasters.com.mx/cdn/shop/files/2025430-102-001.jpg?v=1720814857&width=1000" onclick="abrirModalForm('Under Armor')" alt="Nike item 4">
                 </div>
             </div>
         </div>
@@ -269,74 +271,70 @@
             <button class="brand-toggle">New Balance <span class="arrow">+</span></button>
             <div class="brand-content">
                 <div class="collage-grid">
-                    <img src="https://pngimg.com/d/running_shoes_PNG5792.png" alt="Nike item 1">
-                    <img src="https://mrshoesaccessories.com/cdn/shop/files/9E16D9E4-947F-4E18-B108-82527503C49B.png?v=1747543338&width=2048" alt="Nike item 2">
-                    <img src="https://savagetoo.com/cdn/shop/files/A5AE3652-CD69-4985-9E93-AD271BE0F1DE.png?v=1714944629&width=1445" alt="Nike item 3">
-                    <img src="https://mrshoesaccessories.com/cdn/shop/files/6C6C4CF6-81DE-49B5-AC96-45E329A38185.png?v=1747545269&width=3375" alt="Nike item 4">
+                    <img src="https://pngimg.com/d/running_shoes_PNG5792.png" onclick="abrirModalForm('New Balance')" alt="Nike item 1">
+                    <img src="https://mrshoesaccessories.com/cdn/shop/files/9E16D9E4-947F-4E18-B108-82527503C49B.png?v=1747543338&width=2048" onclick="abrirModalForm('New Balance')" alt="Nike item 2">
+                    <img src="https://savagetoo.com/cdn/shop/files/A5AE3652-CD69-4985-9E93-AD271BE0F1DE.png?v=1714944629&width=1445" onclick="abrirModalForm('New Balance')" alt="Nike item 3">
+                    <img src="https://mrshoesaccessories.com/cdn/shop/files/6C6C4CF6-81DE-49B5-AC96-45E329A38185.png?v=1747545269&width=3375" onclick="abrirModalForm('New Balance')" alt="Nike item 4">
                 </div>
             </div>
         </div>
 
- <div class="brand-item">
+         <div class="brand-item">
             <button class="brand-toggle">Crocs <span class="arrow">+</span></button>
             <div class="brand-content">
                 <div class="collage-grid">
-                    <img src="https://crocs.com.mx/cdn/shop/files/207937_1FT_ALT110.png?v=1761167920&width=780" alt="Nike item 1">
-                    <img src="https://crocs.com.mx/cdn/shop/files/211503_90H_ALT100.png?v=1765242692&width=780" alt="Nike item 2">
-                    <img src="https://crocs.com.mx/cdn/shop/files/212338_90H_ALT120.png?v=1765211996&width=750" alt="Nike item 3">
-                    <img src="https://crocs.com.mx/cdn/shop/files/212260_997_ALT100.png?v=1764971619&width=750" alt="Nike item 4">
+                    <img src="https://crocs.com.mx/cdn/shop/files/207937_1FT_ALT110.png?v=1761167920&width=780" onclick="abrirModalForm('Crocs')" alt="Nike item 1">
+                    <img src="https://crocs.com.mx/cdn/shop/files/211503_90H_ALT100.png?v=1765242692&width=780" onclick="abrirModalForm('Crocs')" alt="Nike item 2">
+                    <img src="https://crocs.com.mx/cdn/shop/files/212338_90H_ALT120.png?v=1765211996&width=750" onclick="abrirModalForm('Crocs')" alt="Nike item 3">
+                    <img src="https://crocs.com.mx/cdn/shop/files/212260_997_ALT100.png?v=1764971619&width=750" onclick="abrirModalForm('Crocs')" alt="Nike item 4">
                 </div>
             </div>
         </div>
 
-        
-<div class="brand-item">
+        <div class="brand-item">
         <button class="brand-toggle">Coach <span class="arrow">+</span></button>
             <div class="brand-content">
                 <div class="collage-grid">
-                    <img src="Coach/C1.png" alt="Nike item 1">
-                    <img src="Coach/c2.png" alt="Nike item 2">
-                    <img src="Coach/c3.png" alt="Nike item 3">
-                    <img src="Coach/c4.png" alt="Nike item 4">
+                    <img src="Coach/C1.png" onclick="abrirModalForm('Coach')" alt="Nike item 1">
+                    <img src="Coach/c2.png" onclick="abrirModalForm('Coach')" alt="Nike item 2">
+                    <img src="Coach/c3.png" onclick="abrirModalForm('Coach')" alt="Nike item 3">
+                    <img src="Coach/c4.png" onclick="abrirModalForm('Coach')" alt="Nike item 4">
                 </div>
             </div>
         </div>
 
-<div class="brand-item">
+        <div class="brand-item">
             <button class="brand-toggle">Guess <span class="arrow">+</span></button>
             <div class="brand-content">
                 <div class="collage-grid">
-                    <img src="https://guessmx.vteximg.com.br/arquivos/ids/668646-300-auto?v=6385484833719000001&width=300&height=auto&aspect=true" alt="Nike item 1">
-                    <img src="https://cdn5.coppel.com/pr/3016602-1.jpg?iresize=width:400,height:320" alt="Nike item 2">
-                    <img src="https://resources.claroshop.com/medios-plazavip/mkt/62fd5f1682a3f_2png.jpg" alt="Nike item 3">
-                    <img src="https://guessmx.vtexassets.com/arquivos/ids/661470/Guess-Reloj-Hombre-GW0714G2-ORO-ALT1.jpg?v=638507017225270000" alt="Nike item 4">
+                    <img src="https://guessmx.vteximg.com.br/arquivos/ids/668646-300-auto?v=6385484833719000001&width=300&height=auto&aspect=true" onclick="abrirModalForm('Guess')" alt="Nike item 1">
+                    <img src="https://cdn5.coppel.com/pr/3016602-1.jpg?iresize=width:400,height:320" onclick="abrirModalForm('Guess')" alt="Nike item 2">
+                    <img src="https://resources.claroshop.com/medios-plazavip/mkt/62fd5f1682a3f_2png.jpg" onclick="abrirModalForm('Guess')" alt="Nike item 3">
+                    <img src="https://guessmx.vtexassets.com/arquivos/ids/661470/Guess-Reloj-Hombre-GW0714G2-ORO-ALT1.jpg?v=638507017225270000" onclick="abrirModalForm('Guess')" alt="Nike item 4">
                 </div>
             </div>
         </div>
-        
 
          <div class="brand-item">
             <button class="brand-toggle">Steve Madden <span class="arrow">+</span></button>
             <div class="brand-content">
                 <div class="collage-grid">
-                    <img src="https://resources.sears.com.mx/medios-plazavip/t1/1720207365ProyectoCambiartamanodeimagen6png" alt="Nike item 1">
-                    <img src="https://i5.walmartimages.com/asr/776abd18-e377-4712-9d95-3b3acfe0c5ff.b90db8cf7bbc3b15119618697c4f34c9.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF" alt="Nike item 2">
-                    <img src="https://stevemadden.com.mx/cdn/shop/files/possession-e-coconut-milk-bronze-tenis-blancos-con-beige.jpg?v=1738102705" alt="Nike item 3">
-                    <img src="https://resources.claroshop.com/medios-plazavip/t1/17214256741png" alt="Nike item 4">
+                    <img src="https://resources.sears.com.mx/medios-plazavip/t1/1720207365ProyectoCambiartamanodeimagen6png" onclick="abrirModalForm('Steve Madden')" alt="Nike item 1">
+                    <img src="https://i5.walmartimages.com/asr/776abd18-e377-4712-9d95-3b3acfe0c5ff.b90db8cf7bbc3b15119618697c4f34c9.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF" onclick="abrirModalForm('Steve Madden')" alt="Nike item 2">
+                    <img src="https://stevemadden.com.mx/cdn/shop/files/possession-e-coconut-milk-bronze-tenis-blancos-con-beige.jpg?v=1738102705" onclick="abrirModalForm('Steve Madden')" alt="Nike item 3">
+                    <img src="https://resources.claroshop.com/medios-plazavip/t1/17214256741png" onclick="abrirModalForm('Steve Madden')" alt="Nike item 4">
                 </div>
             </div>
         </div>
-
-         
 
          <div class="brand-item">
             <button class="brand-toggle">Polo <span class="arrow">+</span></button>
             <div class="brand-content">
                 <div class="collage-grid">
-                    <img src="https://andreamx.vtexassets.com/arquivos/ids/17250971-800-800?v=638623084137430000&width=800&height=800&aspect=true" alt="Nike item 1">
-                    <img src="https://shendyvendy.com/cdn/shop/files/BEIGE_97d6e7bb-262d-47be-b02d-dba6a9bed41e.jpg?v=1740768190&width=1214" alt="Nike item 2">
-                    <img src="https://resources.sanborns.com.mx/imagenes-sanborns-ii/1200/7500413089904.jpg?scale=500&qlty=75" alt="Nike item 3">
-                    <img src="https://ss376.liverpool.com.mx/xl/1159389991.jpg" alt="Nike item 4">
+                    <img src="https://andreamx.vtexassets.com/arquivos/ids/17250971-800-800?v=638623084137430000&width=800&height=800&aspect=true" onclick="abrirModalForm('Polo')" alt="Nike item 1">
+                    <img src="https://shendyvendy.com/cdn/shop/files/BEIGE_97d6e7bb-262d-47be-b02d-dba6a9bed41e.jpg?v=1740768190&width=1214" onclick="abrirModalForm('Polo')" alt="Nike item 2">
+                    <img src="https://resources.sanborns.com.mx/imagenes-sanborns-ii/1200/7500413089904.jpg?scale=500&qlty=75" onclick="abrirModalForm('Polo')" alt="Nike item 3">
+                    <img src="https://ss376.liverpool.com.mx/xl/1159389991.jpg" onclick="abrirModalForm('Polo')" alt="Nike item 4">
                 </div>
             </div>
         </div>
@@ -345,10 +343,10 @@
             <button class="brand-toggle">Nautica <span class="arrow">+</span></button>
             <div class="brand-content">
                 <div class="collage-grid">
-                    <img src="https://nauticamexico.com/cdn/shop/products/NAUTICA_BOYS_JUNIOR_SS23_Q1_20.02NAUTICA_SS23Q1_BOYS_N3JI0705_FLETCHER_POLO_SHIRT_DARK_NAVY_FLATLAY_A_1024x1024_2x_82c7768c-ce0a-41fa-adaf-d356cfcd1493.jpg?v=1755800895" alt="Nike item 1">
-                    <img src="https://b2cimpulsmx.vtexassets.com/arquivos/ids/377822-800-800?v=638716230235430000&width=800&height=800&aspect=true" alt="Nike item 2">
-                    <img src="https://cdn11.bigcommerce.com/s-2vt02okold/images/stencil/1280x1280/products/2875/5238/HNAUB__88917.1731099890.jpg?c=1" alt="Nike item 3">
-                    <img src="https://nauticamexico.com/cdn/shop/products/NAPNSS301_7dff2eb0-fdb8-4ea8-9623-58fadd4d81ff.jpg?v=1755801073" alt="Nike item 4">
+                    <img src="https://nauticamexico.com/cdn/shop/products/NAUTICA_BOYS_JUNIOR_SS23_Q1_20.02NAUTICA_SS23Q1_BOYS_N3JI0705_FLETCHER_POLO_SHIRT_DARK_NAVY_FLATLAY_A_1024x1024_2x_82c7768c-ce0a-41fa-adaf-d356cfcd1493.jpg?v=1755800895" onclick="abrirModalForm('Nautica')" alt="Nike item 1">
+                    <img src="https://b2cimpulsmx.vtexassets.com/arquivos/ids/377822-800-800?v=638716230235430000&width=800&height=800&aspect=true" onclick="abrirModalForm('Nautica')" alt="Nike item 2">
+                    <img src="https://cdn11.bigcommerce.com/s-2vt02okold/images/stencil/1280x1280/products/2875/5238/HNAUB__88917.1731099890.jpg?c=1" onclick="abrirModalForm('Nautica')" alt="Nike item 3">
+                    <img src="https://nauticamexico.com/cdn/shop/products/NAPNSS301_7dff2eb0-fdb8-4ea8-9623-58fadd4d81ff.jpg?v=1755801073" onclick="abrirModalForm('Nautica')" alt="Nike item 4">
                 </div>
             </div>
         </div>
@@ -357,10 +355,10 @@
             <button class="brand-toggle">Tommy Hilfiger <span class="arrow">+</span></button>
             <div class="brand-content">
                 <div class="collage-grid">
-                    <img src="https://m.media-amazon.com/images/I/31vhPceHHhL._AC_.jpg" alt="Nike item 1">
-                    <img src="https://urbanna.mx/cdn/shop/files/09H2RV-1.jpg?v=1761156048" alt="Nike item 2">
-                    <img src="https://www.viu.mx/img/1024/1024/resize/T/O/TOMY00006_x1_1.jpg" alt="Nike item 3">
-                    <img src="https://resources.sears.com.mx/medios-plazavip/fotos/productos_sears1/original/4223059.jpg" alt="Nike item 4">
+                    <img src="https://m.media-amazon.com/images/I/31vhPceHHhL._AC_.jpg" onclick="abrirModalForm('Tommy Hilfiger')" alt="Nike item 1">
+                    <img src="https://urbanna.mx/cdn/shop/files/09H2RV-1.jpg?v=1761156048" onclick="abrirModalForm('Tommy Hilfiger')" alt="Nike item 2">
+                    <img src="https://www.viu.mx/img/1024/1024/resize/T/O/TOMY00006_x1_1.jpg" onclick="abrirModalForm('Tommy Hilfiger')" alt="Nike item 3">
+                    <img src="https://resources.sears.com.mx/medios-plazavip/fotos/productos_sears1/original/4223059.jpg" onclick="abrirModalForm('Tommy Hilfiger')" alt="Nike item 4">
                 </div>
             </div>
         </div>
@@ -369,15 +367,14 @@
             <button class="brand-toggle">Calvin Klein <span class="arrow">+</span></button>
             <div class="brand-content">
                 <div class="collage-grid">
-                    <img src="https://m.media-amazon.com/images/I/31dGwR0UBGL._AC_SY1000_.jpg" alt="Nike item 1">
-                    <img src="https://m.media-amazon.com/images/I/617tSYclx0L._AC_SL1500_.jpg" alt="Nike item 2">
-                    <img src="https://perfumate.mx/cdn/shop/products/61ufv9EFQgL._AC_SL1000.jpg?v=1675881202" alt="Nike item 3">
-                    <img src="https://cristaljoyas.com/media/catalog/product/cache/f06412bcaeffb4364662cfc53d14e291/c/k/cklk9h211c1.jpg" alt="Nike item 4">
+                    <img src="https://m.media-amazon.com/images/I/31dGwR0UBGL._AC_SY1000_.jpg" onclick="abrirModalForm('Calvin Klein')" alt="Nike item 1">
+                    <img src="https://m.media-amazon.com/images/I/617tSYclx0L._AC_SL1500_.jpg" onclick="abrirModalForm('Calvin Klein')" alt="Nike item 2">
+                    <img src="https://perfumate.mx/cdn/shop/products/61ufv9EFQgL._AC_SL1000.jpg?v=1675881202" onclick="abrirModalForm('Calvin Klein')" alt="Nike item 3">
+                    <img src="https://cristaljoyas.com/media/catalog/product/cache/f06412bcaeffb4364662cfc53d14e291/c/k/cklk9h211c1.jpg" onclick="abrirModalForm('Calvin Klein')" alt="Nike item 4">
                 </div>
             </div>
         </div>
-
-        </div>  
+    </div>  
 </section>
 
     <section class="trust-banner">
@@ -394,19 +391,32 @@
                     <label>Tu Nombre</label>
                     <input type="text" id="pNombre" placeholder="Nombre completo">
                 </div>
+                <div class="form-group">
+                    <label>Teléfono (WhatsApp)</label>
+                    <input type="tel" id="pTelefono" placeholder="Ej. 999 123 4567">
+                </div>
                 <div style="display: flex; gap: 10px;">
                     <div class="form-group" style="flex: 1;">
                         <label>Marca</label>
                         <input type="text" id="pMarca" placeholder="Ej. Nike">
                     </div>
                     <div class="form-group" style="flex: 1;">
-                        <label>Talla</label>
-                        <input type="text" id="pTalla" placeholder="Ej. 27 MX">
+                        <label>Sistema de Talla</label>
+                        <select id="pSistema">
+                            <option value="MX">MEXICANA (cm)</option>
+                            <option value="US">AMERICANA (US)</option>
+                        </select>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label>Modelo del Producto</label>
-                    <input type="text" id="pModelo" placeholder="Ej. Jordan 1 Retro High">
+                <div style="display: flex; gap: 10px;">
+                    <div class="form-group" style="flex: 2;">
+                        <label>Modelo del Producto</label>
+                        <input type="text" id="pModelo" placeholder="Ej. Jordan 1 Retro High">
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label>Talla</label>
+                        <input type="text" id="pTalla" placeholder="Ej. 27 / 9">
+                    </div>
                 </div>
                 <div class="form-group">
                     <label>Link o Notas adicionales</label>
@@ -431,7 +441,7 @@
                     SOLICITUD PROCESADA DESDE PORTAL WEB
                 </div>
             </div>
-            <button id="btnFinalMessenger" class="btn-modal btn-verde" onclick="abrirMessengerPedido()">COPIAR LINK E IR AL CHAT</button>
+            <button id="btnFinalMessenger" class="btn-modal btn-verde" onclick="abrirMessengerPedido()">COPIAR DATOS E IR AL CHAT</button>
         </div>
     </div>
 
@@ -449,9 +459,10 @@
                 document.getElementById('ticket-data').innerHTML = `
                     <div class="ticket-item"><span>FOLIO:</span><span>#${params.get('folio')}</span></div>
                     <div class="ticket-item"><span>CLIENTE:</span><span>${params.get('nom').toUpperCase()}</span></div>
+                    <div class="ticket-item"><span>TELÉFONO:</span><span>${params.get('tel')}</span></div>
                     <div class="ticket-item"><span>MARCA:</span><span>${params.get('mar')}</span></div>
                     <div class="ticket-item"><span>MODELO:</span><span>${params.get('mod')}</span></div>
-                    <div class="ticket-item"><span>TALLA:</span><span>${params.get('tal')}</span></div>
+                    <div class="ticket-item"><span>TALLA:</span><span>${params.get('tal')} (${params.get('sis')})</span></div>
                     <div class="ticket-item"><span>FECHA:</span><span>${params.get('fecha')}</span></div>
                 `;
                 document.getElementById('modalTicketFinal').style.display = 'flex';
@@ -460,7 +471,14 @@
             }
         };
 
-        function abrirModalForm() {
+        // Lógica mejorada para abrir el formulario y permitir el llenado automático de marca
+        function abrirModalForm(marca = "") {
+            const campoMarca = document.getElementById('pMarca');
+            if (marca) {
+                campoMarca.value = marca;
+            } else {
+                campoMarca.value = "";
+            }
             document.getElementById('modalFormEncargo').style.display = 'flex';
         }
 
@@ -471,44 +489,68 @@
 
         function generarTicketVisual() {
             const nom = document.getElementById('pNombre').value;
+            const tel = document.getElementById('pTelefono').value;
             const mar = document.getElementById('pMarca').value;
             const mod = document.getElementById('pModelo').value;
             const tal = document.getElementById('pTalla').value;
+            const sis = document.getElementById('pSistema').value;
             const not = document.getElementById('pNotas').value || "Ninguna";
             const fecha = new Date().toLocaleDateString();
             const folio = Math.floor(1000 + Math.random() * 9000);
 
-            if(!nom || !mar || !mod) {
-                alert("Por favor completa los campos principales");
+            if(!nom || !mar || !mod || !tel || !tal) {
+                alert("Por favor completa los campos obligatorios");
                 return;
             }
 
             document.getElementById('ticket-data').innerHTML = `
+                <div class="ticket-item"><span>FOLIO:</span><span>#${folio}</span></div>
                 <div class="ticket-item"><span>CLIENTE:</span><span>${nom.toUpperCase()}</span></div>
+                <div class="ticket-item"><span>TELÉFONO:</span><span>${tel}</span></div>
                 <div class="ticket-item"><span>MARCA:</span><span>${mar}</span></div>
                 <div class="ticket-item"><span>MODELO:</span><span>${mod}</span></div>
-                <div class="ticket-item"><span>TALLA:</span><span>${tal}</span></div>
+                <div class="ticket-item"><span>TALLA:</span><span>${tal} (${sis})</span></div>
             `;
 
             const baseURL = window.location.href.split('?')[0];
-            enlaceTicket = `${baseURL}?folio=${folio}&nom=${encodeURIComponent(nom)}&mar=${encodeURIComponent(mar)}&mod=${encodeURIComponent(mod)}&tal=${encodeURIComponent(tal)}&fecha=${encodeURIComponent(fecha)}`;
+            enlaceTicket = `${baseURL}?folio=${folio}&nom=${encodeURIComponent(nom)}&tel=${encodeURIComponent(tel)}&mar=${encodeURIComponent(mar)}&mod=${encodeURIComponent(mod)}&tal=${encodeURIComponent(tal)}&sis=${encodeURIComponent(sis)}&fecha=${encodeURIComponent(fecha)}`;
 
             document.getElementById('modalFormEncargo').style.display = 'none';
             document.getElementById('modalTicketFinal').style.display = 'flex';
         }
 
+        // Nueva función Messenger: Texto formateado para evitar bloqueos de FB
         function abrirMessengerPedido() {
             const pageID = "859771300559984";
             const btn = document.getElementById('btnFinalMessenger');
-            const mensajeFinal = `🌊 *NC WEST COAST - NUEVO ENCARGO*\n\nHe generado mi ticket digital. Puedes revisarlo en este enlace:\n🔗 ${enlaceTicket}\n\n_¿Me podrían cotizar este artículo?_`;
+            
+            const nom = document.getElementById('pNombre').value.toUpperCase();
+            const tel = document.getElementById('pTelefono').value;
+            const mar = document.getElementById('pMarca').value;
+            const mod = document.getElementById('pModelo').value;
+            const tal = document.getElementById('pTalla').value;
+            const sis = document.getElementById('pSistema').value;
+
+            // Formato de texto puro con emojis (Sustituye al link para mayor seguridad)
+            const mensajeFinal = `🌊 *NC WEST COAST - SOLICITUD DE ENCARGO*\n\n` +
+                                 `👤 CLIENTE: ${nom}\n` +
+                                 `📞 TEL: ${tel}\n` +
+                                 `📦 MARCA: ${mar}\n` +
+                                 `👟 MODELO: ${mod}\n` +
+                                 `📏 TALLA: ${tal} (${sis})\n\n` +
+                                 `_Hola, acabo de generar mi ticket en el portal. ¿Podrían darme precio y disponibilidad?_`;
 
             navigator.clipboard.writeText(mensajeFinal).then(() => {
-                btn.innerText = "✅ LINK COPIADO";
+                btn.innerText = "✅ DATOS COPIADOS";
+                btn.style.backgroundColor = "#27ae60";
+                
                 setTimeout(() => {
+                    // Abrimos Messenger directamente al chat
                     window.open(`https://m.me/${pageID}`, '_blank');
                     cerrarTodosModales();
-                    btn.innerText = "COPIAR LINK E IR AL CHAT";
-                }, 1200);
+                    btn.innerText = "COPIAR DATOS E IR AL CHAT";
+                    btn.style.backgroundColor = "#27ae60";
+                }, 1000);
             });
         }
     </script>
