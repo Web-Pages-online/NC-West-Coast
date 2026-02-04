@@ -7,18 +7,26 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="NC.ico">
     <link rel="stylesheet" href="style.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="script.js" defer></script>
 </head>
 <body>
 
     <div id="preloader">
-    <div class="loader-content">
-        <img src="NC.jpg" alt="Cargando..." class="loader-logo">
-        <div class="loader-line"></div>
+        <div class="loader-content">
+            <img src="NC.jpg" alt="Cargando..." class="loader-logo">
+            <div class="loader-line"></div>
+        </div>
     </div>
-</div>
+
+    <div id="cart-icon" onclick="toggleCartModal()" style="position: fixed; bottom: 100px; right: 30px; background: var(--gold-accent); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+        <i class="fa-solid fa-basket-shopping" style="color: white; font-size: 1.5rem;"></i>
+        <span id="cart-count" style="position: absolute; top: 0; right: 0; background: #e74c3c; color: white; border-radius: 50%; padding: 2px 7px; font-size: 12px; font-weight: bold;">0</span>
+    </div>
 
     <a href="https://m.me/859771300559984" class="messenger-btn" target="_blank" title="Chatea con nosotros">
         <svg width="32" height="32" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
@@ -95,8 +103,6 @@
         </div>
     </div>
         
-        
-
     <section id="about" class="section-padding">
         <div class="about-container">
             <div class="about-text reveal">
@@ -132,6 +138,22 @@
         <br>
         <p>© 2025 NC West Coast. Todos los derechos reservados.</p>
     </footer>
+
+    <div id="modalCarrito" class="modal-pedido-overlay">
+        <div class="modal-pedido-box" style="background-color: #f9f7f2;">
+            <span class="cerrar-x" onclick="toggleCartModal()">&times;</span>
+            <h2 style="font-family: 'Playfair Display', serif; text-align: center;">Mi Canasta</h2>
+            <div id="cart-items-container" style="max-height: 300px; overflow-y: auto; margin: 20px 0; border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; padding: 10px 0;">
+                <p style="text-align: center; color: #999;">Tu canasta está vacía</p>
+            </div>
+            <div style="padding: 10px 0; text-align: right;">
+                <p style="font-weight: bold; font-size: 1.1rem;">Total Estimado: <span id="cart-total" style="color: var(--gold-accent);">$0.00</span></p>
+            </div>
+            <button class="btn-modal btn-verde" onclick="generarTicketPDF()">
+                <i class="fa-solid fa-file-pdf"></i> GENERAR TICKET PDF
+            </button>
+        </div>
+    </div>
 
     <div id="imageModal" class="image-modal">
         <span class="close-modal">&times;</span>

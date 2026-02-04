@@ -75,63 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 4. LÓGICA DE COMPRA (MENSAJE DETALLADO ESTILO IMAGEN)
-    safeExecute(() => {
-        const modal = document.getElementById('modalConfirmacion');
-        const btnAccion = document.getElementById('btnIrMessenger');
-        const tituloM = document.getElementById('tituloModal');
-        const instruM = document.getElementById('instruccionesModal');
-        const textoB = document.getElementById('textoBoton');
-        
-        let mensajeParaCopiar = "";
-        let datosCopiados = false;
-
-        window.cerrarModal = () => {
-            if(modal) modal.style.display = 'none';
-            datosCopiados = false;
-            if(btnAccion) btnAccion.style.backgroundColor = "#2c2c2c";
-            if(textoB) textoB.innerText = "COPIAR DATOS";
-            if(tituloM) tituloM.innerText = "Paso 1: Copiar Pedido";
-            if(instruM) instruM.innerHTML = "Primero copia los detalles del producto, luego te llevaremos al chat.";
-        };
-
-        document.addEventListener('click', (e) => {
-            const btn = e.target.closest('.add-cart-btn, .buy-btn');
-            if (btn) {
-                e.preventDefault();
-                const card = btn.closest('.product-card');
-                if (card && modal) {
-                    const categoria = card.querySelector('.category')?.innerText || "General";
-                    const nombre = card.querySelector('h3')?.innerText || "Producto";
-                    const precio = card.querySelector('.price')?.innerText || "A cotizar";
-                    const imagenLink = card.querySelector('img')?.src;
-
-                    mensajeParaCopiar = `Hola NC West Coast, me interesa:\n\n✨ Tipo: ${categoria.toUpperCase()}\n📦 Modelo: ${nombre}\n💰 Precio: ${precio}\n📸 Ref: ${imagenLink}\n\n¿Está disponible?`;
-                    
-                    modal.style.display = 'flex';
-                }
-            }
-        });
-
-        if (btnAccion) {
-            btnAccion.onclick = () => {
-                if (!datosCopiados) {
-                    navigator.clipboard.writeText(mensajeParaCopiar).then(() => {
-                        datosCopiados = true;
-                        btnAccion.style.backgroundColor = "#27ae60";
-                        if(textoB) textoB.innerText = "🚀 IR A MESSENGER";
-                        if(tituloM) tituloM.innerText = "✅ ¡Datos Copiados!";
-                        if(instruM) instruM.innerHTML = "¡Listo! Ya tienes el pedido.<br>Da clic otra vez para abrir el chat.";
-                    });
-                } else {
-                    window.open("https://m.me/859771300559984", "_blank");
-                    cerrarModal();
-                }
-            };
-        }
-    });
-
-    // 5. VISTA RÁPIDA UNIVERSAL (REPARADA PARA PRODUCTOS Y COLLAGES)
+    // 4. VISTA RÁPIDA UNIVERSAL (REPARADA PARA PRODUCTOS Y COLLAGES)
     safeExecute(() => {
         const imgModal = document.getElementById("imageModal");
         const modalImg = document.getElementById("img01");
@@ -174,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 6. ANIMACIONES REVEAL SCROLL
+    // 5. ANIMACIONES REVEAL SCROLL
     window.onscroll = () => {
         document.querySelectorAll('.reveal').forEach(el => {
             if (el.getBoundingClientRect().top < window.innerHeight - 50) {
@@ -183,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // 7. LÓGICA ACORDEÓN DE MARCAS (OPTIMIZADA PARA MÓVILES)
+    // 6. LÓGICA ACORDEÓN DE MARCAS (OPTIMIZADA PARA MÓVILES)
     safeExecute(() => {
         const brandToggles = document.querySelectorAll('.brand-toggle');
         
@@ -192,17 +136,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.preventDefault();
                 const item = toggle.parentElement;
                 
-                // Cerramos los demás para mantener la limpieza en móviles
                 document.querySelectorAll('.brand-item').forEach(i => {
                     if (i !== item) {
                         i.classList.remove('active');
                     }
                 });
                 
-                // Alternar el estado del actual
                 item.classList.toggle('active');
                 
-                // Truco de scroll: si se abre, bajamos la vista para mostrar el contenido
                 if(item.classList.contains('active')) {
                     setTimeout(() => {
                         item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -212,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 8. CONTROL DEL CARRUSEL (AUTOMÁTICO + MANUAL)
+    // 7. CONTROL DEL CARRUSEL (AUTOMÁTICO + MANUAL)
     safeExecute(() => {
         const slides = document.querySelectorAll('.slide');
         const prevBtn = document.querySelector('.carousel-btn.prev');
@@ -227,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
             slides.forEach(s => s.classList.remove('active'));
             slides[index].classList.add('active');
             current = index;
-            resetTimer(); // Reinicia el tiempo automático al cambiar manualmente
+            resetTimer();
         };
 
         const nextSlide = () => {
@@ -245,13 +186,242 @@ document.addEventListener('DOMContentLoaded', () => {
             timer = setInterval(nextSlide, 5000);
         };
 
-        // Eventos para botones
-        // Dentro de tu DOMContentLoaded...
+        if (nextBtn) nextBtn.onclick = () => nextSlide();
+        if (prevBtn) prevBtn.onclick = () => prevSlide();
 
-if (nextBtn) nextBtn.onclick = () => nextSlide();
-if (prevBtn) prevBtn.onclick = () => prevSlide();
-
-        // Iniciar ciclo automático
         resetTimer();
     });
+
+    // Inicializar visualización del carrito al cargar
+    actualizarInterfazCarrito();
 });
+
+// --- LÓGICA DE LA CANASTA NC WEST COAST ---
+
+// 1. Inicialización
+let carrito = JSON.parse(localStorage.getItem('nc_cart')) || [];
+
+// 2. Función para agregar productos con animación
+function agregarAlCarrito(nombre, precio, imagen) {
+    const precioNumerico = precio.replace(/[^0-9.]/g, "");
+    
+    // Buscamos si el producto ya existe en la canasta
+    const productoExistente = carrito.find(item => item.nombre === nombre);
+
+    if (productoExistente) {
+        // Si ya existe, solo aumentamos la cantidad
+        productoExistente.cantidad += 1;
+    } else {
+        // Si es nuevo, lo agregamos con cantidad 1
+        const nuevoProducto = { 
+            nombre: nombre, 
+            precio: precioNumerico, 
+            imagen: imagen, 
+            id: Date.now(),
+            cantidad: 1 // Nueva propiedad de cantidad
+        };
+        carrito.push(nuevoProducto);
+    }
+    
+    localStorage.setItem('nc_cart', JSON.stringify(carrito));
+    actualizarInterfazCarrito();
+    animarIconoCarrito();
+}
+
+// 3. Actualizar la vista del carrito y el contador (CON CANTIDADES)
+function actualizarInterfazCarrito() {
+    const container = document.getElementById('cart-items-container');
+    const countLabel = document.getElementById('cart-count');
+    const totalLabel = document.getElementById('cart-total');
+    
+    if(!container) return;
+
+    if (carrito.length === 0) {
+        container.innerHTML = `<p style="text-align: center; color: #999; padding: 20px;">Tu canasta está vacía</p>`;
+        if(countLabel) countLabel.innerText = "0";
+        if(totalLabel) totalLabel.innerText = "$0.00";
+        return;
+    }
+
+    container.innerHTML = "";
+    let totalItems = 0;
+    let precioTotal = 0;
+
+    carrito.forEach((item, index) => {
+        const subtotal = parseFloat(item.precio) * item.cantidad;
+        precioTotal += subtotal;
+        totalItems += item.cantidad;
+        
+        container.innerHTML += `
+            <div style="display: flex; align-items: center; padding: 10px 0; border-bottom: 1px solid #eee;">
+                <img src="${item.imagen}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px; margin-right: 15px;">
+                <div style="flex: 1;">
+                    <div style="font-size: 0.9rem; font-weight: 600; color: #333;">${item.nombre}</div>
+                    <div style="color: #bfa37e; font-size: 0.85rem;">
+                        ${item.cantidad} x $${parseFloat(item.precio).toLocaleString()}
+                    </div>
+                </div>
+                <button onclick="eliminarDelCarrito(${index})" style="background: none; border: none; color: #ff5e5e; cursor: pointer; font-size: 1.1rem; padding: 5px;">
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
+            </div>
+        `;
+    });
+
+    if(countLabel) countLabel.innerText = totalItems;
+    if(totalLabel) totalLabel.innerText = `$${precioTotal.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
+}
+
+// 4. Eliminar producto
+function eliminarDelCarrito(index) {
+    carrito.splice(index, 1);
+    localStorage.setItem('nc_cart', JSON.stringify(carrito));
+    actualizarInterfazCarrito();
+}
+
+// 5. Mostrar/Ocultar Modal del Carrito
+function toggleCartModal() {
+    const modal = document.getElementById('modalCarrito');
+    if (modal.style.display === "flex") {
+        modal.style.display = "none";
+    } else {
+        modal.style.display = "flex";
+        actualizarInterfazCarrito();
+    }
+}
+
+// 6. Animación de sacudida (Shake)
+function animarIconoCarrito() {
+    const icon = document.getElementById('cart-icon');
+    if(icon) {
+        icon.animate([
+            { transform: 'translate(0, 0) rotate(0deg)' },
+            { transform: 'translate(-5px, 0) rotate(-10deg)' },
+            { transform: 'translate(5px, 0) rotate(10deg)' },
+            { transform: 'translate(-5px, 0) rotate(-10deg)' },
+            { transform: 'translate(5px, 0) rotate(10deg)' },
+            { transform: 'translate(0, 0) rotate(0deg)' }
+        ], {
+            duration: 500,
+            easing: 'ease-in-out'
+        });
+    }
+}
+
+// 7. GENERADOR DE TICKET VISUAL PREMIUM CON REINICIO
+async function generarTicketPDF() {
+    if (carrito.length === 0) {
+        alert("Agrega productos antes de generar el ticket.");
+        return;
+    }
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    const totalTxt = document.getElementById('cart-total').innerText;
+
+    const logoImg = new Image();
+    logoImg.src = 'NC.jpg';
+
+    logoImg.onload = async function() {
+        // --- DISEÑO DE CABECERA NC ---
+        doc.setFillColor(249, 247, 242); 
+        doc.rect(0, 0, 210, 50, 'F');
+        doc.setDrawColor(191, 163, 126);
+        doc.setLineWidth(1);
+        doc.line(0, 50, 210, 50);
+
+        doc.addImage(logoImg, 'JPEG', 15, 10, 30, 30);
+
+        doc.setTextColor(191, 163, 126);
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(22);
+        doc.text("NC WEST COAST", 50, 25);
+        
+        doc.setTextColor(100, 100, 100);
+        doc.setFontSize(10);
+        doc.setFont(undefined, 'normal');
+        doc.text("SOLICITUD DE PEDIDO PERSONALIZADO", 50, 32);
+        doc.text("ESTILO AMERICANO • DIRECTO A MÉXICO", 50, 37);
+
+        doc.setFontSize(9);
+        const folio = "FOLIO: #NC" + Math.floor(1000 + Math.random() * 9000);
+        doc.text(new Date().toLocaleDateString(), 195, 20, { align: "right" });
+        doc.text(folio, 195, 26, { align: "right" });
+
+        // --- LISTADO DE PRODUCTOS CON IMÁGENES ---
+        let y = 65;
+        doc.setTextColor(40, 40, 40);
+        doc.setFontSize(12);
+        doc.setFont(undefined, 'bold');
+        doc.text("RESUMEN DE TU SELECCIÓN:", 20, y);
+        y += 10;
+
+        for (const item of carrito) {
+            if (y > 240) { doc.addPage(); y = 20; }
+
+            doc.setDrawColor(240, 240, 240);
+            doc.setFillColor(255, 255, 255);
+            doc.roundedRect(15, y, 180, 25, 3, 3, 'FD');
+
+            // Imagen del producto
+            try {
+                const pImg = new Image();
+                pImg.src = item.imagen;
+                await new Promise((resolve) => {
+                    pImg.onload = () => {
+                        doc.addImage(pImg, 'JPEG', 20, y + 2, 20, 20); 
+                        resolve();
+                    };
+                    pImg.onerror = () => resolve();
+                });
+            } catch (e) { console.error(e); }
+
+            // Nombre del producto
+            doc.setTextColor(50, 50, 50);
+            doc.setFontSize(11);
+            doc.setFont(undefined, 'bold');
+            doc.text(item.nombre.toUpperCase(), 45, y + 8);
+            
+            // Cantidad y Precio Unitario
+            doc.setTextColor(100, 100, 100);
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'normal');
+            doc.text(`CANTIDAD: ${item.cantidad}`, 45, y + 14);
+            doc.text(`PRECIO UNIT: $${parseFloat(item.precio).toLocaleString()} MXN`, 45, y + 20);
+
+            // Subtotal por renglón (Derecha)
+            const subtotalRenglon = parseFloat(item.precio) * item.cantidad;
+            doc.setTextColor(191, 163, 126);
+            doc.setFontSize(11);
+            doc.setFont(undefined, 'bold');
+            doc.text(`$${subtotalRenglon.toLocaleString()} MXN`, 190, y + 14, { align: "right" });
+
+            y += 30;
+        }
+
+        if (y > 260) { doc.addPage(); y = 20; }
+        
+        doc.setFillColor(191, 163, 126);
+        doc.rect(120, y, 75, 15, 'F');
+        
+        doc.setTextColor(255, 255, 255);
+        doc.setFontSize(14);
+        doc.setFont(undefined, 'bold');
+        doc.text(`TOTAL: ${totalTxt}`, 125, y + 10);
+
+        doc.setTextColor(150, 150, 150);
+        doc.setFontSize(9);
+        doc.setFont(undefined, 'italic');
+        doc.text("Este ticket es una solicitud de cotización.", 105, 280, { align: "center" });
+        doc.text("Envíalo por Messenger para confirmar disponibilidad.", 105, 285, { align: "center" });
+
+        // Guardar PDF
+        doc.save(`Ticket_NC_${Math.floor(Date.now()/1000)}.pdf`);
+        
+        // --- PROCESO DE REINICIO ---
+        alert("¡Catálogo generado! Tu canasta se vaciará y te llevaremos al chat.");
+        localStorage.removeItem('nc_cart'); 
+        window.open("https://m.me/859771300559984", "_blank");
+        location.reload(); 
+    };
+}

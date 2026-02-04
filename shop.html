@@ -7,8 +7,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="NC.ico">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="script.js" defer></script>
 </head>
 <body>
@@ -18,6 +20,11 @@
             <img src="NC.jpg" alt="Cargando..." class="loader-logo">
             <div class="loader-line"></div>
         </div>
+    </div>
+
+    <div id="cart-icon" onclick="toggleCartModal()" style="position: fixed; bottom: 100px; right: 30px; background: var(--gold-accent); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+        <i class="fa-solid fa-basket-shopping" style="color: white; font-size: 1.5rem;"></i>
+        <span id="cart-count" style="position: absolute; top: 0; right: 0; background: #e74c3c; color: white; border-radius: 50%; padding: 2px 7px; font-size: 12px; font-weight: bold;">0</span>
     </div>
 
     <a href="https://m.me/859771300559984" class="messenger-btn" target="_blank" title="Chatea con nosotros">
@@ -34,7 +41,7 @@
         <ul class="nav-menu">
             <li><a href="index.html" class="nav-link" onclick="closeMenu()">Inicio</a></li>
             <li><a href="outlet.html" class="nav-link">Outlet</a></li>
-            <li><a href="shop.html" class="nav-link active">Cosmeticos</a></li>
+            <li><a href="shop.html" class="nav-link active" onclick="closeMenu()">Cosmeticos</a></li>
             <li><a href="encargos.html" class="nav-link">Encarga</a></li>
         </ul>
         <div class="hamburger">
@@ -105,7 +112,7 @@
                         <span class="price">$1300 MXN</span>
                     </div>
                     <span class="price-sub">$130 MXN c/u</span>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Pack Gloss Victoria\'s Secret', '1300', 'Duos/p1.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
             
@@ -120,7 +127,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Cream Warm & Cozy', '280', 'Cremas/img1.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -135,7 +142,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Cream Vanilla & Dream', '280', 'Cremas/img3.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -150,7 +157,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Cream Fresh & Clean', '280', 'Cremas/img4.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -165,7 +172,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Cream Buttery Sugary', '280', 'Cremas/img5.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -180,7 +187,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Cream Apple Crisp', '280', 'Cremas/img6.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -195,7 +202,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Cream Fresh & Clean Pink', '280', 'Cremas/img7.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -210,7 +217,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Cream Coconut Cream', '280', 'Cremas/img8.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -225,7 +232,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Cream Warm & Cozy Pink', '280', 'Cremas/img9.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -240,7 +247,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Cream Cool & Bright', '280', 'Cremas/img10.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -255,7 +262,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Cream Jam Cookie', '280', 'Cremas/img11.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -270,7 +277,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Cream Vanilla & Dream Pink', '280', 'Cremas/img12.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -285,7 +292,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Cream Biscott Delight', '280', 'Cremas/img13.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -300,7 +307,7 @@
                     <div class="price-row">
                         <span class="price">$300 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Eos Pink Champagne', '300', 'Cremas/img2.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -315,7 +322,7 @@
                     <div class="price-row">
                         <span class="price">$300 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Eos Coconut Waters', '300', 'Cremas/img14.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -330,7 +337,7 @@
                     <div class="price-row">
                         <span class="price">$300 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Eos Fresh & Cozy', '300', 'Cremas/img15.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -345,7 +352,7 @@
                     <div class="price-row">
                         <span class="price">$300 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Eos Strawberry Dream', '300', 'Cremas/img16.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -360,7 +367,7 @@
                     <div class="price-row">
                         <span class="price">$300 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Eos Crème de Pistachio', '300', 'Cremas/img17.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -375,7 +382,7 @@
                     <div class="price-row">
                         <span class="price">$300 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Eos Vanilla Cashmere', '300', 'Cremas/img18.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -390,7 +397,7 @@
                     <div class="price-row">
                         <span class="price">$300 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Eos Cocoa Cashmere', '300', 'Cremas/img19.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -405,7 +412,7 @@
                     <div class="price-row">
                         <span class="price">$300 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Eos Fragrance Free', '300', 'Cremas/img20.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -420,7 +427,7 @@
                     <div class="price-row">
                         <span class="price">$300 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Eos Fresh + Cozy Big', '300', 'Cremas/img21.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -435,7 +442,7 @@
                     <div class="price-row">
                         <span class="price">$300 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Eos Pink Champagne Big', '300', 'Cremas/img22.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -450,7 +457,7 @@
                     <div class="price-row">
                         <span class="price">$300 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Eos Pomegranate Raspberry', '300', 'Cremas/img23.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -465,7 +472,7 @@
                     <div class="price-row">
                         <span class="price">$300 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Eos Vanilla Cashmere Big', '300', 'Cremas/img24.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -480,7 +487,7 @@
                     <div class="price-row">
                         <span class="price">$300 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Eos Coconut Waters Big', '300', 'Cremas/img25.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -495,7 +502,7 @@
                     <div class="price-row">
                         <span class="price">$300 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Eos Peppermint Cashmere', '300', 'Cremas/img26.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
             
@@ -510,7 +517,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Frosted Vanilla Fantasy', '280', 'Cremas/vs1.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -525,7 +532,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Whipped Marshmallow Dream', '280', 'Cremas/vs2.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -540,7 +547,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Candied Berry Wonderland', '280', 'Cremas/vs3.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -555,7 +562,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Pure Seduction Joy', '280', 'Cremas/vs4.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -570,7 +577,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Bare Vanilla Joy', '280', 'Cremas/vs5.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -585,7 +592,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Love Spell Joy', '280', 'Cremas/vs6.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -600,7 +607,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Velvet Petals Joy', '280', 'Cremas/vs7.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -615,7 +622,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Bare Vanilla', '280', 'Cremas/vs8.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -630,7 +637,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Coconut Passion', '280', 'Cremas/vs9.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -645,7 +652,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Pure Seduction', '280', 'Cremas/vs10.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -660,7 +667,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Velvet Petals', '280', 'Cremas/vs11.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -675,7 +682,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Love Spell', '280', 'Cremas/vs12.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -690,7 +697,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Midnight Magic', '280', 'Cremas/vs13.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -705,7 +712,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Merry Delights', '280', 'Cremas/vs14.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -720,7 +727,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Naughty Spice', '280', 'Cremas/vs15.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -735,7 +742,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Festive Figg', '280', 'Cremas/vs16.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -750,7 +757,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Aqua Kiss', '280', 'Cremas/vs17.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -765,7 +772,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Amber Romance', '280', 'Cremas/vs18.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -780,7 +787,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Coconut Passion Brulée', '280', 'Cremas/vs19.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -795,7 +802,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Bare Vanilla Brulée', '280', 'Cremas/vs20.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -810,7 +817,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Pure Seduction Shimmer', '280', 'Cremas/vs21.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -825,7 +832,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Bare Vanilla Shimmer', '280', 'Cremas/vs22.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -840,7 +847,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Love Spell Shimmer', '280', 'Cremas/vs23.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -855,7 +862,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Love Spell Brulée', '280', 'Cremas/vs24.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -870,7 +877,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Velvet Petals Brulée', '280', 'Cremas/vs25.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -885,7 +892,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Velvet Petals Shimmer', '280', 'Cremas/vs26.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -900,7 +907,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Pure Seduction Brulée', '280', 'Cremas/vs27.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -915,7 +922,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Amber Romance Brulée', '280', 'Cremas/vs28.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -930,7 +937,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Midnight Bloom', '280', 'Cremas/vs29.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -945,7 +952,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Amber Romance Shimmer', '280', 'Cremas/vs30.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -960,7 +967,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Midnight Bloom Shimmer', '280', 'Cremas/vs31.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -975,7 +982,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Aqua Kiss Shimmer', '280', 'Cremas/vs32.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -990,7 +997,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Coconut Passion Shimmer', '280', 'Cremas/vs33.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1005,7 +1012,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Vanilla Lace', '280', 'Cremas/vs34.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1020,7 +1027,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Mango Temptation', '280', 'Cremas/vs35.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1035,7 +1042,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Strawberries & Champagne', '280', 'Cremas/vs36.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1050,7 +1057,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Cashmere Fleur', '280', 'Cremas/vs37.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1065,7 +1072,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Velvet Petals Intense', '280', 'Cremas/vs38.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1080,7 +1087,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Pure Seduction Intense', '280', 'Cremas/vs39.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1095,7 +1102,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Bare Vanilla Intense', '280', 'Cremas/vs40.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1110,7 +1117,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Pure Wonder', '350', 'Cremas/b1.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1125,7 +1132,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Japanese Cherry', '350', 'Cremas/b2.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1140,7 +1147,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Birthday Cake', '350', 'Cremas/b4.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1155,7 +1162,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Twisted Peppermint', '350', 'Cremas/b5.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1170,7 +1177,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW At The Beach', '350', 'Cremas/b6.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1185,7 +1192,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Japanese Cherry 2', '350', 'Cremas/b3.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1200,7 +1207,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Après All Day', '350', 'Cremas/b7.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1215,7 +1222,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW A Toast To You', '350', 'Cremas/b8.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1230,7 +1237,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Platinum', '350', 'Cremas/b9.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1245,7 +1252,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Winter Candy Apple', '350', 'Cremas/b10.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1260,7 +1267,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Magic In The Air', '350', 'Cremas/b11.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1275,7 +1282,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Cozy Vanilla Bourbon', '350', 'Cremas/b12.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1290,7 +1297,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW In The Stars', '350', 'Cremas/b13.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1305,7 +1312,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Into The Night', '350', 'Cremas/b14.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1320,7 +1327,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Strawberry Snowflakes', '350', 'Cremas/b15.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1335,7 +1342,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Champagne Toast', '350', 'Cremas/b16.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1350,7 +1357,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Black Tea 1990', '350', 'Cremas/b17.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1365,7 +1372,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Champagne Toast 1990', '350', 'Cremas/b18.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1380,7 +1387,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Strawberry Pound Cake', '350', 'Cremas/b19.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1395,7 +1402,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Bare Vanilla Mist', '350', 'Duos/d1.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1410,7 +1417,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Pure Seduction Mist', '350', 'Duos/d2.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1425,7 +1432,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Love Spell Mist', '350', 'Duos/d3.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1440,7 +1447,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Velvet Petals Mist', '350', 'Duos/d4.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1456,7 +1463,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Balance Harmony', '350', 'Mist/img60.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1472,7 +1479,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Innovative Progressive', '350', 'Mist/img61.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1488,7 +1495,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Dependable Loyal', '350', 'Mist/img62.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1504,7 +1511,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Intelligent Mindful', '350', 'Mist/img63.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1520,7 +1527,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Intuitive Compassionate', '350', 'Mist/img64.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1536,7 +1543,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Knowledgeable Idealistic', '350', 'Mist/img65.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1552,7 +1559,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Brave Determined', '350', 'Mist/img66.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1568,7 +1575,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Empathetic Generous', '350', 'Mist/img67.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1584,7 +1591,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Patient Grounded', '350', 'Mist/img68.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1600,7 +1607,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Playful Outgoing', '350', 'Mist/img69.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1616,7 +1623,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Bold Confident', '350', 'Mist/img70.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1632,7 +1639,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Passionate Fearless', '350', 'Mist/img71.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1647,7 +1654,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Mediterranean Mirage', '350', 'Mist/img1.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1662,7 +1669,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Pink Buttery Sugary', '280', 'Mist/img2.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1677,7 +1684,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Pink Apple Crisp', '280', 'Mist/img3.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1692,7 +1699,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Pink Warm & Cozy', '280', 'Mist/img4.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1707,7 +1714,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Pink Cool & Bright', '280', 'Mist/img5.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1722,7 +1729,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Pink Heart Breaker', '280', 'Mist/img6.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1737,7 +1744,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Pink XO Sugar', '280', 'Mist/img7.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1752,7 +1759,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Pink This Kiss', '280', 'Mist/img8.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1767,7 +1774,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Pink Jam Cookie', '280', 'Mist/img9.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1782,7 +1789,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Pink Fresh & Clean Big', '280', 'Mist/img10.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1797,7 +1804,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Pink Vanilla & Dream Big', '280', 'Mist/img11.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1812,7 +1819,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Pink Cool & Bright Big', '280', 'Mist/img12.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1827,7 +1834,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Pink Cinn-a-Drizzle', '280', 'Mist/img13.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1842,7 +1849,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('Pink Warm & Cozy Big', '280', 'Mist/img14.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1857,7 +1864,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW In The Stars', '350', 'Mist/img15.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1872,7 +1879,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Frosted Coconut', '350', 'Mist/img16.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1887,7 +1894,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Japanese Cherry Mist', '350', 'Mist/img17.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1902,7 +1909,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Infinite Radiance', '350', 'Mist/img18.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1917,7 +1924,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Cinnamon Pretzel', '350', 'Mist/img19.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1932,7 +1939,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Touch of Gold Mist', '350', 'Mist/img20.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1947,7 +1954,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Champagne Toast Mist', '350', 'Mist/img21.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1962,7 +1969,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Into The Night Mist', '350', 'Mist/img22.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1977,7 +1984,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Snowflakes Cashmere', '350', 'Mist/img23.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -1992,7 +1999,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Milk Bar Cake', '350', 'Mist/img24.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2007,7 +2014,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW A Thousand Wishes', '350', 'Mist/img25.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2022,7 +2029,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Moonlit Goddess', '350', 'Mist/img26.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2037,7 +2044,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Cereal Milk Mist', '350', 'Mist/img27.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2052,7 +2059,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Pink Obsessed', '350', 'Mist/img28.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2067,7 +2074,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Strawberry Snowflakes Mist', '350', 'Mist/img29.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2082,7 +2089,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Moon Light Path', '350', 'Mist/img30.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2097,7 +2104,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Warm Vanilla Sugar', '350', 'Mist/img31.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2112,7 +2119,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Sweetest Song', '350', 'Mist/img32.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2127,7 +2134,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Gingham Gorgeous', '350', 'Mist/img33.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2142,7 +2149,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Cozy Vanilla Bourbon Mist', '350', 'Mist/img34.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2157,7 +2164,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Bright Christmas Mist', '350', 'Mist/img35.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2172,7 +2179,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Youre The One', '350', 'Mist/img36.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2187,7 +2194,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Sweet Pea', '350', 'Mist/img37.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2202,7 +2209,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Vanilla Café Mist', '350', 'Mist/img38.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2217,7 +2224,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Plumeria', '350', 'Mist/img39.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2232,7 +2239,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Mrs Claus Cocktail', '350', 'Mist/img40.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2247,7 +2254,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Sunrise Woods', '350', 'Mist/img41.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2262,7 +2269,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Winter Candy Mist', '350', 'Mist/img42.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2277,7 +2284,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Covered In Roses', '350', 'Mist/img43.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2292,7 +2299,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Twisted Peppermint Mist', '350', 'Mist/img44.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2307,7 +2314,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Vanilla Bean Noel Mist', '350', 'Mist/img45.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2322,7 +2329,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Raspberry Pie Mist', '350', 'Mist/img46.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2337,7 +2344,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Strawberry Pound Cake Mist', '350', 'Mist/img47.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2352,7 +2359,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Always & Forever', '350', 'Mist/img48.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2367,7 +2374,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Vanilla Ease', '350', 'Mist/img49.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2382,7 +2389,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Gingham Mist', '350', 'Mist/img50.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2397,7 +2404,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Gingerbread Latte', '350', 'Mist/img51.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2412,7 +2419,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Country Apple Mist', '350', 'Mist/img52.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2427,7 +2434,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Midnight Addiction', '350', 'Mist/img53.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2442,7 +2449,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Cucumber Melon Mist', '350', 'Mist/img54.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2457,7 +2464,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW At The Beach Mist', '350', 'Mist/img55.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2472,7 +2479,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Inner Angel', '350', 'Mist/img56.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2487,7 +2494,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Platinum Mist', '350', 'Mist/img57.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2502,7 +2509,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Magic Air Mist', '350', 'Mist/img58.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2517,7 +2524,7 @@
                     <div class="price-row">
                         <span class="price">$350 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Peppermint Bark Mist', '350', 'Mist/img59.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2533,7 +2540,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Cherry Bonbon Mist', '280', 'Mist/vs1.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2549,7 +2556,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Candied Berry Mist', '280', 'Mist/vs2.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2565,7 +2572,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Whipped Marshmallow Mist', '280', 'Mist/vs3.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2581,7 +2588,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Pure Seduction Joy Mist', '280', 'Mist/vs4.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2597,7 +2604,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Dare Vanilla Joy Mist', '280', 'Mist/vs5.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2613,7 +2620,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Love Spell Joy Mist', '280', 'Mist/vs6.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2629,7 +2636,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Velvet Petals Joy Mist', '280', 'Mist/vs7.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2645,7 +2652,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Bare Vanilla Mist Big', '280', 'Mist/vs8.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2661,7 +2668,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Coconut Passion Mist Big', '280', 'Mist/vs9.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2677,7 +2684,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Pure Seduction Mist Big', '280', 'Mist/vs10.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2693,7 +2700,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Velvet Petals Mist Big', '280', 'Mist/vs11.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2709,7 +2716,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Love Spell Mist Big', '280', 'Mist/vs12.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2725,7 +2732,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Midnight Magic Mist', '280', 'Mist/vs13.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2741,7 +2748,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Merry Delights Mist', '280', 'Mist/vs14.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2757,7 +2764,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Naughty Spice Mist', '280', 'Mist/vs15.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2773,7 +2780,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Festive Figg Mist', '280', 'Mist/vs16.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2789,7 +2796,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Aqua Kiss Mist Big', '280', 'Mist/vs17.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2805,7 +2812,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Amber Romance Mist Big', '280', 'Mist/vs18.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2821,7 +2828,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Coconut Brulée Mist', '280', 'Mist/vs19.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2837,7 +2844,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Pure Seduction Shimmer Mist', '280', 'Mist/vs20.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2853,7 +2860,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Bare Vanilla Brulée Mist', '280', 'Mist/vs21.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2869,7 +2876,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Bare Vanilla Shimmer Mist', '280', 'Mist/vs22.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2885,7 +2892,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Love Spell Brulée Mist', '280', 'Mist/vs23.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2901,7 +2908,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Love Spell Shimmer Mist', '280', 'Mist/vs24.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2917,7 +2924,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Velvet Petals Brulée Mist', '280', 'Mist/vs25.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2933,7 +2940,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Velvet Petals Shimmer Mist', '280', 'Mist/vs26.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2949,7 +2956,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Pure Seduction Brulée Mist', '280', 'Mist/vs27.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2965,7 +2972,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Midnight Bloom Mist', '280', 'Mist/vs28.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2981,7 +2988,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Amber Romance Mist', '280', 'Mist/vs29.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -2997,7 +3004,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Midnight Bloom Shimmer Mist', '280', 'Mist/vs30.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3013,7 +3020,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Aqua Kiss Shimmer Mist', '280', 'Mist/vs31.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3029,7 +3036,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Coconut Passion Shimmer Mist', '280', 'Mist/vs32.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3045,7 +3052,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Vanilla Lace Mist', '280', 'Mist/vs33.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3061,7 +3068,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Mango Temptation Mist', '280', 'Mist/vs34.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3077,7 +3084,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Strawberries Mist', '280', 'Mist/vs35.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3093,7 +3100,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Cashmere Fleur Mist', '280', 'Mist/vs36.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3109,7 +3116,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Velvet Petals Intense Mist', '280', 'Mist/vs37.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3125,7 +3132,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Love Spell Intense Mist', '280', 'Mist/vs38.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3141,7 +3148,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Pure Seduction Intense Mist', '280', 'Mist/vs39.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3157,7 +3164,7 @@
                     <div class="price-row">
                         <span class="price">$280 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('VS Bare Vanilla Intense Mist', '280', 'Mist/vs40.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3172,7 +3179,7 @@
                     <div class="price-row">
                         <span class="price">$50 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Champagne Toast Gel', '50', 'Geles/img1.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3187,7 +3194,7 @@
                     <div class="price-row">
                         <span class="price">$50 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Cookie Butter Gel', '50', 'Geles/img2.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3202,7 +3209,7 @@
                     <div class="price-row">
                         <span class="price">$50 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Strawberry Cake Gel', '50', 'Geles/img3.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3217,7 +3224,7 @@
                     <div class="price-row">
                         <span class="price">$50 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Cinnamon Pretzel Gel', '50', 'Geles/img4.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3232,7 +3239,7 @@
                     <div class="price-row">
                         <span class="price">$50 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Cozy Vanilla Gel', '50', 'Geles/img5.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3247,7 +3254,7 @@
                     <div class="price-row">
                         <span class="price">$50 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Pure Wonder Gel', '50', 'Geles/img6.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3262,7 +3269,7 @@
                     <div class="price-row">
                         <span class="price">$50 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Strawberry Snowflake Gel', '50', 'Geles/img7.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3277,7 +3284,7 @@
                     <div class="price-row">
                         <span class="price">$50 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Touch Gold Gel', '50', 'Geles/img8.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3292,7 +3299,7 @@
                     <div class="price-row">
                         <span class="price">$50 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Fresh Sparkling Gel', '50', 'Geles/img9.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3307,7 +3314,7 @@
                     <div class="price-row">
                         <span class="price">$50 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Black Cherry Gel', '50', 'Geles/img10.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3322,7 +3329,7 @@
                     <div class="price-row">
                         <span class="price">$50 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Milk Bar Gel', '50', 'Geles/img11.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3337,7 +3344,7 @@
                     <div class="price-row">
                         <span class="price">$50 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Snowflakes Gel', '50', 'Geles/img12.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3352,7 +3359,7 @@
                     <div class="price-row">
                         <span class="price">$50 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Bright Christmas Gel', '50', 'Geles/img13.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3367,7 +3374,7 @@
                     <div class="price-row">
                         <span class="price">$50 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Freshwater Gel', '50', 'Geles/img14.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3382,7 +3389,7 @@
                     <div class="price-row">
                         <span class="price">$50 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Dazzling Diamond Gel', '50', 'Geles/img15.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3397,7 +3404,7 @@
                     <div class="price-row">
                         <span class="price">$50 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Cereal Milk Gel', '50', 'Geles/img16.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3412,7 +3419,7 @@
                     <div class="price-row">
                         <span class="price">$50 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Winter Candy Gel', '50', 'Geles/img17.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3427,7 +3434,7 @@
                     <div class="price-row">
                         <span class="price">$50 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW In Stars Gel', '50', 'Geles/img18.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3442,7 +3449,7 @@
                     <div class="price-row">
                         <span class="price">$50 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Moonlit Goddess Gel', '50', 'Geles/img19.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3457,7 +3464,7 @@
                     <div class="price-row">
                         <span class="price">$50 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Japanese Cherry Gel', '50', 'Geles/img20.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3472,7 +3479,7 @@
                     <div class="price-row">
                         <span class="price">$50 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Winterberry Gel', '50', 'Geles/img21.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3487,7 +3494,7 @@
                     <div class="price-row">
                         <span class="price">$50 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW 1000 Wishes Gel', '50', 'Geles/img22.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3502,7 +3509,7 @@
                     <div class="price-row">
                         <span class="price">$50 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Into Night Gel', '50', 'Geles/img23.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3517,7 +3524,7 @@
                     <div class="price-row">
                         <span class="price">$50 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Mrs Claus Gel', '50', 'Geles/img24.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3532,7 +3539,7 @@
                     <div class="price-row">
                         <span class="price">$50 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Snowy Peach Gel', '50', 'Geles/img25.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3547,7 +3554,7 @@
                     <div class="price-row">
                         <span class="price">$50 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Twisted Mint Gel', '50', 'Geles/img26.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3562,7 +3569,7 @@
                     <div class="price-row">
                         <span class="price">$50 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Vanilla Noel Gel', '50', 'Geles/img27.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3577,7 +3584,7 @@
                     <div class="price-row">
                         <span class="price">$50 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Ocean Gel', '50', 'Geles/img28.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3592,7 +3599,7 @@
                     <div class="price-row">
                         <span class="price">$50 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Sunshine Lemon Gel', '50', 'Geles/img29.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3607,7 +3614,7 @@
                     <div class="price-row">
                         <span class="price">$50 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Champagne Toast Gel Big', '50', 'Geles/img30.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3622,7 +3629,7 @@
                     <div class="price-row">
                         <span class="price">$50 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Tis The Season Gel', '50', 'Geles/img31.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3637,7 +3644,7 @@
                     <div class="price-row">
                         <span class="price">$50 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Winter Gel', '50', 'Geles/img32.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3652,7 +3659,7 @@
                     <div class="price-row">
                         <span class="price">$50 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Mahogany Teakwood Gel', '50', 'Geles/img33.jpg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3667,7 +3674,7 @@
                     <div class="price-row">
                         <span class="price">$140 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Frosted Frost Soap', '140', 'Jabones/jb1.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3682,7 +3689,7 @@
                     <div class="price-row">
                         <span class="price">$140 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Birthday Cake Soap', '140', 'Jabones/jb2.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3697,7 +3704,7 @@
                     <div class="price-row">
                         <span class="price">$140 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Gingerbread Soap', '140', 'Jabones/jb3.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3712,7 +3719,7 @@
                     <div class="price-row">
                         <span class="price">$140 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Twisted Mint Soap', '140', 'Jabones/jb4.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3727,7 +3734,7 @@
                     <div class="price-row">
                         <span class="price">$140 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Strawberry Snowflake Soap', '140', 'Jabones/jb5.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3742,7 +3749,7 @@
                     <div class="price-row">
                         <span class="price">$140 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Pineapple Mango Soap', '140', 'Jabones/jb6.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3757,7 +3764,7 @@
                     <div class="price-row">
                         <span class="price">$140 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Bright Christmas Soap', '140', 'Jabones/jb7.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3772,7 +3779,7 @@
                     <div class="price-row">
                         <span class="price">$140 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Winter Citrus Soap', '140', 'Jabones/jb8.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3787,7 +3794,7 @@
                     <div class="price-row">
                         <span class="price">$140 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Sweater Weather Soap', '140', 'Jabones/jb9.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3802,7 +3809,7 @@
                     <div class="price-row">
                         <span class="price">$140 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Lemon Frost Soap', '140', 'Jabones/jb10.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3817,7 +3824,7 @@
                     <div class="price-row">
                         <span class="price">$140 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Winterberry Soap', '140', 'Jabones/jb11.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3832,7 +3839,7 @@
                     <div class="price-row">
                         <span class="price">$140 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Lavender Cloud Soap', '140', 'Jabones/jb12.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3847,7 +3854,7 @@
                     <div class="price-row">
                         <span class="price">$140 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Cookie Soap', '140', 'Jabones/jb14.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3862,7 +3869,7 @@
                     <div class="price-row">
                         <span class="price">$140 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Peppermint Soap', '140', 'Jabones/jb15.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3877,7 +3884,7 @@
                     <div class="price-row">
                         <span class="price">$140 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Cocoa Soap', '140', 'Jabones/jb16.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3892,7 +3899,7 @@
                     <div class="price-row">
                         <span class="price">$140 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Candy Cane Soap', '140', 'Jabones/jb17.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3907,7 +3914,7 @@
                     <div class="price-row">
                         <span class="price">$140 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Moonlit Goddess Soap', '140', 'Jabones/jb18.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3922,7 +3929,7 @@
                     <div class="price-row">
                         <span class="price">$140 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Frozen Lake Soap', '140', 'Jabones/jb19.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3937,7 +3944,7 @@
                     <div class="price-row">
                         <span class="price">$140 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Grape Soap', '140', 'Jabones/jb20.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3952,7 +3959,7 @@
                     <div class="price-row">
                         <span class="price">$140 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW White Tea Soap', '140', 'Jabones/jb21.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3967,7 +3974,7 @@
                     <div class="price-row">
                         <span class="price">$140 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Cereal Soap', '140', 'Jabones/jb22.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3982,7 +3989,7 @@
                     <div class="price-row">
                         <span class="price">$140 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Christmas Kitchen Soap', '140', 'Jabones/jb23.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -3997,7 +4004,7 @@
                     <div class="price-row">
                         <span class="price">$140 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Winter Candy Soap', '140', 'Jabones/jb24.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -4012,7 +4019,7 @@
                     <div class="price-row">
                         <span class="price">$140 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Vanilla Noel Soap', '140', 'Jabones/jb25.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -4027,7 +4034,7 @@
                     <div class="price-row">
                         <span class="price">$140 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Mahogany Soap', '140', 'Jabones/jb26.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -4042,7 +4049,7 @@
                     <div class="price-row">
                         <span class="price">$140 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Champagne Toast Soap', '140', 'Jabones/jb27.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -4057,7 +4064,7 @@
                     <div class="price-row">
                         <span class="price">$140 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Vanilla Almond Soap', '140', 'Jabones/jb28.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
 
@@ -4072,7 +4079,7 @@
                     <div class="price-row">
                         <span class="price">$140 MXN</span>
                     </div>
-                    <button class="add-cart-btn buy-btn">Comprar</button>
+                    <button class="add-cart-btn" onclick="agregarAlCarrito('B&BW Fresh Balsam Soap', '140', 'Jabones/jb29.jpeg')">AGREGAR AL CARRITO</button>
                 </div>
             </div>
         </div>
@@ -4093,25 +4100,37 @@
         <p>© 2025 NC West Coast. Todos los derechos reservados.</p>
     </footer>
 
-    <div id="modalConfirmacion" class="copy-modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 10000; align-items: center; justify-content: center;">
-        <div class="copy-modal-box" style="background: #fff; width: 90%; max-width: 400px; padding: 30px; border-radius: 10px; text-align: center; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
-            <span onclick="cerrarModal()" style="position: absolute; top: 10px; right: 15px; font-size: 28px; cursor: pointer; color: #888;">&times;</span>
-            <h3 id="tituloModal" style="margin-bottom: 10px; font-family: 'Playfair Display', serif; color: #333; font-size: 1.5rem;">Paso 1: Copiar Pedido</h3>
-            <p id="instruccionesModal" style="color: #666; margin-bottom: 25px; font-size: 0.95rem; line-height: 1.5;">
-                Primero copia los detalles del producto, luego te llevaremos al chat.
-            </p>
-            <button id="btnIrMessenger" style="background: #2c2c2c; color: white; border: none; padding: 15px; width: 100%; font-weight: bold; cursor: pointer; border-radius: 5px; font-size: 1rem; text-transform: uppercase; transition: background 0.3s;">
-                <span id="textoBoton">COPIAR DATOS</span>
+    <div id="modalCarrito" class="modal-pedido-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 100001; align-items: center; justify-content: center;">
+        <div class="modal-pedido-box" style="background-color: #f9f7f2; width: 90%; max-width: 500px; padding: 30px; border-radius: 15px; position: relative;">
+            <span class="cerrar-x" onclick="toggleCartModal()" style="position: absolute; top: 15px; right: 20px; font-size: 25px; cursor: pointer; color: #aaa;">&times;</span>
+            <h2 style="font-family: 'Playfair Display', serif; text-align: center; margin-bottom: 20px;">Mi Canasta</h2>
+            <div id="cart-items-container" style="max-height: 300px; overflow-y: auto; margin-bottom: 20px; border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; padding: 10px 0;">
+                <p style="text-align: center; color: #999;">Tu canasta está vacía</p>
+            </div>
+            <div style="padding: 10px 0; text-align: right;">
+                <p style="font-weight: bold; font-size: 1.1rem;">Total Estimado: <span id="cart-total" style="color: var(--gold-accent);">$0.00</span></p>
+            </div>
+            <button class="btn-modal btn-verde" onclick="generarTicketPDF()" style="width: 100%; padding: 15px; border: none; border-radius: 5px; font-weight: 700; cursor: pointer; background: #27ae60; color: #fff;">
+                <i class="fa-solid fa-file-pdf"></i> GENERAR TICKET PDF
             </button>
         </div>
     </div>
+
+    <div id="modalConfirmacion" class="copy-modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 10000; align-items: center; justify-content: center;">
+        <div class="copy-modal-box" style="background: #fff; width: 90%; max-width: 400px; padding: 30px; border-radius: 10px; text-align: center; position: relative;">
+            <span onclick="cerrarModal()" style="position: absolute; top: 10px; right: 15px; font-size: 28px; cursor: pointer; color: #888;">&times;</span>
+            <h3 id="tituloModal" style="margin-bottom: 10px; font-family: 'Playfair Display', serif; color: #333;">Paso 1: Copiar Pedido</h3>
+            <p id="instruccionesModal" style="color: #666; margin-bottom: 25px;">Primero copia los detalles del producto, luego te llevaremos al chat.</p>
+            <button id="btnIrMessenger" style="background: #2c2c2c; color: white; border: none; padding: 15px; width: 100%; font-weight: bold; cursor: pointer; border-radius: 5px;">COPIAR DATOS</button>
+        </div>
+    </div>
+
     <div id="imageModal" class="image-modal">
         <span class="close-modal">&times;</span>
         <img class="modal-content" id="img01">
     </div>
 
     <script>
-        // Función rápida para cerrar si el script principal tarda en cargar
         function cerrarVistaImagen() {
             const m = document.getElementById("imageModal");
             if(m) {
@@ -4120,6 +4139,5 @@
             }
         }
     </script>
-
 </body>
 </html>
